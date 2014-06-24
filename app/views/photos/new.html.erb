@@ -1,0 +1,8 @@
+<h1>Uplaod Photos to <%= @album.title %></h1>
+
+<h2>Upload here!</h2>
+<form action="<%= album_photos_url(@album) %>" method="post">
+  <%= auth_token_input %>
+  
+  <input type="submit" value="Upload Photos!">
+</form>

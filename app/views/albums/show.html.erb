@@ -1,3 +1,11 @@
 <h1><%= @album.title %></h1>
+<p>Visibility: <%= @album.visibility %></p>
+
+<ul class="album-settings">
+  <li><a href="<%= new_album_photo_url(@album) %>">add photos</a></li>
+  <li><a href="<%= edit_album_url(@album) %>">album settings</a></li>
+</ul>
+
+
 
 shared albums partial will go here!

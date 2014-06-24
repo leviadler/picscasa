@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  root to: "users#new"
+  root to: "sessions#new"
   
   #TODO limit to used actions
   resources :users
   resource :session
-  resources :albums
+  resources :albums do
+    resources :photos, only: [:new, :create] #rename route this to /albums/:id/upload
+  end
+  resources :photos, only: [:show, :edit]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
