@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
   attr_reader :password
   
-  validates :email, presence: true, uniquness: true
+  validates :email, presence: true, uniqueness: true
   validates :lname, :fname, presence: true
   validates :password_digest, presence: { message: "Password can't be blank"}
   validates :password, length: { minimum: 6, allow_nil: true}, confirmation: true
+  #validates :password, confirmation: true
+  
+  
+  # keep it simple - http://davidcel.is/blog/2012/09/06/stop-validating-email-addresses-with-regex/ - TODO activation email
+  validates_format_of :email, :with => /.+@.+\..+/i 
   
   has_many :sessions
   
@@ -22,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_by_credentials(email, password)
-    user = User.find(email: email)
+    user = User.find_by(email: email)
     user.try(:is_password?, password) ? user : nil
   end
   

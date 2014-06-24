@@ -23,5 +23,18 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Welcome #{user.name}!"
     session[:session_token] = new_session.session_token
   end
+  
+  def logout!
+    current_session.try(:destroy)
+    session[:session_token] = nil
+  end
+  
+  def require_signed_in
+    redirect_to new_session_url unless signed_in?
+  end
+  
+  def require_signed_out
+    redirect_to user_url(current_user) if signed_in?
+  end
 
 end

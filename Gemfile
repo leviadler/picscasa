@@ -36,6 +36,19 @@ group :development do
   gem 'pry-rails'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do 
+  gem 'guard-rspec'
+  gem 'faker' 
+  gem 'capybara' 
+  gem 'launchy'
+  gem 'shoulda-matchers', require: false
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
