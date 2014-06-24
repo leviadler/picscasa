@@ -1,0 +1,38 @@
+<% action = album.persisted? ?  album_url(album) : albums_url %>
+<% button_text = album.persisted? ? "Update Album" : "Create Album" %>
+
+<form action="<%= action %>" method="POST"> 
+  <%= auth_token_input %>
+  
+  <% if album.persisted? %>
+  <input type="hidden" name="_method" value="put">
+  <% end %>
+  
+  <label for="album_title">Title</label>
+  <input type="text" id="album_title" name="album[title]" value="<%= album.title %>">
+  
+  <label for="album_date">Date</label>
+  <input type="date" id="album_date" name="album[date]" value="<%= album.date %>">
+  
+  <label for="album_description">Description</label>
+  <textarea id="album_description" name="album[ddescription]"><%= album.description %></textarea>
+  
+  <label for="album_location">Location</label>
+  <input type="text" id="album_location" name="album[location]" value="<%= album.location %>">
+  
+  <label for="album_visibility">Visiblity</label>
+  <select name="album[visibility]" id="album_visibilty">
+    <option value="private_album" <%= "selected" if album.private_album?%>>
+      Only Me
+    </option>
+    <option value="unlisted_album" <%= "selected" if album.unlisted_album?%>>
+      Unlisted
+    </option>
+    <option value="public_album" <%= "selected" if album.public_album?%>>
+      Public
+    </option>
+  </select>
+  
+  <input type="Submit" value="<%= button_text %>">
+  
+</form>

@@ -8,6 +8,7 @@ describe User do
   it { should validate_presence_of(:lname) }
   it { should validate_uniqueness_of(:email) }
   it { should have_many(:sessions) }
+  it { should have_many(:albums) }
   
   it "should find user by credentials" do
     user = create(:user)

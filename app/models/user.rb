@@ -5,13 +5,12 @@ class User < ActiveRecord::Base
   validates :lname, :fname, presence: true
   validates :password_digest, presence: { message: "Password can't be blank"}
   validates :password, length: { minimum: 6, allow_nil: true}, confirmation: true
-  #validates :password, confirmation: true
-  
   
   # keep it simple - http://davidcel.is/blog/2012/09/06/stop-validating-email-addresses-with-regex/ - TODO activation email
   validates_format_of :email, :with => /.+@.+\..+/i 
   
   has_many :sessions
+  has_many :albums, foreign_key: :owner_id
   
   def password=(password) 
     @password = password
