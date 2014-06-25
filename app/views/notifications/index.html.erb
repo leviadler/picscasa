@@ -1,0 +1,17 @@
+<h1>Notifications</h1>
+
+<h2>New Notifications:</h2>
+
+<ul class="new-notification-list">
+  <% @notifications.each do |n| %>
+  <%= render 'notification', n: n %>
+  <% end %>
+</ul>
+
+<h2>Previous Notifications:</h2>
+
+<ul class="old-notification-list">
+  <% @old_notifications.each do |n| %>
+  <%= render 'notification', n: n %>
+  <% end %>
+</ul>

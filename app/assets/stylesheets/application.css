@@ -24,6 +24,7 @@ html, body, header, nav, section, main, h1, h2, ul, li, p, a {
 
 body {
   font-family: sans-serif;
+  background: #eee;
 }
 
 ul {

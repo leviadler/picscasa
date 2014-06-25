@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625140010) do
+ActiveRecord::Schema.define(version: 20140625164302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20140625140010) do
   add_index "likes", ["photo_id"], name: "index_likes_on_photo_id", using: :btree
   add_index "likes", ["user_id", "photo_id"], name: "index_likes_on_user_id_and_photo_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "user_id"
+    t.boolean  "is_unread",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.text     "caption"

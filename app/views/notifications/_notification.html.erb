@@ -1,0 +1,11 @@
+<li>
+  <% if n.notifiable_type == "Comment" %>
+    <a href="<%= photo_url(n.notifiable.photo, anchor: "comment-#{n.notifiable_id}") %>">
+      <%= n.user.name %> commented your photo!
+    </a>
+  <% else %>
+    <a href="<%= photo_url(n.notifiable.photo, anchor: "comment-#{n.notifiable_id}") %>">
+      <%= n.user.name %> commented your photo!
+    </a>
+  <% end %>
+</li>

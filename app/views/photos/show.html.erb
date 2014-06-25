@@ -57,22 +57,23 @@
 
 <% @photo.comments.each do |comment|  %>
 
-<hr>
-<%= gravatar_for(comment.user) %>
-<p><%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
-<p><%= comment.body %></p>
+  <div class="comment" id="<%= "comment-#{comment.id}" %>">
+    <hr>
+    <%= gravatar_for(comment.user) %>
+    <p><%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <p><%= comment.body %></p>
 
-<% if comment.user == current_user %>
-<form class="delete-comment" action="<%= comment_url(comment) %>" method="post">
-  <%= auth_token_input %>
+    <% if comment.user == current_user %>
+    <form class="delete-comment" action="<%= comment_url(comment) %>" method="post">
+      <%= auth_token_input %>
 
-  <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="_method" value="delete">
 
-  <input type="submit" value="Delete Comment">
+      <input type="submit" value="Delete Comment">
 
-</form>
-<% end %>
-
+    </form>
+    <% end %>
+  </div>
 
 <% end %>
 
