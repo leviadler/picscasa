@@ -8,20 +8,34 @@ class PhotosController < ApplicationController
 
   def create
     num_pics = 0
+    
+    @album = Album.find(params[:album_id])
+    
+    @album.photos.new(photo_params)
 
-    photo_params[:images].each do |image|
-      @photo = Photo.new(image: image, album_id: params[:album_id])
-
-      if @photo.save
-        num_pics += 1
-      else
-        flash[:error] = "One or more of your files failed to upload"
-        redirect_to album_url(params[:album_id])
-      end
+    
+    if @album.save
+      flash[:notice] = "Uploaded photos successfully!"
+      redirect_to album_url(params[:album_id])
+    else
+      flash[:error] = @album.errors.full_messages
+      redirect_to album_url(params[:album_id])
     end
 
-    flash[:notice] = "Uploaded #{num_pics} photos successfully!"
-    redirect_to album_url(params[:album_id])
+    # photo_params[:images].each do |image|
+#       photo = Photo.new(image: image, album_id: params[:album_id])
+#
+#       if photo.save
+#         num_pics += 1
+#       else
+#         flash[:error] = "One or more of your files failed to upload"
+#         redirect_to album_url(params[:album_id])
+#       end
+#     end
+#
+#     flash[:notice] = "Uploaded #{num_pics} photos successfully!"
+#     redirect_to album_url(params[:album_id])
+    
 
     #for single photo:
     # @photo = Photo.new(photo_params.merge!(album_id: params[:album_id]))
@@ -43,10 +57,40 @@ class PhotosController < ApplicationController
     @photo.view_count += 1
     @photo.save!
   end
+  
+  def edit
+    @photo = Photo.find(params[:id])
+  end
+  
+  def update
+    @photo = Photo.find(params[:id])
+    
+    if @photo.update(caption_params)
+      flash[:notice] = "Caption Updated!"
+      redirect_to photo_url(@photo)
+    else
+      flash.now[:error] = @photo.errors.full_messages
+      render :edit
+    end
+  end
+  
+  def destroy
+    @photo = Photo.find(params[:id]).destroy
+    flash[:notice] = "Photo deleted"
+    redirect_to album_url(@photo.album)
+  end
 
   private
+  # refactor to nest captions, allowing captions on upload
   def photo_params
-    params.require(:photo).permit(images:[])
+    p = params.require(:photo).permit(images:[])
+    p[:images].map do |file|
+      {image: file}
+    end
+  end
+  
+  def caption_params
+    params.require(:photo).permit(:caption)
   end
 
 end

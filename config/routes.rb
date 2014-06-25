@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :photos, only: [:new, :create] #rename route this to /albums/:id/upload
   end
 
-  resources :photos, only: [:show, :edit] do
+  resources :photos, only: [:show, :edit, :update, :destroy] do
     resources :comments, only: [:create]
     resource :likes, only: [:create, :destroy]
   end

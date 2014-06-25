@@ -4,6 +4,13 @@
     <a href="<%= params[:auth_token] ? photo_url(photo, auth_token: params[:auth_token]) : photo_url(photo) %>">
       <img src="<%= photo.image.url(:thumb) %>">
     </a>
+    <% if photo.album.owner == current_user %>
+    <form action="<%= photo_url(photo) %>" method="post">
+      <%= auth_token_input %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+    <% end %>
   </li>
 <% end %>
 </ul>

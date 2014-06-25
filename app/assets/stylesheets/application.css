@@ -94,6 +94,8 @@ nav {
   
 }
 
+
+
 .nav-container .left-nav {
   float: left;
 }
@@ -108,6 +110,51 @@ nav {
 
 .nav-container .right-nav li {
   float: left;
+}
+
+.nav-container > ul > li > a:hover {
+ background: black;
+}
+
+.nav-container > ul > li > a:hover .badge {
+  background: red;
+}
+
+.nav-container .badge {
+  background: black;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+nav .dropdown {
+  position: absolute;
+  display: none;
+}
+
+nav .dropdown {
+  border: 3px solid black;
+  border-bottom: 0;
+  width: 300px;
+  margin-left: -3px;
+}
+
+nav .dropdown > li {
+  padding: 5px;
+  border-bottom: 3px solid black;
+  background: white;
+}
+
+nav .dropdown > li:nth-child(even) {
+  background: #ddd;
+}
+
+.nav-container > ul > li:hover .dropdown {
+  display: block;
 }
 
 

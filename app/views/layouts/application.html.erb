@@ -21,7 +21,16 @@
         <ul class="right-nav group">
           <% if signed_in? %>
           <li><a href="<%= new_album_url %>">New Album</a></li>
-          <li><%= current_user.email %></li>
+          
+          <li>
+            <a href="#">Notifications <span class="badge">3</span></a>
+            <ul class="dropdown">
+              <li>Someone liked your picture.</li>
+              <li>Someone liked your picture.</li>
+              <li>Someone liked your picture.</li>
+            </ul>
+          </li>
+          <li><a href="#"><%= current_user.email %></a></li>
           <li><a href="<%= edit_user_url(current_user) %>">Account Settings</a></li>
           <li><%= button_to "Logout", session_url, method: :delete %></li>
           <% else %>

@@ -14,9 +14,17 @@
         <% if public_view %>
           By <a href="<%= user_url(album.owner) %>"><%= album.owner.name %></a>
         <% end %>
+        
       </figcaption>
     
     </figure>
+    <% if album.owner == current_user %>
+    <form action="<%= album_url(album) %>" method="post">
+      <%= auth_token_input %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+    <% end %>
   </li>
 
 
