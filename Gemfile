@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "figaro"
 gem "paperclip"
 gem "aws-sdk"
+gem 'exifr'
 
 
 group :production do
@@ -49,10 +50,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
-group :test do 
+group :test do
   gem 'guard-rspec'
-  gem 'faker' 
-  gem 'capybara' 
+  gem 'faker'
+  gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers', require: false
 end

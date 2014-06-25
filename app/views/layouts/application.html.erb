@@ -10,14 +10,14 @@
   <header>
     <nav>
       <h1>PicsCasa</h1>
-      
+
       <ul class="left-nav">
         <% if signed_in? %>
         <li><a href="<%= albums_url %>">My Albums</a></li>
         <% end %>
         <li><a href="#">Public Albums</a></li>
       </ul>
-      
+
       <ul class="right-nav">
         <% if signed_in? %>
         <li><%= current_user.email %></li>
@@ -29,13 +29,21 @@
         <% end %>
       </ul>
     </nav>
-    
+
     <%= flash[:error] if flash[:error] %>
     <%= flash[:notice] if flash[:notice] %>
-    
+
   </header>
 
-<%= yield %>
+  <main>
+
+    <%= yield %>
+
+  </main>
+
+  <footer>
+
+  </footer>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
-require 'rails_helper'
-
 RSpec.describe Photo, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:album) }
+  it { should have_one(:owner) }
+  it { should have_many(:comments)}
 end

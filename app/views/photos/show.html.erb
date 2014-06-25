@@ -1,1 +1,52 @@
-<img src="http://placekitten.com/600/600">
+
+<figure>
+  <img src="<%= @photo.image.url(:big)%>">
+
+  <figcaption>
+  <%= @photo.caption %><a href="#"><%= @photo.caption ? "Edit Caption" : "Add a Caption" %></a>
+  </figcaption>
+</figure>
+
+<!-- add links to prev and next -->
+
+
+<section class="comments">
+<h3>Comments</h3>
+
+<% if signed_in? %>
+<%= gravatar_for(current_user) %>
+<p><%= current_user.name %></p>
+<form action="<%= photo_comments_url(@photo) %>" method="post">
+  <%= auth_token_input %>
+
+  <textarea placeholder="Add a comment" name="comment[body]"></textarea>
+
+  <input type="submit" value="Add Comment">
+
+</form>
+<% end %>
+
+<% @photo.comments.each do |comment|  %>
+
+<hr>
+<%= gravatar_for(comment.user) %>
+<p><%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+<p><%= comment.body %></p>
+
+<% if comment.user == current_user %>
+<form class="delete-comment" action="<%= comment_url(comment) %>" method="post">
+  <%= auth_token_input %>
+
+  <input type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete Comment">
+
+</form>
+<% end %>
+
+
+<% end %>
+
+</section>
+
+

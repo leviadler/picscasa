@@ -1,0 +1,7 @@
+<ul class="albums-index">
+<% albums.each do |album| %>
+  <img scr="<%= album.photos.first ? album.photos.first.image.url(:small) : https://lh6.googleusercontent.com/-UIU6qVKKXzs/Uop44lEKT3E/AAAAAAAAX8s/wFvLtATL1iM/s144-c/InstantUpload.jpg %>">
+
+
+<% end %>
+</ul>
