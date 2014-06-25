@@ -5,37 +5,42 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
+</head> 
 <body>
   <header>
     <nav>
-      <h1>PicsCasa</h1>
+      <div class="nav-container group">
+        <ul class="left-nav group">
+          <li><h1>PicsCasa</h1></li>
+          <% if signed_in? %>
+          <li><a href="<%= albums_url %>">My Albums</a></li>
+          <% end %>
+          <li><a href="<%= public_albums_url %>">Public Albums</a></li>
+        </ul>
 
-      <ul class="left-nav">
-        <% if signed_in? %>
-        <li><a href="<%= albums_url %>">My Albums</a></li>
-        <% end %>
-        <li><a href="<%= public_albums_url %>">Public Albums</a></li>
-      </ul>
-
-      <ul class="right-nav">
-        <% if signed_in? %>
-        <li><%= current_user.email %></li>
-        <li><a href="<%= edit_user_url(current_user) %>">Account Settings</a></li>
-        <li><%= button_to "Logout", session_url, method: :delete %></li>
-        <% else %>
-        <li><a href="<%= new_user_url %>">Create Account</a></li>
-        <li><a href="<%= new_session_url %>">Sign In</a></li>
-        <% end %>
-      </ul>
+        <ul class="right-nav group">
+          <% if signed_in? %>
+          <li><a href="<%= new_album_url %>">New Album</a></li>
+          <li><%= current_user.email %></li>
+          <li><a href="<%= edit_user_url(current_user) %>">Account Settings</a></li>
+          <li><%= button_to "Logout", session_url, method: :delete %></li>
+          <% else %>
+          <li><a href="<%= new_user_url %>">Create Account</a></li>
+          <li><a href="<%= new_session_url %>">Sign In</a></li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
 
-    <%= flash[:error] if flash[:error] %>
-    <%= flash[:notice] if flash[:notice] %>
+    
 
   </header>
 
   <main>
+    <div class="flash">
+      <%= flash[:error] if flash[:error] %>
+      <%= flash[:notice] if flash[:notice] %>
+    </div>
 
     <%= yield %>
 

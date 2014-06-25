@@ -1,9 +1,15 @@
+<div class="breadcrubs">
+  <a href="<%= album_url(@photo.album) %>"><< <%= @photo.album.title %></a>
+</div>
 
-<figure>
+<figure class="large-photo">
   <img src="<%= @photo.image.url(:big)%>">
 
   <figcaption>
-  <%= @photo.caption %><a href="#"><%= @photo.caption ? "Edit Caption" : "Add a Caption" %></a>
+  <%= @photo.caption %>
+  <% if @photo.owner == current_user %>
+    <a href="#"><%= @photo.caption ? "Edit Caption" : "Add a Caption" %></a>
+  <% end %>
   </figcaption>
 </figure>
 

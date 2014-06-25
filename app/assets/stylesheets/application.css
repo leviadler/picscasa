@@ -13,3 +13,131 @@
  *= require_tree .
  *= require_self
  */
+
+/* RESETS */
+html, body, header, nav, section, main, h1, h2, ul, li, p, a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.group:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+/* BUTTON RESET */
+button,
+input[type="submit"],
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+ display: inline;
+ -webkit-appearance: none;
+ box-sizing: content-box;
+ margin: 0;
+ padding: 0;
+ border: 0;
+ outline: 0;
+ width: auto;
+ font: inherit;
+ vertical-align: baseline;
+ background: transparent;
+ color: inherit;
+ cursor: pointer;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+}
+
+
+/* NAV BAR */
+nav {
+  background: gray;
+}
+
+.nav-container {
+  width: 800px;
+  margin: auto;
+}
+
+.nav-container h1 {
+  display: block;
+  font-size: 20px;
+  color: red;
+  padding: 15px;
+}
+
+.nav-container a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  
+}
+
+.nav-container .left-nav {
+  float: left;
+}
+
+.nav-container .left-nav li {
+  float: left;
+}
+
+.nav-container .right-nav {
+  float: right;
+}
+
+.nav-container .right-nav li {
+  float: left;
+}
+
+
+
+/* FORMS */
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border: 1px solid green;
+}
+
+
+/* picture view */
+.large-photo {
+  display: block;
+  margin: auto;
+  padding: 15px;
+  width: 600px;
+}
+
+.large-photo figcaption {
+  text-align: center;
+}
+
