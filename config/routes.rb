@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users
   resource :session
   resources :albums do
+    collection do
+      get 'public'
+    end
     resources :photos, only: [:new, :create] #rename route this to /albums/:id/upload
   end
 

@@ -36,5 +36,13 @@ class ApplicationController < ActionController::Base
   def require_signed_out
     redirect_to user_url(current_user) if signed_in?
   end
+  
+  def require_permission_for(album)
+    if album.owner != current_user && ((album.private_album?) ||
+      (album.unlisted_album? && params[:auth_token] != album.auth_token))
+       flash[:error] = "You do not have access to that page"
+       redirect_to root_url #redirect back?
+    end
+  end
 
 end

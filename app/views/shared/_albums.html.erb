@@ -1,6 +1,23 @@
+<% public_view ||= false %>
+
 <ul class="albums-index">
 <% albums.each do |album| %>
-  <img scr="<%= album.photos.first ? album.photos.first.image.url(:small) : https://lh6.googleusercontent.com/-UIU6qVKKXzs/Uop44lEKT3E/AAAAAAAAX8s/wFvLtATL1iM/s144-c/InstantUpload.jpg %>">
+  <li>
+    <figure>
+    <a href="<%= album_url(album) %>"><img src="<%= album.photos.first ? album.photos.first.image.url(:thumb) : "https://lh6.googleusercontent.com/-UIU6qVKKXzs/Uop44lEKT3E/AAAAAAAAX8s/wFvLtATL1iM/s144-c/InstantUpload.jpg" %>"></a>
+      <figcaption>
+        <strong><%= album.title %></strong>
+        <%= album.date.strftime("%b %d, %Y") %>
+        
+        <%= status_icon_for(album) %>
+        Photos: <%= album.photos.count %>
+        <% if public_view %>
+          By <a href="<%= user_url(album.owner) %>"><%= album.owner.name %></a>
+        <% end %>
+      </figcaption>
+    
+    </figure>
+  </li>
 
 
 <% end %>

@@ -1,11 +1,14 @@
 <h1><%= @album.title %></h1>
 <p>Visibility: <%= @album.visibility %></p>
 
+
+<% if @album.owner == current_user %>
 <ul class="album-settings">
   <li><a href="<%= new_album_photo_url(@album) %>">add photos</a></li>
   <li><a href="<%= edit_album_url(@album) %>">album settings</a></li>
 </ul>
+<% end %>
 
 
 
-shared albums partial will go here!
+<%= render 'photos/pictures', photos: @album.photos %>

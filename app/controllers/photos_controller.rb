@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  
+  before_action :require_signed_in, only: [:new, :create]
 
   def new
     @album = Album.find(params[:album_id])
@@ -35,6 +37,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+    require_permission_for(@photo.album)
     # this is very inacurate b/c we refresh with every like and comment
     # javascript will fix this!
     @photo.view_count += 1

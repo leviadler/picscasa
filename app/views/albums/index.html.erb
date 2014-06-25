@@ -1,9 +1,6 @@
 <h1>My Albums</h1>
 
 You have <%= @albums.count %> albums
-We will display albums partial here
 
 <br>
-<% @albums.each do |album| %>
-<%= album.title %>
-<% end %>
+<%= render 'shared/albums', albums: @albums %>

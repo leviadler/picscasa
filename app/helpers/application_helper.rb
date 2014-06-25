@@ -13,4 +13,18 @@ module ApplicationHelper
       <img src="#{gravatar_url}" class="gravatar" alt="#{user.name}">
     HTML
   end
+  
+  #change with own icons
+  def status_icon_for(album)
+    if album.private_album?
+      icon_url = "http://www.clker.com/cliparts/B/1/y/Z/B/s/padlock-icon-hi.png"
+    elsif album.unlisted_album?
+      icon_url = "http://www.clker.com/cliparts/B/1/y/Z/B/s/padlock-icon-hi.png"
+    else
+      icon_url = "http://www.clker.com/cliparts/g/n/l/b/h/Q/world-globe-b-w-md.png"
+    end
+    <<-HTML.html_safe
+      <img src="#{icon_url}" class="album-status-icon" width="10px">
+    HTML
+  end
 end

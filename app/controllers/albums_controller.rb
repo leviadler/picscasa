@@ -2,7 +2,6 @@ class AlbumsController < ApplicationController
   
   before_action :require_signed_in, only: [:new, :create, :update, :edit, :destroy, :index]
   before_action :require_owner, only: [:edit, :update, :destroy]
-  before_action :require_permission, only: [:show]
   
   def index
     @albums = current_user.albums
@@ -26,6 +25,7 @@ class AlbumsController < ApplicationController
   
   def show
     @album = Album.find(params[:id])
+    require_permission_for(@album)
   end
   
   def edit
@@ -50,6 +50,10 @@ class AlbumsController < ApplicationController
     redirect_to albums_url
   end
   
+  def public
+    @albums = Album.all.public_album
+  end
+  
   
   private
   def album_params
@@ -65,14 +69,4 @@ class AlbumsController < ApplicationController
     end
   end
   
-  def require_permission
-    @album = Album.find(params[:id])
-    
-    # TODO add logic for unlisted
-    if @album.owner != current_user && ((@album.private_album?) ||
-      (@album.unlisted_album? && params[:auth_token] != @album.auth_token))
-       flash[:error] = "You do not have access to that page"
-       redirect_to root_url #redirect back?
-    end
-  end
 end

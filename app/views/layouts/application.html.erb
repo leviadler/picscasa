@@ -15,7 +15,7 @@
         <% if signed_in? %>
         <li><a href="<%= albums_url %>">My Albums</a></li>
         <% end %>
-        <li><a href="#">Public Albums</a></li>
+        <li><a href="<%= public_albums_url %>">Public Albums</a></li>
       </ul>
 
       <ul class="right-nav">

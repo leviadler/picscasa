@@ -1,0 +1,11 @@
+<ul class="pictures">
+<% photos.each do |photo| %>
+  <li>
+    <a href="<%= photo_url(photo) %>">
+      <img src="<%= photo.image.url(:thumb) %>">
+    </a>
+  </li>
+
+
+
+<% end %>
