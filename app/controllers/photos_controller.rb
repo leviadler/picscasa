@@ -35,11 +35,15 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+    # this is very inacurate b/c we refresh with every like and comment
+    # javascript will fix this!
+    @photo.view_count += 1
+    @photo.save!
   end
 
   private
   def photo_params
-    params.require(:photo).permit(images:[]) #?????
+    params.require(:photo).permit(images:[])
   end
 
 end

@@ -4,7 +4,6 @@ class Photo < ActiveRecord::Base
     :thumb => "50x50#"
   }
 
-  #commented until can get attachents working
   validates_attachment :image, presence: true,
     :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] } #maybe limit to jpg
 
@@ -16,6 +15,7 @@ class Photo < ActiveRecord::Base
   has_one :owner, through: :album
 
   has_many :comments
+  has_many :likes
 
   def load_exif_date
     exif = EXIFR::JPEG.new(image.queued_for_write[:original].path)

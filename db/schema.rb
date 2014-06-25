@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625003242) do
+ActiveRecord::Schema.define(version: 20140625140010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140625003242) do
     t.integer  "visibility"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
   add_index "albums", ["owner_id"], name: "index_albums_on_owner_id", using: :btree
@@ -40,6 +41,17 @@ ActiveRecord::Schema.define(version: 20140625003242) do
   add_index "comments", ["photo_id"], name: "index_comments_on_photo_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["photo_id"], name: "index_likes_on_photo_id", using: :btree
+  add_index "likes", ["user_id", "photo_id"], name: "index_likes_on_user_id_and_photo_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "photos", force: true do |t|
     t.text     "caption"
     t.string   "image_file_name"
@@ -48,11 +60,15 @@ ActiveRecord::Schema.define(version: 20140625003242) do
     t.datetime "image_updated_at"
     t.integer  "album_id"
     t.datetime "date_taken"
+    t.integer  "view_count",         default: 0
+    t.float    "ord"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree
+  add_index "photos", ["ord"], name: "index_photos_on_ord", using: :btree
+  add_index "photos", ["view_count"], name: "index_photos_on_view_count", using: :btree
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   # doesn't seem necessary as we will never look it up this way
   has_many :comments
+  has_many :likes
 
   def password=(password)
     @password = password

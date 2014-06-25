@@ -9,6 +9,29 @@
 
 <!-- add links to prev and next -->
 
+<div class="likes-and-views">
+  <div class="view-count">
+    Views: <%= @photo.view_count %>
+  </div>
+  <div class="likes">
+    Likes: <%= @photo.likes.count %>
+    <form class="like-form" action="<%= photo_likes_url(@photo) %>" method="post">
+      <%= auth_token_input %>
+
+      <input type="submit" value="Like!">
+
+    </form>
+    <form class="unlike-form" action="<%= photo_likes_url(@photo) %>" method="post">
+      <%= auth_token_input %>
+
+      <input type="hidden" name="_method" value="delete">
+
+      <input type="submit" value="Unlike">
+
+    </form>
+  </div>
+</div>
+
 
 <section class="comments">
 <h3>Comments</h3>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :photos, only: [:show, :edit] do
     resources :comments, only: [:create]
+    resource :likes, only: [:create, :destroy]
   end
 
   resources :comments, only: [:destroy] # maybe add edit with js

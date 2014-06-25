@@ -69,9 +69,10 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     
     # TODO add logic for unlisted
-    if @album.owner != current_user && @album.private_album?
-      flash[:error] = "You do not have access to that page"
-      redirect_to root_url #redirect back?
+    if @album.owner != current_user && ((@album.private_album?) ||
+      (@album.unlisted_album? && params[:auth_token] != @album.auth_token))
+       flash[:error] = "You do not have access to that page"
+       redirect_to root_url #redirect back?
     end
   end
 end
