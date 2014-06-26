@@ -4,7 +4,7 @@
 </div>
 
 <h1>
-<%= @user == current_user ? "My" : "#{@user.name}'s" %> Public Photo's
+<%= @user == current_user ? "My" : "#{@user.name}'s" %> Public Album's
 </h1>
 
 <%= render 'shared/albums', albums: @albums %>

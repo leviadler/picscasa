@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resource :session
   resources :albums do
+    resource :share, only: [:new, :create]
     collection do
       get 'public'
     end

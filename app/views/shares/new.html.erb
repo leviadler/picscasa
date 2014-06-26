@@ -1,0 +1,20 @@
+<h1>Share <%= @album.title %></h1>
+
+<p>You share you album using this link:</p>
+<p><%= @url %></p>
+<p>or by sending them an email using the form below:</p>
+<!-- add note for unlisted that will loose link if change settings -->
+
+<form action="<%= album_share_url %>" method="post">
+  <%= auth_token_input %>
+  
+  <label for="share_emails">Email Address(es):</label>
+  <input type="text" name="share[emails]" placeholder="Ex. user@picscasa.com, friend@example.com">
+  
+  
+  <label for="share_message">Message:</label>
+  <textarea name="share[message]"></textarea>
+  
+  <input type="submit" value="Share Album!">
+  
+</form>

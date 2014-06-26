@@ -7,9 +7,8 @@
 
 <% if @album.owner == current_user %>
 <ul class="album-settings">
-  <% if @album.unlisted_album? %>
-    <li>Use this link to share: 
-      <%= "#{album_url(@album)}?auth_token=#{@album.auth_token}" %>
+  <% unless @album.private_album? %>
+    <li><a href="<%= new_album_share_url(@album) %>">Share this album</li>
   <% end %>
   <li><a href="<%= new_album_photo_url(@album) %>">add photos</a></li>
   <li><a href="<%= edit_album_url(@album) %>">album settings</a></li>

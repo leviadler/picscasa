@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>You are invited to view <%= @album.owner.name %>'s album: <a href="<%= @url %>"><%= @album.title %></h2>
+    <p>
+      <b><%= @album.title %></b>
+    </p>
+    <p>
+      <b><%= @album.date %></b>
+    </p>
+    <p>
+      <a href="<%= @url %>">View Album</a><br/>
+    </p>
+    <% unless @message.blank? %>
+    <h3>Message from <%= @album.owner.fname %>:</h3>
+    <p>
+      <%= @message %>
+    </p>
+    <% end %>
+    
+    <hr>
+    <p>If you are having problems viewing this email, copy and paste the following into your browser: <%= @url %></p>
+  </body>
+</html>

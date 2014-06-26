@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   
   before_action :require_signed_in, only: [:new, :create, :update, :edit, :destroy, :index]
-  before_action :require_owner, only: [:edit, :update, :destroy]
+  before_action :require_album_owner, only: [:edit, :update, :destroy]
   
   def index
     @albums = current_user.albums
@@ -60,7 +60,7 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:title, :date, :description, :location, :visibility)
   end
   
-  def require_owner
+  def require_album_owner
     @album = Album.find(params[:id])
     
     if @album.owner != current_user
