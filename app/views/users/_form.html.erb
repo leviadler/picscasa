@@ -1,34 +1,39 @@
 <% action = user.persisted? ?  user_url(user) : users_url %>
 <% button_text = user.persisted? ? "Update Account" : "Create Account" %>
 
-<form action="<%= action %>" method="POST"> 
+<form action="<%= action %>" method="POST" enctype="multipart/form-data">
   <%= auth_token_input %>
-  
+
   <% if user.persisted? %>
   <input type="hidden" name="_method" value="put">
   <% end %>
-  
+
   <label for="user_fname">First Name:</label>
   <input type="text" name="user[fname]" id="user_fname" value="<%= user.fname %>">
-  
+
   <label for="user_lname">First Name:</label>
   <input type="text" name="user[lname]" id="user_lname" value="<%= user.lname %>">
-  
+
   <label for="user_email">Email:</label>
   <input type="email" name="user[email]" id="user_email" value="<%= user.email %>">
-  
-  
+
+
+  <label for="user_avatar">Avatar:</label>
+  <img class="avatar avatar-thumb" src="<%= user.avatar.url(:thumb) %>">
+  <input type="file" id="user_avatar" name="user[avatar]" accept="image/png,image/jpeg">
+
+
   <% unless user.persisted? %>
   <label for="user_password">Password:</label>
   <input type="password" name="user[password]" id="user_password">
-  
+
   <label for="user_password_confirmation">Password Confirmation:</label>
   <input type="password" name="user[password_confirmation]" id="user_password_confirmation">
   <% else %>
   <a href="#">Reset Password</a>
   <% end %>
-  
-  
+
+
   <input type="submit" value="<%= button_text %>">
-  
+
 </form>

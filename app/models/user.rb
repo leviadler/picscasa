@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :notifications
 
+  MAX_SIZE = 5.megabytes
+
+  has_attached_file :avatar, styles: { :medium => "300x300#", :thumb => "100x100#" },
+                             default_url: "/images/avatar/:style/default_avatar.png"
+
+  validates_attachment :avatar,
+    :content_type => { :content_type => ["image/jpeg", "image/png"], message: "must be a jpg or png" },
+    size: {less_than: MAX_SIZE, message: "must be under #{ MAX_SIZE / 1.megabyte }Mb"}
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

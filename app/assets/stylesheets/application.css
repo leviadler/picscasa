@@ -69,6 +69,9 @@ main {
   margin: auto;
 }
 
+.avatar {
+  border-radius: 50%;
+}
 
 /* NAV BAR */
 nav {

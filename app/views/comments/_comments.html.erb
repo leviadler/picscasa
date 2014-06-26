@@ -3,7 +3,7 @@
 
   <div class="new-comment-form">
   <% if signed_in? %>
-  <%= gravatar_for(current_user) %>
+  <img class="avatar avatar-thumb" src="<%= current_user.avatar.url(:thumb) %>">
   <p><%= current_user.name %></p>
   <form action="<%= photo_comments_url(photo) %>" method="post">
     <%= auth_token_input %>
@@ -21,7 +21,7 @@
 
   <% photo.comments.each do |comment|  %>
 
-    <%= render 'comment', comment: comment %>
+    <%= render 'comments/comment', comment: comment %>
 
   <% end %>
 

@@ -4,8 +4,12 @@ class Photo < ActiveRecord::Base
     :thumb => "205x205#"
   }
 
+
+  MAX_SIZE = 6.megabytes
+
   validates_attachment :image, presence: true,
-    :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] } #maybe limit to jpg
+    content_type: { content_type: ["image/jpeg", "image/gif", "image/png"], message: "must be a jpg, png or gif" },
+    size: {less_than: MAX_SIZE, message: "must be under #{ MAX_SIZE / 1.megabyte }Mb"} #maybe limit to jpg
 
 
   # not sure if this should be a before or after
