@@ -32,18 +32,17 @@ class Photo < ActiveRecord::Base
   end
 
   def tag_list=(tags_string)
-    tag_names = tags_string.split(",").collect {|t| t.strip.downcase}.uniq
+    tag_names = tags_string.split(",").map {|t| t.strip.downcase}.uniq
     new_or_found_tags = tag_names.map {|name| Tag.find_or_create_by(name: name)}
     self.tags = new_or_found_tags
   end
 
   def load_exif_date
+    return unless image.queued_for_write[:original].content_type == "image/jpeg"
     exif = EXIFR::JPEG.new(image.queued_for_write[:original].path)
-    return if exif.nil? or not exif.exif?
+    return if exif.nil? || !exif.exif?
     if exif.date_time_original
       self.date_taken = exif.date_time_original #.to_time
-    else
-      self.date_taken = Time.at(0) # or Time.now - not sure which one makes more sense
     end
   end
 

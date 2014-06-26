@@ -12,6 +12,14 @@ describe User do
   it { should have_many(:photos) }
   it { should have_many(:comments) }
   it { should have_many(:likes) }
+  it { should have_many(:notifications) }
+  
+  it { should have_attached_file(:avatar) }
+  it { should validate_attachment_content_type(:avatar).
+               allowing('image/png', 'image/jpeg').
+               rejecting('text/plain', 'text/xml') }
+  it { should validate_attachment_size(:avatar).
+               less_than(5.megabytes) }
 
   it "should find user by credentials" do
     user = create(:user)
