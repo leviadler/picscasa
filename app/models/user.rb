@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :sessions
   has_many :albums, foreign_key: :owner_id
+  has_many :photos, through: :albums
+  has_many :tags, through: :photos
 
   # doesn't seem necessary as we will never look it up this way
   has_many :comments

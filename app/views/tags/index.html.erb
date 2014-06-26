@@ -1,0 +1,16 @@
+<h1>Tags</h1>
+
+<ul id="tags-index">
+<% @tags.each do |tag| %>
+  <li>
+    <a href="<%= tag_url(tag) %>">
+      <%= "#{tag.name} (#{tag.photos.count})" %>
+    </a>
+    <form action="<%= tag_url(tag) %>" method="post">
+      <%= auth_token_input %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+  </li>
+<% end %>
+</ul>

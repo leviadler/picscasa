@@ -1,6 +1,10 @@
 class PhotosController < ApplicationController
-  
+
   before_action :require_signed_in, only: [:new, :create]
+
+  def index
+    @photos = current_user.photos
+  end
 
   def new
     @album = Album.find(params[:album_id])
@@ -8,12 +12,12 @@ class PhotosController < ApplicationController
 
   def create
     num_pics = 0
-    
-    @album = Album.find(params[:album_id])
-    
-    @album.photos.new(photo_params)
 
-    
+    @album = Album.find(params[:album_id])
+
+    @album.photos.new(image_params)
+
+
     if @album.save
       flash[:notice] = "Uploaded photos successfully!"
       redirect_to album_url(params[:album_id])
@@ -35,7 +39,7 @@ class PhotosController < ApplicationController
 #
 #     flash[:notice] = "Uploaded #{num_pics} photos successfully!"
 #     redirect_to album_url(params[:album_id])
-    
+
 
     #for single photo:
     # @photo = Photo.new(photo_params.merge!(album_id: params[:album_id]))
@@ -57,23 +61,23 @@ class PhotosController < ApplicationController
     @photo.view_count += 1
     @photo.save!
   end
-  
+
   def edit
     @photo = Photo.find(params[:id])
   end
-  
+
   def update
     @photo = Photo.find(params[:id])
-    
-    if @photo.update(caption_params)
-      flash[:notice] = "Caption Updated!"
+
+    if @photo.update(photo_params)
+      flash[:notice] = "Photo Updated!"
       redirect_to photo_url(@photo)
     else
       flash.now[:error] = @photo.errors.full_messages
       render :edit
     end
   end
-  
+
   def destroy
     @photo = Photo.find(params[:id]).destroy
     flash[:notice] = "Photo deleted"
@@ -82,15 +86,15 @@ class PhotosController < ApplicationController
 
   private
   # refactor to nest captions, allowing captions on upload
-  def photo_params
+  def image_params
     p = params.require(:photo).permit(images:[])
     p[:images].map do |file|
       {image: file}
     end
   end
-  
-  def caption_params
-    params.require(:photo).permit(:caption)
+
+  def photo_params
+    params.require(:photo).permit(:caption, :tag_list)
   end
 
 end

@@ -11,13 +11,15 @@ Rails.application.routes.draw do
     resources :photos, only: [:new, :create] #rename route this to /albums/:id/upload
   end
 
-  resources :photos, only: [:show, :edit, :update, :destroy] do
+  resources :photos, only: [:show, :edit, :update, :destroy, :index] do
     resources :comments, only: [:create]
     resource :likes, only: [:create, :destroy]
   end
 
+  resources :tags, only: [:index, :show, :destroy]
+
   resources :comments, only: [:destroy] # maybe add edit with js
-  
+
   resources :notifications, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.

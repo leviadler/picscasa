@@ -1,0 +1,28 @@
+<section class="comments">
+  <h3>Comments</h3>
+
+  <div class="new-comment-form">
+  <% if signed_in? %>
+  <%= gravatar_for(current_user) %>
+  <p><%= current_user.name %></p>
+  <form action="<%= photo_comments_url(photo) %>" method="post">
+    <%= auth_token_input %>
+
+    <textarea placeholder="Add a comment" name="comment[body]"></textarea>
+
+    <input type="submit" value="Add Comment">
+
+  </form>
+
+
+  <% end %>
+
+  </div>
+
+  <% photo.comments.each do |comment|  %>
+
+    <%= render 'comment', comment: comment %>
+
+  <% end %>
+
+</section>

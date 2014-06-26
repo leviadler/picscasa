@@ -15,6 +15,17 @@
 
 <!-- add links to prev and next -->
 
+<div class="tags">
+  Tags:
+  <%@photo.tags.each do |tag| %>
+  <a href="<%= tag_url(tag) %>"><%= tag.name %></a>
+  <% end %>
+  <% if @photo.owner == current_user %>
+    <a href="<%= edit_photo_url(@photo) %>">Edit Tags</a>
+  <% end %>
+
+</div>
+
 <div class="likes-and-views">
   <div class="view-count">
     Views: <%= @photo.view_count %>
@@ -24,7 +35,7 @@
     <form class="like-form" action="<%= photo_likes_url(@photo) %>" method="post">
       <%= auth_token_input %>
 
-      <input type="submit" value="Like!">
+      <input type="submit" value="+1">
 
     </form>
     <form class="unlike-form" action="<%= photo_likes_url(@photo) %>" method="post">
@@ -32,51 +43,13 @@
 
       <input type="hidden" name="_method" value="delete">
 
-      <input type="submit" value="Unlike">
+      <input type="submit" value="-1">
 
     </form>
   </div>
 </div>
 
 
-<section class="comments">
-<h3>Comments</h3>
-
-<% if signed_in? %>
-<%= gravatar_for(current_user) %>
-<p><%= current_user.name %></p>
-<form action="<%= photo_comments_url(@photo) %>" method="post">
-  <%= auth_token_input %>
-
-  <textarea placeholder="Add a comment" name="comment[body]"></textarea>
-
-  <input type="submit" value="Add Comment">
-
-</form>
-<% end %>
-
-<% @photo.comments.each do |comment|  %>
-
-  <div class="comment" id="<%= "comment-#{comment.id}" %>">
-    <hr>
-    <%= gravatar_for(comment.user) %>
-    <p><%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
-    <p><%= comment.body %></p>
-
-    <% if comment.user == current_user %>
-    <form class="delete-comment" action="<%= comment_url(comment) %>" method="post">
-      <%= auth_token_input %>
-
-      <input type="hidden" name="_method" value="delete">
-
-      <input type="submit" value="Delete Comment">
-
-    </form>
-    <% end %>
-  </div>
-
-<% end %>
-
-</section>
+<%= render 'comments/comments', photo: @photo %>
 
 

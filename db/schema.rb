@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625164302) do
+ActiveRecord::Schema.define(version: 20140626013852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20140625164302) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "photo_taggings", force: true do |t|
+    t.integer  "photo_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_taggings", ["photo_id"], name: "index_photo_taggings_on_photo_id", using: :btree
+  add_index "photo_taggings", ["tag_id"], name: "index_photo_taggings_on_tag_id", using: :btree
+
   create_table "photos", force: true do |t|
     t.text     "caption"
     t.string   "image_file_name"
@@ -90,6 +100,14 @@ ActiveRecord::Schema.define(version: 20140625164302) do
 
   add_index "sessions", ["session_token"], name: "index_sessions_on_session_token", using: :btree
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false

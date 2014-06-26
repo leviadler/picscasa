@@ -17,6 +17,22 @@ class Photo < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  has_many :photo_taggings
+  has_many :tags, through: :photo_taggings
+
+
+  def tag_list
+    self.tags.map do |tag|
+      tag.name
+    end.join(", ")
+  end
+
+  def tag_list=(tags_string)
+    tag_names = tags_string.split(",").collect {|t| t.strip.downcase}.uniq
+    new_or_found_tags = tag_names.map {|name| Tag.find_or_create_by(name: name)}
+    self.tags = new_or_found_tags
+  end
+
   def load_exif_date
     exif = EXIFR::JPEG.new(image.queued_for_write[:original].path)
     return if exif.nil? or not exif.exif?

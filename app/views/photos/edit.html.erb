@@ -1,17 +1,20 @@
-<h1>Edit Caption</h1>
+<h1>Edit Photo</h1>
 
 <img src="<%= @photo.image.url(:thumb) %>">
 
 <form action="<%= photo_url(@photo) %>" method="post">
   <%= auth_token_input %>
-  
+
   <input type="hidden" name="_method" value="put">
-  
+
   <label for="photo_caption">Caption:</label>
   <textarea name="photo[caption]" id="photo_caption">
     <%= @photo.caption %>
   </textarea>
-  
-  <input type="submit" value="OK">
-  
+
+  <label for="photo_tag_list">Tags:</label>
+  <input type="text" name="photo[tag_list]" value="<%= @photo.tag_list %>">
+
+  <input type="submit" value="Update">
+
 </form>
