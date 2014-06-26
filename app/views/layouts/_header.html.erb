@@ -1,32 +1,47 @@
 <header>
   <nav>
-    <div class="nav-container group">
-      <ul class="left-nav group">
-        <li><h1>PicsCasa</h1></li>
+    
+    <div class="top-nav-container group">
+      <h1 class="logo"><a href="<%= root_url %>">PicsCasa</a></h1>
+      
+      <ul class="top-right-nav group">
         <% if signed_in? %>
-        <li><a href="<%= albums_url %>">My Albums</a></li>
-        <% end %>
-        <li><a href="<%= public_albums_url %>">Public Albums</a></li>
-      </ul>
-
-      <ul class="right-nav group">
-        <% if signed_in? %>
-        <li><a href="<%= new_album_url %>">New Album</a></li>
-
         <li>
           <a href="<%= notifications_url %>">Notifications <span class="badge">3</span></a>
-          <ul class="dropdown">
+          <ul class="notif-dropdown">
             <li>Someone liked your picture.</li>
             <li>Someone liked your picture.</li>
             <li>Someone liked your picture.</li>
           </ul>
         </li>
-        <li><a href="#"><%= current_user.email %></a></li>
-        <li><a href="<%= edit_user_url(current_user) %>">Account Settings</a></li>
-        <li><%= button_to "Logout", session_url, method: :delete %></li>
+        <li class="user-dropdown">
+          <img class="avatar nav-avatar" src="<%= current_user.avatar.url(:thumb) %>">
+          <ul class="user-dropdown-items">
+            <li><%= current_user.email %></li>
+            <li><a href="<%= edit_user_url(current_user) %>">Account</a></li>
+            <li><%= button_to "Logout", session_url, method: :delete %></li>
+          </ul>
+        </li>
+        
         <% else %>
         <li><a href="<%= new_user_url %>">Create Account</a></li>
         <li><a href="<%= new_session_url %>">Sign In</a></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="bottom-nav-container group">
+      <ul class="middle-nav group">
+        <li><a href="<%= public_albums_url %>">Public Albums</a></li>
+        <% if signed_in? %>
+        <li><a href="<%= albums_url %>">My Albums</a></li>
+        <li><a href="<%= photos_url %>">My Photos</a></li>
+        <li><a href="<%= tags_url %>">My Tags</a></li>
+        <% end %>
+        
+        
+        <% if signed_in? %>
+        <li><a href="<%= new_album_url %>">New Album</a></li>
         <% end %>
       </ul>
     </div>

@@ -1,3 +1,10 @@
-<img class="avatar avatar-thumb" src="<%= @user.avatar.url(:thumb) %>"><h1><%= @user == current_user ? "My" : "#{@user.name}'s" %> Public Photo's</h1>
+<div class="public-user-info">
+<img class="avatar avatar-thumb" src="<%= @user.avatar.url(:thumb) %>">
+<h2><%= @user.name %></h2>
+</div>
+
+<h1>
+<%= @user == current_user ? "My" : "#{@user.name}'s" %> Public Photo's
+</h1>
 
 <%= render 'shared/albums', albums: @albums %>

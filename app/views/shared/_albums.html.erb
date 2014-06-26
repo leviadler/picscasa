@@ -1,15 +1,15 @@
 <% public_view ||= false %>
 
-<ul class="albums-index">
+<ul class="albums-index group">
 <% albums.each do |album| %>
   <li>
-    <figure>
-    <a href="<%= album_url(album) %>"><img src="<%= album.photos.first ? album.photos.first.image.url(:thumb) : "https://lh6.googleusercontent.com/-UIU6qVKKXzs/Uop44lEKT3E/AAAAAAAAX8s/wFvLtATL1iM/s144-c/InstantUpload.jpg" %>"></a>
+    <figure class="album-tile">
+      <a href="<%= album_url(album) %>"><img class="album-thumb" src="<%= album.photos.first ? album.photos.first.image.url(:thumb) : image_url("default_album.png") %> "></a>
       <figcaption>
         <strong><%= album.title %></strong>
         <%= album.date.strftime("%b %d, %Y") %>
         
-        <%= status_icon_for(album) %>
+        <%#= status_icon_for(album) %>
         Photos: <%= album.photos.count %>
         <% if public_view %>
           By <a href="<%= user_url(album.owner) %>"><%= album.owner.name %></a>
@@ -18,13 +18,13 @@
       </figcaption>
     
     </figure>
-    <% if album.owner == current_user %>
+    <!-- <% if album.owner == current_user %>
     <form action="<%= album_url(album) %>" method="post">
       <%= auth_token_input %>
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="delete">
     </form>
-    <% end %>
+    <% end %> -->
   </li>
 
 

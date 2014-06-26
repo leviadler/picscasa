@@ -15,7 +15,7 @@
  */
 
 /* RESETS */
-html, body, header, nav, section, main, h1, h2, ul, li, p, a {
+html, body, header, nav, section, main, h1, h2, ul, li, p, a, figure, figcaption {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,11 +24,15 @@ html, body, header, nav, section, main, h1, h2, ul, li, p, a {
 
 body {
   font-family: sans-serif;
-  background: #eee;
+  background-color: rgb(229, 229, 229)
 }
 
 ul {
   list-style: none;
+}
+
+a:visited {
+  color: inherit;
 }
 
 .group:after {
@@ -37,8 +41,12 @@ ul {
   clear: both;
 }
 
+
+/* using this for all headings - may be dangerous */
 h1 {
   font-size: 50px;
+  text-align: center;
+  padding: 15px;
 }
 
 /* BUTTON RESET */
@@ -61,7 +69,11 @@ textarea {
  vertical-align: baseline;
  background: transparent;
  color: inherit;
- cursor: pointer;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
 }
 
 main {
@@ -75,56 +87,40 @@ main {
 
 /* NAV BAR */
 nav {
-  background: gray;
+  background: white;
 }
 
-.nav-container {
-  width: 800px;
+/* TOP NAV BAR */
+.top-nav-container {
+  background: white;
+  /*max-width: 900px;*/
   margin: auto;
 }
 
-.nav-container h1 {
-  display: block;
-  font-size: 20px;
-  color: red;
-  padding: 15px;
+.top-nav-container .logo {
+  float: left;
+  padding: 0 0 0 20px;
 }
 
-.nav-container a {
-  display: block;
-  padding: 10px;
+.top-nav-container .logo a {
   text-decoration: none;
-  color: white;
-
+  color: red;
 }
 
 
 
-.nav-container .left-nav {
-  float: left;
-}
-
-.nav-container .left-nav li {
-  float: left;
-}
-
-.nav-container .right-nav {
+.top-nav-container .top-right-nav {
   float: right;
+  color: rgb(127, 127, 127)
 }
 
-.nav-container .right-nav li {
-  float: left;
-}
+/* Notification dopdown */
 
-.nav-container > ul > li > a:hover {
- background: black;
-}
-
-.nav-container > ul > li > a:hover .badge {
+.top-nav-container > ul > li > a:hover .badge {
   background: red;
 }
 
-.nav-container .badge {
+.top-nav-container .badge {
   background: black;
   width: 15px;
   height: 15px;
@@ -135,30 +131,122 @@ nav {
   border-radius: 20px;
 }
 
-nav .dropdown {
+nav .notif-dropdown {
   position: absolute;
   display: none;
 }
 
-nav .dropdown {
+nav .notif-dropdown {
   border: 3px solid black;
   border-bottom: 0;
   width: 300px;
   margin-left: -3px;
 }
 
-nav .dropdown > li {
+nav .notif-dropdown > li {
   padding: 5px;
   border-bottom: 3px solid black;
   background: white;
 }
 
-nav .dropdown > li:nth-child(even) {
+nav .notif-dropdown > li:nth-child(even) {
   background: #ddd;
 }
 
-.nav-container > ul > li:hover .dropdown {
+.top-nav-container > ul > li:hover .notif-dropdown {
   display: block;
+}
+
+/* Avatar and dropdown */
+
+.nav-avatar {
+  width: 50px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.user-dropdown .user-dropdown-items {
+  display: none;
+  position: absolute;
+  right: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.user-dropdown-items > li {
+  padding: 5px;
+  text-align: right;
+  background: white;
+}
+
+.user-dropdown-items > li a {
+  text-decoration: none;
+  padding: 0;
+}
+.user-dropdown-items > li a:hover {
+  text-decoration: none;
+}
+
+.top-right-nav > li {
+  float: left;
+}
+
+.top-right-nav > li > a {
+  display: block;
+  text-decoration: none;
+  color: #262626;
+  padding: 15px;
+}
+
+.user-dropdown:hover .user-dropdown-items {
+  display: block;
+}
+
+/*.top-nav-container .top-right-nav a:hover {
+  text-decoration: underline;
+}*/
+
+/* BOTTOM NAV */
+
+.bottom-nav-container {
+  margin: auto;
+  background: rgb(245, 245, 245);
+  text-align: center;
+}
+
+.bottom-nav-container h1 {
+  display: block;
+  font-size: 20px;
+  color: red;
+  padding: 15px;
+}
+
+.bottom-nav-container a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(127, 127, 127);
+}
+
+
+
+.bottom-nav-container .middle-nav {
+  display: inline-block;
+  vertical-align: top;
+  margin: auto;
+}
+
+
+.bottom-nav-container .middle-nav {
+  margin: auto;
+}
+.bottom-nav-container .middle-nav li {
+  float: left;
+}
+
+
+.bottom-nav-container > ul > li > a:hover {
+  color: rgb(38, 38, 38);
 }
 
 
@@ -182,6 +270,66 @@ textarea:focus {
 }
 
 
+/* albums index view */
+.albums-index {
+  width: 705px;
+  margin: auto;
+}
+
+.album-tile {
+  float: left;
+  padding: 15px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.album-thumb {
+  position: relative;
+  width: 205px;
+  background: white;
+  display: block;
+  height: 205px;
+  margin: auto;
+  box-shadow: 0px 0px 2px 2px #ccc;
+  z-index: 999;
+}
+
+.album-tile figcaption {
+  position: absolute;
+  background: white;
+  width: 185px;
+  height: 48px;
+  padding: 10px;
+  z-index: 1000;
+  bottom: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* picture index view */
+
+.pictures-index {
+  width: 705px;
+  margin: auto;
+}
+
+.photo-thumb {
+  position: relative;
+  width: 205px;
+  background: white;
+  display: block;
+  height: 205px;
+  margin: auto;
+  box-shadow: 0px 0px 2px 2px #ccc;
+}
+
+.photo-tile {
+  float: left;
+  padding: 15px;
+  border-radius: 3px;
+  position: relative;
+}
+
+
 /* picture view */
 .large-photo {
   display: block;
@@ -193,4 +341,39 @@ textarea:focus {
 .large-photo figcaption {
   text-align: center;
 }
+
+.like-form {
+  display: block;
+}
+
+.unlike-form {
+  display: none;
+}
+
+.already-liked > .like-form {
+  display: none;
+}
+
+.already-liked > .unlike-form {
+  display: block;
+}
+
+/* USER SHOW PAGE */
+.public-user-info {
+  width: 500px;
+  margin: auto;
+}
+
+.public-user-info img {
+  display: block;
+  margin: auto;
+  padding: 10px;
+}
+
+.public-user-info h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+
 

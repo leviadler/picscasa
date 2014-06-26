@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_signed_out
-    redirect_to user_url(current_user) if signed_in?
+    redirect_to albums_url if signed_in?
   end
   
   def require_permission_for(album)

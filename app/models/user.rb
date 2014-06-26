@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
   has_many :notifications
-
+  
+  
+  # avatar
   MAX_SIZE = 5.megabytes
 
   has_attached_file :avatar, styles: { :medium => "300x300#", :thumb => "100x100#" },
@@ -27,6 +29,10 @@ class User < ActiveRecord::Base
   validates_attachment :avatar,
     :content_type => { :content_type => ["image/jpeg", "image/png"], message: "must be a jpg or png" },
     size: {less_than: MAX_SIZE, message: "must be under #{ MAX_SIZE / 1.megabyte }Mb"}
+    
+    
+  # Activation
+  before_create :ensure_activation_token
 
   def password=(password)
     @password = password
@@ -44,6 +50,27 @@ class User < ActiveRecord::Base
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     user.try(:is_password?, password) ? user : nil
+  end
+  
+  # def ensure_activation_token
+#     activation_token = SecureRandom.urlsafe_base64(32)
+#
+#     self.activation_token ||= activation_token
+#   end
+#
+#   # not implemented
+#   # def reset_activation_token!
+# #     self.activation_token = SecureRandom.urlsafe_base64(32)
+# #     self.is_activated = false
+# #     self.save
+# #   end
+#
+#   def activate!
+#     self.update_attribute(:is_activated, true)
+#   end
+
+  def already_liked?(photo)
+    Like.find_by(user_id: self.id, photo_id: photo.id)
   end
 
 end

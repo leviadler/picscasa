@@ -13,7 +13,7 @@ class Album < ActiveRecord::Base
   
   def ensure_token
     if self.unlisted_album?
-      self.auth_token = SecureRandom.urlsafe_base64(16) if self.auth_token.nil?
+      self.auth_token = SecureRandom.urlsafe_base64(32) if self.auth_token.nil?
     else
       self.auth_token = nil
     end

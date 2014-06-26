@@ -6,7 +6,7 @@
   <img src="<%= @photo.image.url(:big)%>">
 
   <figcaption>
-  <%= @photo.caption %>
+  <b><%= @photo.caption %></b>
   <% if @photo.owner == current_user %>
     <a href="<%= edit_photo_url(@photo) %>"><%= @photo.caption ? "Edit Caption" : "Add a Caption" %></a>
   <% end %>
@@ -30,8 +30,10 @@
   <div class="view-count">
     Views: <%= @photo.view_count %>
   </div>
-  <div class="likes">
+  <div class="likes <%= "already-liked" if current_user.already_liked?(@photo) %>">
     Likes: <%= @photo.likes.count %>
+    
+    <% if signed_in? %>
     <form class="like-form" action="<%= photo_likes_url(@photo) %>" method="post">
       <%= auth_token_input %>
 
@@ -46,6 +48,7 @@
       <input type="submit" value="-1">
 
     </form>
+    <% end %>
   </div>
 </div>
 

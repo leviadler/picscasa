@@ -1,5 +1,8 @@
 <h1><%= @album.title %></h1>
-<p>Visibility: <%= @album.visibility %></p>
+<div class="album-info">
+  <%= @album.photos.count %> photos
+  Visibility: <%= @album.visibility %>
+</div>
 
 
 <% if @album.owner == current_user %>
