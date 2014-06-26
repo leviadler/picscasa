@@ -47,6 +47,7 @@ input[type="submit"],
 input[type="text"],
 input[type="email"],
 input[type="date"],
+input[type="password"],
 textarea {
  display: inline;
  -webkit-appearance: none;
@@ -91,7 +92,7 @@ nav {
   padding: 10px;
   text-decoration: none;
   color: white;
-  
+
 }
 
 
@@ -164,6 +165,7 @@ nav .dropdown > li:nth-child(even) {
 input[type="text"],
 input[type="email"],
 input[type="date"],
+input[type="password"],
 textarea {
   border: 1px solid black;
   padding: 5px;
