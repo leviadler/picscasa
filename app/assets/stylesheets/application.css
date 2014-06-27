@@ -106,7 +106,7 @@ nav {
 
 .top-nav-container .logo a {
   text-decoration: none;
-  color: red;
+  color: rgb(200, 77, 53);
 }
 
 
@@ -201,7 +201,7 @@ nav .notif-dropdown > li:nth-child(even) {
   display: block;
   text-decoration: none;
   color: #262626;
-  padding: 15px;
+  padding: 20px;
 }
 
 .user-dropdown:hover .user-dropdown-items {
@@ -329,15 +329,12 @@ select {
   width: 264px;
 }
 
-.sign-in-form .input input {
-  width: 264px;
-}
 
 /* will replace with real one */
 .google-login a {
   width: 200px;
   display: block;
-  background: red;
+  background: rgb(200, 77, 53);
   border: 1px solid darkred;
   border-radius: 2px;
   margin: 10px auto;
@@ -358,6 +355,10 @@ select {
 .user-form .avatar {
   display: block;
   margin: auto;
+}
+
+.user-form .submit input {
+  width: 264px;
 }
 
 /* album form */
