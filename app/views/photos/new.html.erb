@@ -1,11 +1,15 @@
 <h1>Upload Photos to <%= @album.title %></h1>
 
-<h2>Upload here!</h2>
-<form action="<%= album_photos_url(@album) %>" method="post" enctype="multipart/form-data">
+
+<form class="forms photo-upload-form" action="<%= album_photos_url(@album) %>" method="post" enctype="multipart/form-data">
   <%= auth_token_input %>
 
   <!-- <input type="file" id="post_image" name="post[image]" multiple="true" /> -->
+  <div class="input">
   <input type="file" id="photo_image" name="photo[images][]" accept="image/png,image/gif,image/jpeg" multiple="true" >
-
+  </div>
+  
+  <div class="submit">
   <input type="submit" value="Upload Photos!">
+</div>
 </form>

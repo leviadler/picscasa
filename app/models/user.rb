@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   MAX_SIZE = 5.megabytes
 
   has_attached_file :avatar, styles: { :medium => "300x300#", :thumb => "100x100#" },
-                    default_url: ActionController::Base.helpers.asset_path('assets/avatar/missing_:style.png')
+                    default_url: ActionController::Base.helpers.asset_path('avatar/missing_:style.png')
 
   validates_attachment :avatar,
     :content_type => { :content_type => ["image/jpeg", "image/png"], message: "must be a jpg or png" },
