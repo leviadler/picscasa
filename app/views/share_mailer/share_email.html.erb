@@ -4,7 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h2>You are invited to view <%= @album.owner.name %>'s album: <a href="<%= @url %>"><%= @album.title %></h2>
+    <h2>You are invited to view <%= @album.owner.name %>'s album: <a href="<%= @url %>"><%= @album.title %></a></h2>
+
+    <img src="<%= @album.photos.first.image.url(:thumb) %>">
+
     <p>
       <b><%= @album.title %></b>
     </p>
@@ -20,7 +23,7 @@
       <%= @message %>
     </p>
     <% end %>
-    
+
     <hr>
     <p>If you are having problems viewing this email, copy and paste the following into your browser: </p>
      <p> <%= @url %></p>

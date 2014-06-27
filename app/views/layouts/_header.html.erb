@@ -1,17 +1,20 @@
 <header>
   <nav>
-    
+
     <div class="top-nav-container group">
       <h1 class="logo"><a href="<%= root_url %>">PicsCasa</a></h1>
-      
+
       <ul class="top-right-nav group">
         <% if signed_in? %>
         <li>
-          <a href="<%= notifications_url %>">Notifications <span class="badge">3</span></a>
+          <a href="<%= notifications_url %>">Notifications <span class="badge"><%= current_user.notifications.unread.count %></span></a>
           <ul class="notif-dropdown">
-            <li>Someone liked your picture.</li>
-            <li>Someone liked your picture.</li>
-            <li>Someone liked your picture.</li>
+            <% if current_user.notifications.unread.count == 0 %>
+              <li>No new notifications</li>
+            <%else%>
+              <%= render partial: "notifications/notification", collection: current_user.notifications.unread %>
+            <!-- .limit(5) would probably be a good idea -->
+            <% end %>
           </ul>
         </li>
         <li class="user-dropdown">
@@ -22,14 +25,14 @@
             <li><%= button_to "Logout", session_url, method: :delete %></li>
           </ul>
         </li>
-        
+
         <% else %>
         <li><a href="<%= new_user_url %>">Create Account</a></li>
         <li><a href="<%= new_session_url %>">Sign In</a></li>
         <% end %>
       </ul>
     </div>
-    
+
     <div class="bottom-nav-container group">
       <ul class="middle-nav group">
         <li><a href="<%= public_albums_url %>">Public Albums</a></li>
@@ -38,8 +41,8 @@
         <li><a href="<%= photos_url %>">My Photos</a></li>
         <li><a href="<%= tags_url %>">My Tags</a></li>
         <% end %>
-        
-        
+
+
         <% if signed_in? %>
         <li><a href="<%= new_album_url %>">New Album</a></li>
         <% end %>

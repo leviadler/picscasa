@@ -1,11 +1,4 @@
 <li>
-  <% if n.notifiable_type == "Comment" %>
-    <a href="<%= photo_url(n.notifiable.photo, anchor: "comment-#{n.notifiable_id}") %>">
-      <%= n.user.name %> commented your photo!
-    </a>
-  <% else %>
-    <a href="<%= photo_url(n.notifiable.photo, anchor: "comment-#{n.notifiable_id}") %>">
-      <%= n.user.name %> commented your photo!
-    </a>
-  <% end %>
+  <p><a href="<%= notification_url(notification) %>"><%= notification.text %></a></p>
+  <p>(<%= time_ago_in_words(notification.created_at) %> ago)</p>
 </li>
