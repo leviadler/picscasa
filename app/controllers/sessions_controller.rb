@@ -22,6 +22,20 @@ class SessionsController < ApplicationController
 
   end
 
+  def google
+    @user = User.find_or_create_by_auth_hash(request.env['omniauth.auth'])
+
+    if @user.errors
+      flash[:error] = @user.errors.full_messages
+      redirect_to new_session_url
+    else
+      login!(@user)
+      redirect_to user_url(@user)
+    end
+
+
+  end
+
   def destroy
     logout!
     redirect_to new_session_url
