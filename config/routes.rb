@@ -24,6 +24,14 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :show]
 
   get 'auth/google_oauth2/callback', to: "sessions#google"
+  
+  
+  namespace :api do
+    resources :photos, only: [:show, :edit, :update, :destroy, :index] do
+      resources :comments, only: [:create]
+      resource :likes, only: [:create, :destroy]
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
