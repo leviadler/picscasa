@@ -4,16 +4,23 @@
 <% albums.each do |album| %>
   <li>
     <figure class="album-tile">
-      <a href="<%= album_url(album) %>"><img class="album-thumb" src="<%= album.photos.first ? album.photos.first.image.url(:thumb) : image_url("default_album.png") %> "></a>
+      <a href="<%= album_url(album) %>">
+        <img class="album-thumb" src="<%= album.photos.first ? album.photos.first.image.url(:thumb) : image_url("default_album.png") %> ">
+      </a>
+      
+      
       <figcaption>
-        <strong><%= album.title %></strong>
-        <%= album.date.strftime("%b %d, %Y") %>
-        
-        <%#= status_icon_for(album) %>
-        Photos: <%= album.photos.count %>
+        <div class="alb-title"><%= album.title %></div>
+        <div class="alb-info">
+          <%#= status_icon_for(album) %>
+          <%= album.date.strftime("%b %d, %Y") %>
+           -
+          Photos: <%= album.photos.count %>
+        </div>
         <% if public_view %>
           By <a href="<%= user_url(album.owner) %>"><%= album.owner.name %></a>
         <% end %>
+
         
       </figcaption>
     

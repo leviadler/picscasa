@@ -15,7 +15,7 @@
  */
 
 /* RESETS */
-html, body, header, nav, section, main, h1, h2, ul, li, p, a, figure, figcaption {
+html, body, header, nav, section, main, div, h1, h2, h3, ul, li, p, a, figure, figcaption {
   margin: 0;
   padding: 0;
   border: 0;
@@ -23,7 +23,7 @@ html, body, header, nav, section, main, h1, h2, ul, li, p, a, figure, figcaption
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', arial, sans-serif;
   background-color: rgb(229, 229, 229)
 }
 
@@ -56,7 +56,8 @@ input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="password"],
-textarea {
+textarea,
+select {
  display: inline;
  -webkit-appearance: none;
  box-sizing: content-box;
@@ -88,6 +89,7 @@ main {
 /* NAV BAR */
 nav {
   background: white;
+  position: relative;
 }
 
 /* TOP NAV BAR */
@@ -117,11 +119,11 @@ nav {
 /* Notification dopdown */
 
 .top-nav-container > ul > li > a:hover .badge {
-  background: red;
+  background: lightblue;
 }
 
 .top-nav-container .badge {
-  background: black;
+  background: lightgray;
   width: 15px;
   height: 15px;
   font-size: 12px;
@@ -134,18 +136,17 @@ nav {
 nav .notif-dropdown {
   position: absolute;
   display: none;
-}
-
-nav .notif-dropdown {
-  border: 3px solid black;
+  border: 1px solid gray;
+  border-radius: 2px;
   border-bottom: 0;
   width: 300px;
-  margin-left: -3px;
+  right: 15px;
 }
+
 
 nav .notif-dropdown > li {
   padding: 5px;
-  border-bottom: 3px solid black;
+  border-bottom: 1px solid gray;
   background: white;
 }
 
@@ -185,6 +186,11 @@ nav .notif-dropdown > li:nth-child(even) {
 }
 .user-dropdown-items > li a:hover {
   text-decoration: none;
+}
+
+
+.top-right-nav {
+/*  margin: 0;*/
 }
 
 .top-right-nav > li {
@@ -253,24 +259,135 @@ nav .notif-dropdown > li:nth-child(even) {
 
 /* FORMS */
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="password"],
-textarea {
-  border: 1px solid black;
+/* general forms */
+
+.forms {
+  width: 274px;
+  padding: 40px;
+  background: #f7f7f7;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.input input,
+textarea,
+select {
+  border: 1px solid #D9D9D9;
   padding: 5px;
+  background: white;
+  margin: auto;
+  border-radius: 2px;
+  width: 264px;
+/* better to change to 100% but then padding messes things up*/
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="date"]:focus,
-textarea:focus {
-  border: 1px solid green;
+.input label {
+  display: block;
 }
 
 
-/* albums index view */
+.input input:focus {
+  border: 1px solid #4d90fe;
+}
+
+.input textarea:focus {
+  border: 1px solid #4d90fe;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+
+.submit input {
+  position: relative;
+  display: block;
+  background: #4d90fe;
+  border: 1px solid #3079ed;
+  border-radius: 3px;
+  margin: auto;
+  color: white;
+  padding: 5px;
+  box-shadow: 0 2px 2px 0 #3079dd;
+}
+
+.submit input:hover {
+  background: #3079ed;
+}
+.submit input:active {
+  background: #3079ed;
+  top: 2px;
+  box-shadow: none;
+}
+
+/* sign in form */
+.sign-in-form {
+
+}
+
+.sign-in-form .submit input {
+  width: 264px;
+}
+
+.sign-in-form .input input {
+  width: 264px;
+}
+
+/* will replace with real one */
+.google-login a {
+  width: 200px;
+  display: block;
+  background: red;
+  border: 1px solid darkred;
+  border-radius: 2px;
+  margin: 10px auto;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
+/* user form */
+
+.user-form {
+
+}
+
+.user-form .avatar {
+  display: block;
+  margin: auto;
+}
+
+/* album form */
+.album-form {
+ 
+}
+
+/* photo caption tags form */
+.edit-photo-form {
+  
+}
+
+.edit-photo-form img {
+  display: block;
+  margin: 10px auto;
+  width: 150px;
+  padding: 10px;
+  background: white;
+  border: 1px solid white;
+  border-radius: 2px;
+  
+}
+
+/* comments form */
+
+
+
+
+
+/* ALBUMS INDEX VIEW */
 .albums-index {
   width: 705px;
   margin: auto;
@@ -295,6 +412,7 @@ textarea:focus {
 }
 
 .album-tile figcaption {
+  font-size: 12px;
   position: absolute;
   background: white;
   width: 185px;
@@ -303,6 +421,11 @@ textarea:focus {
   z-index: 1000;
   bottom: 15px;
   border-top: 1px solid #eee;
+}
+
+.album-tile figcaption .alb-title {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 /* picture index view */
@@ -330,12 +453,30 @@ textarea:focus {
 }
 
 
-/* picture view */
+/* PHOTO VIEW */
+
+.photo-container {
+  width: 800px;
+  margin: auto;
+
+}
+
+.photo-extras{
+}
+
 .large-photo {
+  display: block;
+  margin: 15px auto;
+}
+
+.large-photo img {
   display: block;
   margin: auto;
   padding: 15px;
-  width: 600px;
+  height: 570px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 2px #ccc;
 }
 
 .large-photo figcaption {
@@ -355,6 +496,63 @@ textarea:focus {
 }
 
 .already-liked > .unlike-form {
+  display: block;
+}
+
+
+/* tags */
+
+.tags {
+  width: 600px;
+  text-align: center;
+  margin: auto;
+}
+/* likes and views */
+
+.likes-and-views {
+  width: 100px;
+  text-align: center;
+  margin: auto;
+}
+
+/* comments */
+
+.comments {
+  background: #f7f7f7;
+  border-radius: 3px;
+  margin-bottom: 50px;
+}
+
+.comments h3 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.new-comment  {
+  width: 500px;
+  margin: 10px auto;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+
+
+.comment {
+  width: 500px;
+  margin: 10px auto;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.commenter {
+  float: left;
+  width: 200px;
+  text-align: center;
+}
+
+.commenter .avatar {
+  width: 50px;
+  margin: auto;
   display: block;
 }
 

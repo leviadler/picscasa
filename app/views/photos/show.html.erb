@@ -2,6 +2,7 @@
   <a href="<%= album_url(@photo.album) %>"><< <%= @photo.album.title %></a>
 </div>
 
+<div class="photo-container">
 <figure class="large-photo">
   <img src="<%= @photo.image.url(:big)%>">
 
@@ -14,6 +15,8 @@
 </figure>
 
 <!-- add links to prev and next -->
+
+<div class="photo-extras">
 
 <div class="tags">
   Tags:
@@ -30,7 +33,7 @@
   <div class="view-count">
     Views: <%= @photo.view_count %>
   </div>
-  <div class="likes <%= "already-liked" if current_user.already_liked?(@photo) %>">
+  <div class="likes <%= "already-liked" if signed_in? && current_user.already_liked?(@photo) %>">
     Likes: <%= @photo.likes.count %>
     
     <% if signed_in? %>
@@ -50,9 +53,12 @@
     </form>
     <% end %>
   </div>
+  
 </div>
 
 
 <%= render 'comments/comments', photo: @photo %>
+
+</div>
 
 

@@ -1,23 +1,35 @@
 <section class="comments">
   <h3>Comments</h3>
 
-  <div class="new-comment-form">
+  
+    
   <% if signed_in? %>
-  <img class="avatar avatar-thumb" src="<%= current_user.avatar.url(:thumb) %>">
-  <p><%= current_user.name %></p>
-  <form action="<%= photo_comments_url(photo) %>" method="post">
+  
+  <div class="new-comment">
+    
+    <div class="commenter">
+    <img class="avatar avatar-thumb" src="<%= current_user.avatar.url(:thumb) %>">
+    <p><%= current_user.name %></p>
+    </div>
+    
+  <form class="form new-comment-form" action="<%= photo_comments_url(photo) %>" method="post">
     <%= auth_token_input %>
-
+    
+    <div class="input">
     <textarea placeholder="Add a comment" name="comment[body]"></textarea>
-
+    </div>
+    
+    <div class="submit">
     <input type="submit" value="Add Comment">
+    </div>
 
   </form>
-
+  
+  </div>
 
   <% end %>
 
-  </div>
+  
 
   <% photo.comments.each do |comment|  %>
 

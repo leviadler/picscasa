@@ -1,12 +1,17 @@
-<div class="comment" id="<%= "comment-#{comment.id}" %>">
-  <hr>
+<div class="comment group" id="<%= "comment-#{comment.id}" %>">
+
+  <div class="commenter">
   <img class="avatar avatar-thumb" src="<%= comment.user.avatar.url(:thumb) %>">
   <p>
     <a href="<%= user_url(comment.user) %>">
     <%= comment.user.name %>
     </a>
+  </p>
+  <p>
     <%= time_ago_in_words(comment.created_at) %> ago
   </p>
+  </div>
+  
   <p><%= comment.body %></p>
 
   <% if comment.user == current_user %>
