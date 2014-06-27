@@ -26,7 +26,7 @@ class Notification < ActiveRecord::Base
       new_album_url
     when 'new_album'
       album = self.notifiable
-      new_album_photos_url(album)
+      new_album_photo_url(album)
     end
   end
 

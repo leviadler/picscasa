@@ -20,7 +20,8 @@
         <li class="user-dropdown">
           <img class="avatar nav-avatar" src="<%= current_user.avatar.url(:thumb) %>">
           <ul class="user-dropdown-items">
-            <li><%= current_user.email %></li>
+            <li><strong><%= current_user.email %></strong></li>
+            <li></li>
             <li><a href="<%= edit_user_url(current_user) %>">Account</a></li>
             <li><%= button_to "Logout", session_url, method: :delete %></li>
           </ul>
