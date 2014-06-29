@@ -6,19 +6,20 @@ class Api::PhotosController < ApplicationController
     @photos = current_user.photos
     render json: @photos
   end
-  
+
   def show
     @photo = Photo.find(params[:id])
     require_permission_for(@photo.album)
-    
+
     # this is very inacurate b/c we refresh with every like and comment
-    # - even now this may not work
+    # - even now this may not work - will prob need to do something on the
+    # backbone end to make it update the count
     @photo.view_count += 1
     @photo.save!
-    
+
     render json: @photo
   end
-  
+
   def edit
     @photo = Photo.find(params[:id])
   end
@@ -37,8 +38,8 @@ class Api::PhotosController < ApplicationController
     @photo = Photo.find(params[:id]).destroy
     render json: @photo
   end
-  
-  
+
+
   # will only handle one image
   def create
     @photo = Photo.new(image: image_params[:image], album_id: params[:album_id])
@@ -51,7 +52,7 @@ class Api::PhotosController < ApplicationController
     end
   end
 
-  
+
 
 
 #   multiple images API'd YET!
@@ -97,15 +98,15 @@ class Api::PhotosController < ApplicationController
 # #     end
 #   end
 
-  
 
-  
+
+
 
   private
   def image_params
     params.require(:photo).permit(:image)
   end
-  
+
   # for multiple
   # def image_params
 #     p = params.require(:photo).permit(images:[])
