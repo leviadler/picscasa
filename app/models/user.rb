@@ -42,7 +42,9 @@ class User < ActiveRecord::Base
   end
 
   def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
+    hash = BCrypt::Password.new(self.password_digest)
+    return false unless hash
+    hash.is_password?(password)
   end
 
   def name
@@ -65,7 +67,7 @@ class User < ActiveRecord::Base
                       fname: auth_hash[:info][:first_name],
                       lname: auth_hash[:info][:last_name],
                       avatar: auth_hash[:info][:image],
-                      password_digest: SecureRandom.urlsafe_base64(16)
+                      password_digest: Bcrypt::Password.create(SecureRandom.urlsafe_base64(64))
                       )
       user.save
       return user
