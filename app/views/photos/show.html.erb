@@ -35,7 +35,7 @@
   </div>
   <div class="likes <%= "already-liked" if signed_in? && current_user.already_liked?(@photo) %>">
     Likes: <%= @photo.likes.count %>
-    
+
     <% if signed_in? %>
     <form class="like-form" action="<%= photo_likes_url(@photo) %>" method="post">
       <%= auth_token_input %>
@@ -53,12 +53,11 @@
     </form>
     <% end %>
   </div>
-  
+
 </div>
 
 
 <%= render 'comments/comments', photo: @photo %>
 
-</div>
 
 

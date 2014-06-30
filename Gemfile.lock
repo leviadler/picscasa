@@ -139,6 +139,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.9.0.229)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     oauth2 (0.9.4)
@@ -273,16 +274,18 @@ DEPENDENCIES
   binding_of_caller
   capybara
   coffee-rails (~> 4.0.0)
+  ejs
   exifr
   factory_girl_rails
   faker
   figaro
   guard-rspec
-  jbuilder (~> 2.0)
+  jbuilder (~> 2.1.1)
   jquery-rails
   js-routes
   launchy
   letter_opener
+  newrelic_rpm
   omniauth-google-oauth2
   paperclip
   pg

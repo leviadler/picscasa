@@ -4,7 +4,6 @@ class Api::PhotosController < ApplicationController
 
   def index
     @photos = current_user.photos
-    render json: @photos
   end
 
   def show
@@ -16,8 +15,7 @@ class Api::PhotosController < ApplicationController
     # backbone end to make it update the count
     @photo.view_count += 1
     @photo.save!
-
-    render json: @photo
+    @photo
   end
 
   def edit

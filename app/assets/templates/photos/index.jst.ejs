@@ -1,0 +1,21 @@
+<h1>My Photos</h1>
+
+<ul class="pictures-index">
+<% photos.forEach(function(photo){ %>
+  <li>
+     <figure class="photo-tile">
+
+      <a href="#/photos/<%= photo.id %>">
+
+        <img class="photo-thumb" src="<%= photo.get("thumb_url")%>">
+      </a>
+
+      <!-- logic for delete button -->
+
+
+
+    </figure>
+    </li>
+
+<% }) %>
+</ul>

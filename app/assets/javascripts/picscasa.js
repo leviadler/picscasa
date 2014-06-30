@@ -4,7 +4,12 @@ window.Picscasa = {
   Views: {},
   Routers: {},
   initialize: function() {
-    //alert('Hello from Backbone!');
+    Picscasa.photos = new Picscasa.Collections.Photos()
+    new Picscasa.Routers.Router({
+      $rootEl: $('main'),
+      allPhotos: Picscasa.photos
+    });
+    Backbone.history.start();
   }
 };
 

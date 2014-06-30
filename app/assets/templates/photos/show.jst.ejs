@@ -1,0 +1,53 @@
+<div class="breadcrubs">
+  <a href="#/albums/<%= photo.get("album_id") %>"><< <%= photo.escape("album_title") %></a>
+</div>
+
+<div class="photo-container">
+<figure class="large-photo">
+  <img src="<%= photo.get("image_url") %>">
+
+  <figcaption>
+  <b><%= photo.escape("caption") %></b>
+  <% if (photo.get("can_edit")) { %>
+    <a href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
+  <% }; %>
+  </figcaption>
+</figure>
+
+<!-- add links to prev and next photos . prev() -->
+
+<div class="photo-extras">
+
+<div class="tags">
+  Tags:
+  <% photo.get("tags").forEach(function(tag) { %>
+  <a href="#/tags/<%= tag.get("id") %>"><%= tag.escape("name") %></a>
+  <% }); %>
+  <% if (photo.get("can_edit")) { %>
+    <a href="#">Edit Tags</a>
+  <% }; %>
+
+</div>
+
+<div class="likes-and-views">
+  <div class="view-count">
+    Views: <%= photo.get("view_count") %>
+  </div>
+  <div class="likes">
+    Likes:
+
+    <% if (photo.get("can_like")) { %>
+    <form class="like-form">
+
+      <input type="submit" value="+1">
+
+    </form>
+    <form class="unlike-form" >
+
+      <input type="submit" value="-1">
+
+    </form>
+    <% } %>
+  </div>
+
+</div>
