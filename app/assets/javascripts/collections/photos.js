@@ -3,20 +3,23 @@ Picscasa.Collections.Photos = Backbone.Collection.extend({
 
   url: 'photos',
 
-  getOrFetch: function (id) {
-   var photos = this;
-
-   var photo = this.get(id);
-   if (!(photo)) {
-     photo = new Picscasa.Models.Photo({ id: id });
-     photo.fetch({
-       success: function () {
-         photos.add(photo);
-         return photo;
-       }
-     });
-   } else {
-     return photo;
-   }
+  getOrFetch: function (id, callback) {
+    var photos = this;
+    var photo = Picscasa.photos.get(id);
+    
+    if (!photo) {
+      photo = new Picscasa.Models.Photo({
+        id: id
+      });
+      photo.collection = photos;
+      photo.fetch({
+        success: function () {
+          photos.add(photo);
+          callback(photo);
+        }
+      });
+    } else {
+      callback(photo);
+    }
   }
 })

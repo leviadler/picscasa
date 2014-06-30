@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # keep it simple - http://davidcel.is/blog/2012/09/06/stop-validating-email-addresses-with-regex/ - TODO activation email
   validates_format_of :email, :with => /.+@.+\..+/i
-
+                                                                                                                                                                
   has_many :sessions
   has_many :albums, foreign_key: :owner_id
   has_many :photos, through: :albums
@@ -42,9 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def is_password?(password)
-    hash = BCrypt::Password.new(self.password_digest)
-    return false unless hash
-    hash.is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def name
@@ -60,14 +58,16 @@ class User < ActiveRecord::Base
       user = User.find_by(provider: auth_hash[:provider], uid: auth_hash[:uid])
 
       return user if user
-
+      
+      password = SecureRandom.urlsafe_base64(64)
       user = User.new(provider: auth_hash[:provider],
                       uid: auth_hash[:uid],
                       email: auth_hash[:info][:email],
                       fname: auth_hash[:info][:first_name],
                       lname: auth_hash[:info][:last_name],
                       avatar: auth_hash[:info][:image],
-                      password_digest: BCrypt::Password.create(SecureRandom.urlsafe_base64(64))
+                      password: password,
+                      password_confirmation: password
                       )
       user.save
       return user
@@ -91,7 +91,8 @@ class User < ActiveRecord::Base
 #   end
 
   def already_liked?(photo)
-    Like.find_by(user_id: self.id, photo_id: photo.id)
+    @liked_pic_ids ||= self.likes.pluck(:photo_id)
+    @liked_pic_ids.include?(photo.id)
   end
 
 

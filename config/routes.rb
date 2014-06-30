@@ -28,9 +28,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :photos, only: [:show, :edit, :update, :destroy, :index] do
-      resources :comments, only: [:create]
-      resource :likes, only: [:create, :destroy]
+      resources :comments, only: [:index]
+      resource :likes, only: [:index]
     end
+    resources :comments, only: [:destroy, :show, :create, :destroy] # maybe add edit with js
   end
 
   get "/api", to: "static_pages#root"

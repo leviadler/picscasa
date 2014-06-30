@@ -2,7 +2,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
-    this.allPhotos = options.allPhotos;
+    this.photos = options.photos;
 
   },
 
@@ -13,22 +13,26 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
   photosIndex: function() {
     var indexView = new Picscasa.Views.PhotosIndex({
-      collection: this.allPhotos
+      collection: this.photos
     });
-    console.log(this.allPhotos)
-    this.allPhotos.fetch()
+    
+    this.photos.fetch()
     this._swapView(indexView);
   },
 
   photosShow: function(id) {
-    var photo = this.allPhotos.getOrFetch(id);
+    var that = this;
+    
+    this.photos.getOrFetch(id, function(photo) {
+      var showView = new Picscasa.Views.PhotoShow({
+        model: photo,
+        collection: that.photos
+      });
 
-    var showView = new Picscasa.Views.PhotoShow({
-      model: photo,
-      collection: this.allPhotos
+      that._swapView(showView);
     });
 
-    this._swapView(showView);
+    
   },
 
 

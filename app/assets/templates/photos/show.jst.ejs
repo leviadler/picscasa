@@ -21,7 +21,7 @@
 <div class="tags">
   Tags:
   <% photo.get("tags").forEach(function(tag) { %>
-  <a href="#/tags/<%= tag.get("id") %>"><%= tag.escape("name") %></a>
+  <a href="#/tags/<%= tag.id %>"><%= tag.name %></a>
   <% }); %>
   <% if (photo.get("can_edit")) { %>
     <a href="#">Edit Tags</a>

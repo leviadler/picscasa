@@ -2,7 +2,7 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
   template: JST['photos/show'],
 
   initialize: function() {
-    this.listenTo(this.collection, "sync", this.render)
+
   },
 
   render: function() {

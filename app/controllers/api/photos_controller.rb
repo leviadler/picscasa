@@ -3,7 +3,7 @@ class Api::PhotosController < ApplicationController
   before_action :require_signed_in, only: [:new, :create]
 
   def index
-    @photos = current_user.photos
+    @photos = current_user.photos.includes(:comments, :likes, :tags, :owner)
   end
 
   def show

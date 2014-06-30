@@ -7,9 +7,12 @@ window.Picscasa = {
     Picscasa.photos = new Picscasa.Collections.Photos()
     new Picscasa.Routers.Router({
       $rootEl: $('main'),
-      allPhotos: Picscasa.photos
+      photos: Picscasa.photos
     });
     Backbone.history.start();
+  },
+  helpers: {
+    
   }
 };
 
