@@ -1,9 +1,13 @@
 json.(photo, :id, :caption, :album_id, :date_taken, :created_at)
+
 json.image_url photo.image.url(:big)
 json.album_title photo.album.title
-json.can_edit true if photo.owner == current_user
-json.can_like true if signed_in?
-json.already_liked true if (current_user && current_user.already_liked?(photo))
+
+json.owner_id photo.owner.id
+
+json.already_liked (current_user && current_user.already_liked?(photo)) ? true : false
+json.likes_count photo.likes.count
+json.view_count photo.view_count
 
 json.tags photo.tags
 json.comments photo.comments, partial: 'api/comments/comment', as: :comment

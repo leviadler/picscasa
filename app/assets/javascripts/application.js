@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require js-routes
+//= require jquery.serializejson
 //= require underscore
 //= require backbone
 //= require picscasa

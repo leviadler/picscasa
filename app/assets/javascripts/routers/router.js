@@ -12,6 +12,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   },
 
   photosIndex: function() {
+    Picscasa.helpers.requireSignedIn();
     var indexView = new Picscasa.Views.PhotosIndex({
       collection: this.photos
     });

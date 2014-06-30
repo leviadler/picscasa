@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'auth/google_oauth2/callback', to: "sessions#google"
 
 
-  namespace :api do
+  namespace :api, defaults: {format: 'json'} do
     resources :photos, only: [:show, :edit, :update, :destroy, :index] do
       resources :comments, only: [:index]
       resource :likes, only: [:index]

@@ -1,0 +1,25 @@
+<!-- take out div and have view build that up -->
+
+
+  <div class="commenter">
+  <img class="avatar avatar-thumb" src="<%= comment.get("avatar_url") %>">
+  <p>
+    <a href="<%= "#/user/" + comment.get("user_id") %>">
+    <%= comment.escape("user_name") %>
+    </a>
+  </p>
+  <p>
+    <%= comment.get("created_at") %> ago 
+    <!-- time ago in words... -->
+  </p>
+  </div>
+  
+  <p><%= comment.escape("body") %></p>
+
+  <% if(Picscasa.helpers.canEdit(comment)) { %>
+  <form class="delete-comment">
+
+    <input type="submit" value="Delete Comment">
+
+  </form>
+  <% } %>

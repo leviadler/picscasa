@@ -1,5 +1,8 @@
 <h1>My Photos</h1>
 
+
+<!-- this will be reused in album photo index 
+- maybe move out to new view or template  -->
 <ul class="pictures-index">
 <% photos.forEach(function(photo){ %>
   <li>
@@ -9,8 +12,12 @@
 
         <img class="photo-thumb" src="<%= photo.get("thumb_url")%>">
       </a>
-
-      <!-- logic for delete button -->
+      
+      <figcaption>
+        <% if (Picscasa.helpers.canEdit(photo)) { %>
+          <button class="delete-photo">delete</button>
+        <% } %>
+      </figcaption>
 
 
 
