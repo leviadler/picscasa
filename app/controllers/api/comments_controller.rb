@@ -6,18 +6,18 @@ class Api::CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
   end
-  
+
   def index
     @comments = Comment.where(photo_id: params[:photo_id])
   end
-  
+
   def create
     @comment = current_user.comments.new(comment_params);
 
     if @comment.save
       render "show"
     else
-      render json: @comment.errors, status: :unprocessable_entity
+      render json: @comment.errors.full_messages, status: :unprocessable_entity
     end
   end
 

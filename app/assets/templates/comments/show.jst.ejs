@@ -1,4 +1,4 @@
-<!-- take out div and have view build that up -->
+<!-- took out div and have view build that up -->
 
 
   <div class="commenter">
@@ -9,11 +9,10 @@
     </a>
   </p>
   <p>
-    <%= comment.get("created_at") %> ago 
-    <!-- time ago in words... -->
+    <time class="timeago" datetime="<%= comment.get("created_at") %>"></time>
   </p>
   </div>
-  
+
   <p><%= comment.escape("body") %></p>
 
   <% if(Picscasa.helpers.canEdit(comment)) { %>
@@ -23,3 +22,9 @@
 
   </form>
   <% } %>
+
+  <script>
+    jQuery(document).ready(function() {
+      jQuery("time.timeago").timeago();
+    });
+  </script>

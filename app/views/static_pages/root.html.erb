@@ -1,7 +1,8 @@
 
 <script>
   <% if signed_in? %>
-    Picscasa.CURRENT_USER_ID = <%= current_user.id  %>
+    Picscasa.CURRENT_USER_ID = <%= current_user.id  %> ;
+    Picscasa.CURRENT_USER_NAME = "<%= current_user.name %>";
   <% end %>
   // should prob initialize backbone here
 </script>

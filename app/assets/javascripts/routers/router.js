@@ -8,7 +8,9 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "photos" : "photosIndex",
-    "photos/:id": "photosShow"
+    "photos/:id": "photosShow",
+    "albums": "albumsIndex",
+    "albums/:id": "albumShow"
   },
 
   photosIndex: function() {
@@ -16,14 +18,14 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     var indexView = new Picscasa.Views.PhotosIndex({
       collection: this.photos
     });
-    
+
     this.photos.fetch()
     this._swapView(indexView);
   },
 
   photosShow: function(id) {
     var that = this;
-    
+
     this.photos.getOrFetch(id, function(photo) {
       var showView = new Picscasa.Views.PhotoShow({
         model: photo,
@@ -33,10 +35,18 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       that._swapView(showView);
     });
 
-    
+
   },
 
+  albumIndex: function() {
+    Picscasa.helpers.requireSignedIn();
 
+    var albumIndex = new Picscasa.Views.AlbumsIndex({
+      collection: this.albums
+    });
+
+    this._swapView(albumIndex);
+  },
 
   _swapView: function (view) {
      this._currentView && this._currentView.remove();

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require js-routes
 //= require jquery.serializejson
+//= require jquery.timeago
 //= require underscore
 //= require backbone
 //= require picscasa

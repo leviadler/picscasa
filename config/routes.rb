@@ -32,6 +32,14 @@ Rails.application.routes.draw do
       resource :likes, only: [:index]
     end
     resources :comments, only: [:destroy, :show, :create, :destroy] # maybe add edit with js
+
+    resources :albums do
+      resource :share, only: [:new, :create]
+      collection do
+        get 'public'
+      end
+      resources :photos, only: [:new, :create]
+    end
   end
 
   get "/api", to: "static_pages#root"

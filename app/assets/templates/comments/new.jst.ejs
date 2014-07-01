@@ -4,13 +4,13 @@
 <div class="commenter">
 <!-- don't have a user model so this wont work yet -->
 <img class="avatar avatar-thumb" src="http://picscasa-dev.s3.amazonaws.com/users/avatars/000/000/001/thumb/photo.jpg?1404137092">
-<p><%= "CURRENT USER NAME HERE" %></p>
+<p><%= Picscasa.CURRENT_USER_NAME %></p>
 </div>
 
 <form class="form new-comment-form">
-  
+
   <input type="hidden" name="comment[photo_id]" value=<%= photo.id %>>
-  
+
   <div class="input">
   <textarea placeholder="Add a comment" name="comment[body]"></textarea>
   </div>
