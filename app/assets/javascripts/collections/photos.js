@@ -5,7 +5,7 @@ Picscasa.Collections.Photos = Backbone.Collection.extend({
 
   getOrFetch: function (id, callback) {
     var photos = this;
-    var photo = Picscasa.photos.get(id);
+    var photo = this.get(id);
 
     if (!photo) {
       photo = new this.model({

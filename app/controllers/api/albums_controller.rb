@@ -56,8 +56,7 @@ class Api::AlbumsController < ApplicationController
     @album = Album.find(params[:id])
 
     if @album.owner != current_user
-      flash[:error] = "You do not have access to that page"
-      redirect_to root_url #redirect back?
+      render json: ["You do not have access to this page"], status: :unprocessable_entity
     end
   end
 

@@ -5,7 +5,7 @@ Picscasa.Collections.Albums = Backbone.Collection.extend({
 
   getOrFetch: function (id, callback) {
     var albums = this;
-    var album = Picscasa.albums.get(id);
+    var album = this.get(id);
 
     if (!album) {
       album = new this.model({

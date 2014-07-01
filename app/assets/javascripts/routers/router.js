@@ -2,36 +2,41 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
-    this.photos = options.photos;
-    this.albums = options.albums
   },
 
   routes: {
+    "": "index",
     "photos" : "photosIndex",
     "photos/:id": "photosShow",
     "albums": "albumsIndex",
+    "albums/new": "newAlbum",
+    "albums/:id/edit": "editAlbum",
     "albums/public": "publicAlbums",
     "albums/:id": "albumShow"
+  },
+
+  index: function() {
+    Backbone.history.navigate("#/photos", {trigger: true})
   },
 
   photosIndex: function() {
     Picscasa.helpers.requireSignedIn();
     var indexView = new Picscasa.Views.PhotosIndex({
-      collection: this.photos
+      collection: Picscasa.userPhotos
     });
 
     // do we get rid of this when bootrapping?
-    this.photos.fetch()
+    Picscasa.userPhotos.fetch()
     this._swapView(indexView);
   },
 
   photosShow: function(id) {
     var that = this;
 
-    this.photos.getOrFetch(id, function(photo) {
+    Picscasa.allPhotos.getOrFetch(id, function(photo) {
       var showView = new Picscasa.Views.PhotoShow({
         model: photo,
-        collection: that.photos
+        collection: Picscasa.userPhotos
       });
 
       that._swapView(showView);
@@ -43,37 +48,67 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   albumsIndex: function() {
     Picscasa.helpers.requireSignedIn();
 
-    var albumIndex = new Picscasa.Views.AlbumsIndex({
-      collection: this.albums
+    var albumIndexView = new Picscasa.Views.AlbumsIndex({
+      collection: Picscasa.userAlbums
     });
 
     // do we get rid of this when bootrapping?
-    this.albums.fetch()
+    Picscasa.userAlbums.fetch()
 
-    this._swapView(albumIndex);
+    this._swapView(albumIndexView);
+  },
+
+  newAlbum: function() {
+    Picscasa.helpers.requireSignedIn();
+
+    newAlbum = new Picscasa.Models.Album();
+    var newAlbumView = new Picscasa.Views.AlbumsForm({
+      collection: Picscasa.userAlbums,
+      model: newAlbum
+    });
+
+    this._swapView(newAlbumView);
+  },
+
+  editAlbum: function(id) {
+    Picscasa.helpers.requireSignedIn();
+
+    var that = this;
+
+    Picscasa.allAlbums.getOrFetch(id, function(album) {
+      if (!Picscasa.helpers.requireOwner(album)) { return };
+
+      var editAlbumView = new Picscasa.Views.AlbumsForm({
+        collection: Picscasa.userAlbums,
+        model: album
+      });
+
+      that._swapView(editAlbumView);
+    });
+
   },
 
 
-  albumsIndex: function() {
+  publicAlbums: function() {
     Picscasa.helpers.requireSignedIn();
 
-    var albumIndex = new Picscasa.Views.AlbumsIndex({
-      collection: this.albums
+    var publicAlbumView = new Picscasa.Views.AlbumsIndex({
+      collection: Picscasa.publicAlbums
     });
 
     // do we get rid of this when bootrapping?
-    this.albums.fetch()
+    Picscasa.publicAlbums.fetch()
 
-    this._swapView(albumIndex);
+    this._swapView(publicAlbumView);
   },
 
   albumShow: function(id) {
     var that = this;
 
-    this.albums.getOrFetch(id, function(album) {
+    Picscasa.allAlbums.getOrFetch(id, function(album) {
       var showView = new Picscasa.Views.AlbumShow({
         model: album,
-        collection: that.albums
+        collection: Picscasa.userAlbums
       });
 
       that._swapView(showView);

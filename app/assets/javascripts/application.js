@@ -15,6 +15,7 @@
 //= require js-routes
 //= require jquery.serializejson
 //= require jquery.timeago
+//= require notify
 //= require underscore
 //= require backbone
 //= require backbone_subset

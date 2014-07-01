@@ -78,6 +78,7 @@ input[type="submit"] {
 }
 
 main {
+  position: relative;
   max-width: 800px;
   margin: auto;
 }
@@ -255,7 +256,18 @@ nav .notif-dropdown > li:nth-child(even) {
   color: rgb(38, 38, 38);
 }
 
+/* FALSH */
 
+.flash {
+  position: absolute;
+  border-radius: 3px;
+  width: 500px;
+  left: 0;
+  right: 0;
+  background: red;
+  margin: auto;
+  text-align: center;
+}
 
 /* FORMS */
 
@@ -363,12 +375,12 @@ select {
 
 /* album form */
 .album-form {
- 
+
 }
 
 /* photo caption tags form */
 .edit-photo-form {
-  
+
 }
 
 .edit-photo-form img {
@@ -379,7 +391,7 @@ select {
   background: white;
   border: 1px solid white;
   border-radius: 2px;
-  
+
 }
 
 /* comments form */
@@ -573,6 +585,3 @@ select {
   text-align: center;
   font-size: 30px;
 }
-
-
-

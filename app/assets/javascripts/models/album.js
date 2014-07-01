@@ -14,7 +14,7 @@ Picscasa.Models.Album = Backbone.Model.extend({
   photos: function () {
     if (!this.get('photos')) {
       var photos = new Picscasa.Subsets.AlbumPhotos([], {
-        parentCollection: Picscasa.photos
+        parentCollection: Picscasa.allPhotos
       });
       this.set({
         photos: photos

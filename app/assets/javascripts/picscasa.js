@@ -5,19 +5,25 @@ window.Picscasa = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // bootstrap this later with users album index
-    Picscasa.photos = new Picscasa.Collections.Photos()
-    Picscasa.albums = new Picscasa.Collections.Albums()
-    // duplicate data - should prob have a allAlbums collection
-    // and have users albums, users pubic albums and public albums
-    // be a subset of it.
-    Picscasa.publicAlbums = new Picscasa.Collections.PublicAlbums()
+
+    // bootstrap all this later
+    Picscasa.allPhotos = new Picscasa.Collections.Photos()
+    Picscasa.allAlbums = new Picscasa.Collections.Albums()
+    Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( [], {
+      parentCollection: Picscasa.allPhotos
+    })
+    Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums([], {
+      parentCollection: Picscasa.allAlbums
+    })
+    Picscasa.publicAlbums = new Picscasa.Subsets.PublicAlbums([], {
+      parentCollection: Picscasa.allAlbums
+    })
+
     new Picscasa.Routers.Router({
-      $rootEl: $('main'),
-      photos: Picscasa.photos,
-      albums: Picscasa.albums,
-      publicAlbums: Picscasa.publicAlbums
+      $rootEl: $('div#content'),
     });
+
+
     Backbone.history.start();
   },
   helpers: {
@@ -26,6 +32,15 @@ window.Picscasa = {
     },
     canEdit: function(model){
       return Picscasa.CURRENT_USER_ID && (model.get("owner_id") || model.get("user_id")) === Picscasa.CURRENT_USER_ID
+    },
+    requireOwner: function(model) {
+      if(!Picscasa.helpers.canEdit(model)) {
+        $.notify("Access denied", { className: "error", globalPosition: "top center"});
+        Backbone.history.navigate("", {trigger: true});
+        return false;
+      } else {
+        return true;
+      }
     },
     requireSignedIn: function() {
       if (!Picscasa.CURRENT_USER_ID) {
