@@ -3,30 +3,28 @@ class Api::PhotosController < ApplicationController
   before_action :require_signed_in, only: [:new, :create]
 
   def index
-    @photos = current_user.photos.includes(:comments, :likes, :tags, :owner)
+    @photos = current_user.photos.includes({comments: [:user]}, :likes, :tags, :owner)
   end
 
   def show
-    @photo = Photo.find(params[:id])
-    require_permission_for(@photo.album)
-
-    # this is very inacurate b/c we refresh with every like and comment
-    # - even now this may not work - will prob need to do something on the
-    # backbone end to make it update the count
-    @photo.view_count += 1
-    @photo.save!
-    @photo
-  end
-
-  def edit
-    @photo = Photo.find(params[:id])
+    @photo = Photo.includes({comments: [:user]}, :likes, :tags, :owner).find(params[:id])
+    if permission_to_view?(@photo.album)
+      # this is very inacurate b/c we refresh with every like and comment
+      # - even now this may not work - will prob need to do something on the
+      # backbone end to make it update the count
+      @photo.view_count += 1
+      @photo.save!
+      render "show"
+    else
+      render json: ["You do not have access to this page"], status: :unprocessable_entity
+    end
   end
 
   def update
     @photo = Photo.find(params[:id])
 
     if @photo.update(photo_params)
-      render json: @photo
+      render "show"
     else
       render json: @photo.errors.full_messages, status: :unprocessable_entity
     end
@@ -34,7 +32,7 @@ class Api::PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id]).destroy
-    render json: @photo
+    render "show"
   end
 
 
@@ -44,7 +42,7 @@ class Api::PhotosController < ApplicationController
 
 
     if @album.save
-      render json: @photo
+      render "show"
     else
       render json: @photo.errors.full_messages, status: :unprocessable_entity
     end

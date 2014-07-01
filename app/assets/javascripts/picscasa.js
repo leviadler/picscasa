@@ -1,14 +1,22 @@
 window.Picscasa = {
   Models: {},
   Collections: {},
+  Subsets: {},
   Views: {},
   Routers: {},
   initialize: function() {
     // bootstrap this later with users album index
     Picscasa.photos = new Picscasa.Collections.Photos()
+    Picscasa.albums = new Picscasa.Collections.Albums()
+    // duplicate data - should prob have a allAlbums collection
+    // and have users albums, users pubic albums and public albums
+    // be a subset of it.
+    Picscasa.publicAlbums = new Picscasa.Collections.PublicAlbums()
     new Picscasa.Routers.Router({
       $rootEl: $('main'),
-      photos: Picscasa.photos
+      photos: Picscasa.photos,
+      albums: Picscasa.albums,
+      publicAlbums: Picscasa.publicAlbums
     });
     Backbone.history.start();
   },

@@ -1,0 +1,30 @@
+<ul class="albums-index group">
+<% albums.forEach(function(album) { %>
+  <li>
+    <figure class="album-tile">
+      <a href="#/albums/<%= album.id %>">
+        <img class="album-thumb" src="<%= album.get("thumb_url")%> ">
+      </a>
+
+
+      <figcaption>
+        <div class="alb-title"><%= album.escape("title") %></div>
+        <div class="alb-info">
+          <!-- visibility icon goes here -->
+          <%= album.escape("date_string") %>
+           -
+          Photos: <%= album.escape("photo_count") %>
+        </div>
+        <% if(album.get("visibility") === "public_album") { %>
+          By <a href="#user/<%= album.get("owner_id") %>"><%= album.escape("owner_name") %></a>
+        <% } %>
+
+
+      </figcaption>
+
+    </figure>
+  </li>
+
+
+<% }) %>
+</ul>

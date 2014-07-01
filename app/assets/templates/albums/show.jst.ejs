@@ -5,7 +5,7 @@
 </div>
 
 
-<% if Picscasa.helpers.canEdit(album) { %>
+<% if (Picscasa.helpers.canEdit(album)) { %>
 <ul class="album-settings">
   <% if(album.get("visibility") !== "private_album" ) { %>
     <li><a href="#">Share this album</li>
@@ -17,4 +17,28 @@
 
 
 
-<!-- <%= render 'photos/pictures', photos: @album.photos %> -->
+<!-- this will be reused in album photo index
+- maybe move out to new view or template  -->
+<ul class="pictures-index">
+<% album.photos().forEach(function(photo){ %>
+  <li>
+     <figure class="photo-tile">
+
+      <a href="#/photos/<%= photo.id %>">
+
+        <img class="photo-thumb" src="<%= photo.get("thumb_url")%>">
+      </a>
+
+      <figcaption>
+        <% if (Picscasa.helpers.canEdit(photo)) { %>
+          <button class="delete-photo">delete</button>
+        <% } %>
+      </figcaption>
+
+
+
+    </figure>
+    </li>
+
+<% }) %>
+</ul>

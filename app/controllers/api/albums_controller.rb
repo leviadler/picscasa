@@ -4,35 +4,33 @@ class Api::AlbumsController < ApplicationController
   before_action :require_album_owner, only: [:edit, :update, :destroy]
 
   def index
-    @albums = current_user.albums
-    render json: @albums
+    @albums = current_user.albums.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
   end
 
   def create
     @album = current_user.albums.new(album_params)
 
     if @album.save
-      render json: @album
+      render "show"
     else
       render json: @album.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def show
-    @album = Album.find(params[:id])
-    require_permission_for(@album)
-    render json: @album
-  end
-
-  def edit
-    @album = Album.find(params[:id])
+    @album = Album.includes(photos: [{comments: [:user]}, :likes, :tags, :owner]).find(params[:id])
+    if permission_to_view?(@album)
+      render "show"
+    else
+      render json: ["You do not have access to this page"], status: :unprocessable_entity
+    end
   end
 
   def update
     @album = Album.find(params[:id])
 
     if @album.update(album_params)
-      render json: @album
+      render "show"
     else
       render json: @album.errors.full_messages, status: :unprocessable_entity
     end
@@ -40,11 +38,12 @@ class Api::AlbumsController < ApplicationController
 
   def destroy
     @album = Album.find(params[:id]).destroy
-    render json: @album
+    render "show"
   end
 
   def public
-    @albums = Album.all.public_album
+    @albums = Album.all.public_album.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
+    render "index"
   end
 
 

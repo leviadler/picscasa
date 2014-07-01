@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
   before_action :require_author, only: :destroy
 
   def show
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id]).includes(:user)
   end
 
   def index
