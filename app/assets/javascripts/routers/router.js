@@ -13,6 +13,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "albums/:id/edit": "editAlbum",
     "albums/:id/upload": "imageUpload",
     "albums/public": "publicAlbums",
+    "albums/:id/auth_token/:auth_token": "unlistedAlbumShow",
     "albums/:id": "albumShow"
   },
 
@@ -117,6 +118,28 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       that._swapView(showView);
     });
 
+  },
+
+  unlistedAlbumShow: function(id, auth_token) {
+    var that = this;
+
+    var album = new Picscasa.Models.Album({id: id});
+    album.auth_token = auth_token
+
+    album.fetch({
+      success: function(album) {
+        var showView = new Picscasa.Views.AlbumShow({
+          model: album,
+          collection: Picscasa.userAlbums
+        });
+
+        that._swapView(showView);
+      },
+      error: function(album, response) {
+        Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");
+        Picscasa.helpers.requireSignedIn();
+      }
+    })
   },
 
   imageUpload: function(id) {
