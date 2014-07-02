@@ -14,7 +14,8 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "albums/:id/upload": "imageUpload",
     "albums/public": "publicAlbums",
     "albums/:id/auth_token/:auth_token": "unlistedAlbumShow",
-    "albums/:id": "albumShow"
+    "albums/:id": "albumShow",
+    "users/:id": "userShow"
   },
 
   // index: function() {
@@ -28,7 +29,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     });
 
     // do we get rid of this when bootrapping?
-    Picscasa.userPhotos.fetch()
+    //Picscasa.userPhotos.fetch()
     this._swapView(indexView);
   },
 
@@ -56,7 +57,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     });
 
     // do we get rid of this when bootrapping?
-    Picscasa.userAlbums.fetch()
+    //Picscasa.userAlbums.fetch()
 
     this._swapView(albumIndexView);
   },
@@ -93,14 +94,14 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
 
   publicAlbums: function() {
-    Picscasa.helpers.requireSignedIn();
 
     var publicAlbumView = new Picscasa.Views.AlbumsIndex({
       collection: Picscasa.publicAlbums,
       title: "Public Albums"
     });
 
-    // do we get rid of this when bootrapping?
+    // don't need this b/c bootstrapping but still
+    // do it in case public albums changes
     Picscasa.publicAlbums.fetch()
 
     this._swapView(publicAlbumView);
@@ -128,9 +129,9 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
     album.fetch({
       success: function(album) {
+        Picscasa.allAlbums.add(album);
         var showView = new Picscasa.Views.AlbumShow({
-          model: album,
-          collection: Picscasa.userAlbums
+          model: album
         });
 
         that._swapView(showView);
@@ -156,6 +157,20 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       that._swapView(imageUploadView);
     });
 
+  },
+  
+  userShow: function(id) {
+    var that = this;
+
+    Picscasa.users.getOrFetch(id, function(user) {
+      var userShowView = new Picscasa.Views.AlbumsIndex({
+        collection: user.albums(),
+        title: ((user.id === Picscasa.CURRENT_USER_ID) ? "My" : user.escape("name")) + " Public Albums",
+        user: user,
+      });
+
+      that._swapView(userShowView);
+    });
   },
 
   _swapView: function (view) {

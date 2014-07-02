@@ -1,3 +1,11 @@
+<% if(user) { %>
+  <div class="public-user-info">
+  <img class="avatar avatar-thumb" src="<%= user.get("avatar_thumb_url")%>">
+  <h2><%= user.escape("name") %></h2>
+  </div>
+<% } %>
+
+
 <h1><%= title %></h1>
 
 <ul class="albums-index group">
@@ -17,8 +25,8 @@
            -
           Photos: <%= album.escape("photo_count") %>
         </div>
-        <% if(album.get("visibility") === "public_album") { %>
-          By <a href="#user/<%= album.get("owner_id") %>"><%= album.escape("owner_name") %></a>
+        <% if(title === "Public Albums") { %>
+          By <a href="#/users/<%= album.get("owner_id") %>"><%= album.escape("owner_name") %></a>
         <% } %>
 
 

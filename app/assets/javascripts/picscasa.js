@@ -5,19 +5,29 @@ window.Picscasa = {
   Views: {},
   Routers: {},
   initialize: function() {
-
-    // bootstrap all this later
     Picscasa.allPhotos = new Picscasa.Collections.Photos()
     Picscasa.allAlbums = new Picscasa.Collections.Albums()
-    Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( [], {
-      parentCollection: Picscasa.allPhotos
-    })
-    Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums([], {
-      parentCollection: Picscasa.allAlbums
-    })
-    Picscasa.publicAlbums = new Picscasa.Subsets.PublicAlbums([], {
-      parentCollection: Picscasa.allAlbums
-    })
+    
+    // get bootsrapped
+    var bootstrappedData = JSON.parse($("#bootstrapped-data").html());
+    
+    if(Picscasa.CURRENT_USER_ID) {
+      Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( bootstrappedData.userPhotos, {
+        parentCollection: Picscasa.allPhotos,
+        parse: true
+      })
+      Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
+        parentCollection: Picscasa.allAlbums,
+        parse: true
+      })
+    }
+    
+    Picscasa.publicAlbums = new Picscasa.Subsets.PublicAlbums(bootstrappedData.publicAlbums, {
+      parentCollection: Picscasa.allAlbums,
+      parse: true
+    });
+    
+    Picscasa.users = new Picscasa.Collections.Users({});
 
     new Picscasa.Routers.Router({
       $rootEl: $('div#content'),
@@ -49,7 +59,7 @@ window.Picscasa = {
     },
 
     renderFlash: function(message, className) {
-      $("div.flash").html(message).removeClass().addClass("flash flash-" + className).show().delay(5000).fadeOut("slow", function(){
+      $("div.flash-container .flash").html(message).removeClass().addClass("flash flash-" + className).show().delay(5000).fadeOut("slow", function(){
         $(this).html("");
       });
     }

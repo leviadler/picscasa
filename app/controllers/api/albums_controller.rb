@@ -43,8 +43,7 @@ class Api::AlbumsController < ApplicationController
   end
 
   def public
-    @albums = Album.all.public_album.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
-    render "index"
+    @public_albums = Album.all.public_album.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
   end
 
 

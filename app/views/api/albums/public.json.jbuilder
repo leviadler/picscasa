@@ -1,0 +1,1 @@
+json.array! @public_albums, partial: 'api/albums/album', as: :album

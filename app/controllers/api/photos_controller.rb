@@ -123,7 +123,7 @@ class Api::PhotosController < ApplicationController
     params.require(:photo).permit(:caption, :tag_list)
   end
 
-  def require_album_owner
+  def require_photo_owner
     @photo = Photo.find(params[:id])
 
     if @photo.owner != current_user

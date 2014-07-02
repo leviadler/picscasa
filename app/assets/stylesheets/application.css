@@ -258,13 +258,17 @@ nav .notif-dropdown > li:nth-child(even) {
 
 /* FALSH */
 
+.flash-container {
+  position: relative;
+  width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
 .flash {
   position: absolute;
   border-radius: 3px;
   width: 500px;
-  left: 0;
-  right: 0;
-  margin: auto;
   text-align: center;
 }
 

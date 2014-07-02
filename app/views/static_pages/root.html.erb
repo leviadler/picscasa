@@ -8,3 +8,14 @@
   <% end %>
   // should prob initialize backbone here
 </script>
+
+
+<script type="application/json" id="bootstrapped-data">
+  {
+    <% if signed_in? %>
+      "userPhotos": <%= @photos_json.html_safe %>,
+      "userAlbums":  <%= @albums_json.html_safe %>,
+    <% end %>
+    "publicAlbums": <%= @public_albums_json.html_safe %>
+  }
+</script>

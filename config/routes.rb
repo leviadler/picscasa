@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: {format: 'json'} do
+    resources :users, only: [:show]
     resources :photos, only: [:show, :update, :destroy, :index, :create] do
       resources :comments, only: [:index]
       resource :likes, only: [:index]

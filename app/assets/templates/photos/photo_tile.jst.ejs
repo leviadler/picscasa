@@ -1,0 +1,17 @@
+
+ <figure class="photo-tile">
+
+  <a href="#/photos/<%= photo.id %>">
+
+    <img class="photo-thumb" src="<%= photo.get("thumb_url")%>">
+  </a>
+
+  <figcaption>
+    <% if (Picscasa.helpers.canEdit(photo)) { %>
+      <button class="delete-photo">delete</button>
+    <% } %>
+  </figcaption>
+
+
+
+  </figure>
