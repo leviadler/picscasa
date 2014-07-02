@@ -27,7 +27,7 @@ class SharesController < ApplicationController
       flash.now[:error] = "Please enter atleast one valid email address"
       render :new
     else
-      email = ShareMailer.share_email(album, message, email_list)
+      email = ShareMailer.rails_share_email(album, message, email_list)
       email.deliver
     end
     

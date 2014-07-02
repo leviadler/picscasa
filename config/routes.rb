@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy, :show, :create, :destroy] # maybe add edit with js
 
     resources :albums do
-      resource :share, only: [:new, :create]
+      resource :share, only: [:create]
       collection do
         get 'public'
       end

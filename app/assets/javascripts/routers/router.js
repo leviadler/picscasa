@@ -12,6 +12,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "albums/new": "newAlbum",
     "albums/:id/edit": "editAlbum",
     "albums/:id/upload": "imageUpload",
+    "albums/:id/share": "shareAlbum",
     "albums/public": "publicAlbums",
     "albums/:id/auth_token/:auth_token": "unlistedAlbumShow",
     "albums/:id": "albumShow",
@@ -102,6 +103,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
     // don't need this b/c bootstrapping but still
     // do it in case public albums changes
+    // TODO remove if paginating!
     Picscasa.publicAlbums.fetch()
 
     this._swapView(publicAlbumView);
@@ -117,6 +119,24 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       });
 
       that._swapView(showView);
+    });
+
+  },
+  
+  shareAlbum: function(id) {
+    var that = this;
+
+    Picscasa.allAlbums.getOrFetch(id, function(album) {
+      if (!Picscasa.helpers.requireOwner(album) || 
+          album.get("visibility") === "private_album") { 
+            return 
+          };
+      
+      var shareView = new Picscasa.Views.AlbumShare({
+        model: album,
+      });
+
+      that._swapView(shareView);
     });
 
   },
