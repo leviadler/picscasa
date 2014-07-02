@@ -36,7 +36,7 @@ window.Picscasa = {
     requireOwner: function(model) {
       if(!Picscasa.helpers.canEdit(model)) {
         $.notify("Access denied", { className: "error", globalPosition: "top center"});
-        Backbone.history.navigate("", {trigger: true});
+        Backbone.history.navigate("#/photos", {trigger: true});
         return false;
       } else {
         return true;

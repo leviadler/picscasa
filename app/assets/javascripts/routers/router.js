@@ -5,19 +5,20 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
+    //"": "index",
     "photos" : "photosIndex",
     "photos/:id": "photosShow",
     "albums": "albumsIndex",
     "albums/new": "newAlbum",
     "albums/:id/edit": "editAlbum",
+    "albums/:id/upload": "imageUpload",
     "albums/public": "publicAlbums",
     "albums/:id": "albumShow"
   },
 
-  index: function() {
-    Backbone.history.navigate("#/photos", {trigger: true})
-  },
+  // index: function() {
+//     Backbone.history.navigate("#/photos", {trigger: true})
+//   },
 
   photosIndex: function() {
     Picscasa.helpers.requireSignedIn();
@@ -49,7 +50,8 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     Picscasa.helpers.requireSignedIn();
 
     var albumIndexView = new Picscasa.Views.AlbumsIndex({
-      collection: Picscasa.userAlbums
+      collection: Picscasa.userAlbums,
+      title: "My Albums"
     });
 
     // do we get rid of this when bootrapping?
@@ -93,7 +95,8 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     Picscasa.helpers.requireSignedIn();
 
     var publicAlbumView = new Picscasa.Views.AlbumsIndex({
-      collection: Picscasa.publicAlbums
+      collection: Picscasa.publicAlbums,
+      title: "Public Albums"
     });
 
     // do we get rid of this when bootrapping?
@@ -114,6 +117,18 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       that._swapView(showView);
     });
 
+  },
+
+  imageUpload: function(id) {
+    var that = this;
+
+    Picscasa.allAlbums.getOrFetch(id, function(album) {
+      var imageUploadView = new Picscasa.Views.NewPhoto({
+        model: album,
+      });
+
+      that._swapView(imageUploadView);
+    });
 
   },
 

@@ -1,7 +1,7 @@
 class Api::AlbumsController < ApplicationController
 
-  before_action :require_signed_in, only: [:new, :create, :update, :edit, :destroy, :index]
-  before_action :require_album_owner, only: [:edit, :update, :destroy]
+  before_action :require_signed_in, only: [:create, :update, :edit, :destroy, :index]
+  before_action :require_album_owner, only: [:update, :destroy]
 
   def index
     @albums = current_user.albums.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
@@ -27,7 +27,7 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
-    @album = Album.find(params[:id])
+    # getting @album in before_action
 
     if @album.update(album_params)
       render "show"
@@ -37,7 +37,8 @@ class Api::AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:id]).destroy
+     # getting @album in before_action
+    @album.destroy
     render "show"
   end
 

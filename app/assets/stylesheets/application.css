@@ -332,6 +332,14 @@ select {
   box-shadow: none;
 }
 
+/* TODO make gray and change all states */
+.submit .disabled {
+  background: #3079ed;
+  top: 2px;
+  box-shadow: none;
+  cursor: wait;
+}
+
 /* sign in form */
 .sign-in-form {
 

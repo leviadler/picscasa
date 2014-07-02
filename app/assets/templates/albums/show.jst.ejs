@@ -1,6 +1,7 @@
 <h1><%= album.escape("title") %></h1>
+
 <div class="album-info">
-  <%= album.get("photos_count") %> photos
+  <%= album.get("photo_count") %> photos
   Visibility: <%= album.get("visibility") %>
 </div>
 
@@ -10,8 +11,8 @@
   <% if(album.get("visibility") !== "private_album" ) { %>
     <li><a href="#">Share this album</li>
   <% } %>
-  <li><a href="#">add photos</a></li>
-  <li><a href="#">album settings</a></li>
+  <li><a href="#/albums/<%= album.id %>/upload">add photos</a></li>
+  <li><a href=" <%= "#/albums/" + album.id + "/edit"%>">album settings</a></li>
 </ul>
 <% } %>
 

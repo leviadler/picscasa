@@ -1,6 +1,7 @@
 class Api::PhotosController < ApplicationController
 
-  before_action :require_signed_in, only: [:new, :create]
+  before_action :require_signed_in, only: [:new, :create, :destroy, :index, :update]
+  before_action :require_photo_owner, only: [:update, :destroy]
 
   def index
     @photos = current_user.photos.includes({comments: [:user]}, :likes, :tags, :owner)
@@ -21,7 +22,7 @@ class Api::PhotosController < ApplicationController
   end
 
   def update
-    @photo = Photo.find(params[:id])
+    # getting @photo in before action
 
     if @photo.update(photo_params)
       render "show"
@@ -31,17 +32,24 @@ class Api::PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id]).destroy
+    # getting @photo in before action
+    @photo.destroy
     render "show"
   end
 
 
   # will only handle one image
   def create
-    @photo = Photo.new(image: image_params[:image], album_id: params[:album_id])
+
+    # check that uploading to an album that belongs to me
+    if Album.find(image_params[:album_id]).owner != current_user
+      render json: ["Error: Not your album"], status: :unprocessable_entity
+    end
+
+    @photo = Photo.new(image_params)
 
 
-    if @album.save
+    if @photo.save
       render "show"
     else
       render json: @photo.errors.full_messages, status: :unprocessable_entity
@@ -100,7 +108,7 @@ class Api::PhotosController < ApplicationController
 
   private
   def image_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :album_id)
   end
 
   # for multiple
@@ -113,6 +121,14 @@ class Api::PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:caption, :tag_list)
+  end
+
+  def require_album_owner
+    @photo = Photo.find(params[:id])
+
+    if @photo.owner != current_user
+      render json: ["You do not have access to this page"], status: :unprocessable_entity
+    end
   end
 
 end

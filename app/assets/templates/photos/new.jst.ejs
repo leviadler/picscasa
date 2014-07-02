@@ -1,0 +1,17 @@
+<h1>Upload Photos to <%= album.escape("title") %></h1>
+
+
+<form class="forms photo-upload-form" enctype="multipart/form-data">
+
+  <!-- <input type="file" id="post_image" name="post[image]" multiple="true" /> -->
+  <div class="input">
+    <input type="file" id="photo_images" name="photo[images][]" accept="image/png,image/gif,image/jpeg" multiple="true" >
+  </div>
+  <!-- <div>
+      <div id="dropzone" style="margin:30px; width:500px; height:300px; border:1px dotted grey;">Drag & drop your file here...</div>
+  </div> -->
+
+  <div class="submit">
+  <input type="submit" value="Upload Photos!">
+  </div>
+</form>

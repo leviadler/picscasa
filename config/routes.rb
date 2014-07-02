@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: {format: 'json'} do
-    resources :photos, only: [:show, :edit, :update, :destroy, :index] do
+    resources :photos, only: [:show, :update, :destroy, :index, :create] do
       resources :comments, only: [:index]
       resource :likes, only: [:index]
     end
@@ -38,7 +38,6 @@ Rails.application.routes.draw do
       collection do
         get 'public'
       end
-      resources :photos, only: [:new, :create]
     end
   end
 
