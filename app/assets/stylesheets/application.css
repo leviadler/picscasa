@@ -264,9 +264,13 @@ nav .notif-dropdown > li:nth-child(even) {
   width: 500px;
   left: 0;
   right: 0;
-  background: red;
   margin: auto;
   text-align: center;
+}
+
+/* TODO give real colors */
+.flash.flash-error {
+  background: red;
 }
 
 /* FORMS */

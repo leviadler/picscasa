@@ -33,11 +33,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
         $.notify(error, { className: "error", globalPosition: "top center"});
       })
 
-      // TODO move this to helper that takes text and event type and will call this
-      // and add a class to the event based on the 2nd arg passed to it
-      $("div.flash").html(response.responseText).show().delay(5000).fadeOut("slow", function(){
-        $(this).html("");
-      });
+      Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");
     }
 
     this.model.set(formData);

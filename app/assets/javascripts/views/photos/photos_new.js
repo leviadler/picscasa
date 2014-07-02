@@ -52,10 +52,7 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
     var files = input[0].files;
 
     if (files.length === 0) {
-      // TODO move to helper
-      $("div.flash").html("Please choose a valid file").show().delay(5000).fadeOut("slow", function(){
-        $(this).html("");
-      });
+      Picscasa.helpers.renderFlash("Please choose a valid file", "error");
       return;
     }
 
@@ -76,10 +73,7 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
             Backbone.history.navigate("#/albums/" + that.model.id, {trigger: true})
           },
           error: function(photo, response) {
-            // TODO this should be in a helper
-            $("div.flash").html(response.responseText).show().delay(5000).fadeOut("slow", function(){
-              $(this).html("");
-            });
+            Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");
           }
         });
       }

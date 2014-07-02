@@ -46,6 +46,12 @@ window.Picscasa = {
       if (!Picscasa.CURRENT_USER_ID) {
         window.location = '/session/new';
       }
+    },
+
+    renderFlash: function(message, className) {
+      $("div.flash").html(message).removeClass().addClass("flash flash-" + className).show().delay(5000).fadeOut("slow", function(){
+        $(this).html("");
+      });
     }
   }
 };

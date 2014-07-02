@@ -120,9 +120,12 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   },
 
   imageUpload: function(id) {
+    Picscasa.helpers.requireSignedIn();
     var that = this;
 
     Picscasa.allAlbums.getOrFetch(id, function(album) {
+      if (!Picscasa.helpers.requireOwner(album)) { return };
+
       var imageUploadView = new Picscasa.Views.NewPhoto({
         model: album,
       });
