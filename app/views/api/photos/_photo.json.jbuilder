@@ -1,4 +1,4 @@
-json.(photo, :id, :caption, :album_id, :date_taken, :created_at)
+json.(photo, :id, :caption, :album_id, :date_taken, :created_at, :tag_list)
 
 json.image_url photo.image.url(:big)
 json.album_title photo.album.title

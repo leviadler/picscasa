@@ -7,10 +7,10 @@
   <img src="<%= photo.get("image_url") %>">
 
   <figcaption>
-  <b><%= photo.escape("caption") %></b>
+  <!-- <b><%= photo.escape("caption") %></b>
   <% if (Picscasa.helpers.canEdit(photo)) { %>
-    <a href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
-  <% }; %>
+    <a id="edit-caption" href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
+  <% }; %> -->
   </figcaption>
 </figure>
 
@@ -19,13 +19,13 @@
 <div class="photo-extras">
 
 <div class="tags">
-  Tags:
+  <!-- Tags:
   <% photo.get("tags").forEach(function(tag) { %>
   <a href="#/tags/<%= tag.id %>"><%= tag.name %></a>
   <% }); %>
   <% if (Picscasa.helpers.canEdit(photo)) { %>
     <a href="#">Edit Tags</a>
-  <% }; %>
+  <% }; %> -->
 
 </div>
 
@@ -33,7 +33,7 @@
   <div class="view-count">
     Views: <%= photo.get("view_count") %>
   </div>
-  
+
   <div class="likes <%= (photo.get("already_liked")) ? "already-liked" : "" %>">
     Likes: <%= photo.get("likes_count") %>
 
@@ -55,5 +55,5 @@
 
 <section class="comments">
   <h3>Comments</h3>
-  
+
 </section>

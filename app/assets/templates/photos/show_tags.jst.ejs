@@ -1,0 +1,7 @@
+Tags:
+<% photo.get("tags").forEach(function(tag) { %>
+<a href="#/tags/<%= tag.id %>"><%= tag.name %></a>
+<% }); %>
+<% if (Picscasa.helpers.canEdit(photo)) { %>
+  <a id="edit-tags" href="#">Edit Tags</a>
+<% }; %>

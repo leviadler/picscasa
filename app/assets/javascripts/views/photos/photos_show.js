@@ -20,6 +20,18 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
 
     this.$el.html(renderedContent);
 
+    // caption
+    var captionView = new Picscasa.Views.CaptionShow({
+      model: this.model
+    })
+    this._addSubview("figcaption", captionView);
+
+    // tags
+    var tagsView = new Picscasa.Views.TagsShow({
+      model: this.model
+    })
+    this._addSubview(".tags", tagsView);
+
     // new comment form
     if(Picscasa.helpers.signedIn()) {
       var commentNewView = new Picscasa.Views.CommentsNew({
@@ -38,7 +50,6 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
 
     return this;
   },
-
 
   addComment: function (comment) {
     var commentsShow = new Picscasa.Views.CommentsShow({

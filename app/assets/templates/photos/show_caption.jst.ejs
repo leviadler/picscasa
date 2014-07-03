@@ -1,0 +1,4 @@
+<b><%= photo.escape("caption") %></b>
+<% if (Picscasa.helpers.canEdit(photo)) { %>
+  <a id="edit-caption" href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
+<% }; %>
