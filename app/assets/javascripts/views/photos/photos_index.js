@@ -1,7 +1,8 @@
 Picscasa.Views.PhotosIndex = Backbone.View.extend({
   template: JST['photos/index'],
 
-  initialize: function() {
+  initialize: function(options) {
+    this.title = options.title;
     this._subViews = [];
     //this.listenTo(this.collection, "sync", this.render); //change to add once bootstraped
     this.listenTo(this.collection, "add", this.addPhoto) // not working...
@@ -9,7 +10,8 @@ Picscasa.Views.PhotosIndex = Backbone.View.extend({
 
   render: function() {
     var renderedContent = this.template({
-      photos: this.collection
+      photos: this.collection,
+      title: this.title
     });
     
     this.$el.html(renderedContent);

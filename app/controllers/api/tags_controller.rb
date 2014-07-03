@@ -1,4 +1,4 @@
-class TagsController < ApplicationController
+class Api::TagsController < ApplicationController
 
   before_action :require_signed_in
 
@@ -7,14 +7,13 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find(params[:id])
-    @photos = Photo.joins(:tags, :album).where("albums.owner_id = ? AND tags.id = ? ", current_user.id, params[:id])
+    @tag = Tag.friendly.find(params[:id])
+    @photos = Photo.joins(:tags, :album).where("albums.owner_id = ? AND tags.id = ? ", current_user.id, @tag.id)
   end
 
   def destroy
     @photo_taggings = PhotoTagging.joins(:owner).where("albums.owner_id = ? AND photo_taggings.tag_id = ?", current_user.id, params[:id])
     @photo_taggings.destroy_all
-    flash[:notice] = "Tag deleted"
-    redirect_to tags_url
+    head :ok
   end
 end

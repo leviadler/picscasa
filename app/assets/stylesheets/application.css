@@ -256,7 +256,7 @@ nav .notif-dropdown > li:nth-child(even) {
   color: rgb(38, 38, 38);
 }
 
-/* FALSH */
+/* FLASH */
 
 .flash-container {
   position: relative;
@@ -506,7 +506,7 @@ select {
   display: block;
   margin: auto;
   padding: 15px;
-  height: 570px;
+/*  width: 670px;*/
   background: white;
   border-radius: 3px;
   box-shadow: 0px 0px 2px 2px #ccc;

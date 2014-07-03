@@ -21,5 +21,12 @@ Picscasa.Models.User = Backbone.Model.extend({
       });
     }
     return this.get('albums');
-  }
+  },
+  
+  // namespace params and remove nested
+  toJSON: function() {
+    var attr = _.clone( this.attributes );
+    delete attr.albums;
+    return { user: attr }
+  },
 })

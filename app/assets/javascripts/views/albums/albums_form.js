@@ -36,7 +36,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
       Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");
     }
 
-    this.model.set(formData);
+    this.model.set(formData["album"]);
     console.log(this.model);
 
     if (this.model.isNew()) {

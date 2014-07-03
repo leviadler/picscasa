@@ -44,6 +44,8 @@ Rails.application.routes.draw do
         get 'public'
       end
     end
+    
+    resources :tags, only: [:index, :show, :destroy]
   end
 
 

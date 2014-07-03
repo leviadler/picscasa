@@ -1,7 +1,13 @@
 Tags:
-<% photo.get("tags").forEach(function(tag) { %>
-<a href="#/tags/<%= tag.id %>"><%= tag.name %></a>
-<% }); %>
+
 <% if (Picscasa.helpers.canEdit(photo)) { %>
+  <% photo.get("tags").forEach(function(tag) { %>
+  <a href="#/tags/<%= tag %>"><%= tag %></a>
+  <% }); %>
   <a id="edit-tags" href="#">Edit Tags</a>
+  
+<% } else {%>
+  <% photo.get("tags").forEach(function(tag) { %>
+    <%= tag.name %>
+  <% }); %>
 <% }; %>

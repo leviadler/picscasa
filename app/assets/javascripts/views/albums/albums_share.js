@@ -7,20 +7,11 @@ Picscasa.Views.AlbumShare = Backbone.View.extend({
   
   render: function() {
     var renderedContent = this.template({
-      album: this.model,
-      url: this.shareUrl()
+      album: this.model
     });
     
     this.$el.html(renderedContent);
     return this;
-  },
-  
-  shareUrl: function() {
-    if(this.model.get("visibility") === "unlisted_album") {
-      return window.location.origin + "/#/albums/" + this.model.id + "/auth_token/" + this.model.get("auth_token")
-    } else {
-      return window.location.origin + "/#/albums/" + this.model.id
-    }
   },
   
   sendEmail: function(event) {

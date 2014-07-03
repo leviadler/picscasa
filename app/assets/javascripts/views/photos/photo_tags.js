@@ -5,7 +5,7 @@ Picscasa.Views.TagsShow = Backbone.View.extend({
 
   initialize: function (options) {
      this.open = false;
-     //this.listenTo(this.model, "change", this.render);
+     this.listenTo(this.model, "sync", this.render);
    },
 
    events: {
@@ -33,6 +33,8 @@ Picscasa.Views.TagsShow = Backbone.View.extend({
     this.open = false;
 
     var params = $(event.currentTarget).serializeJSON();
+
+    var that = this;
     this.model.set(params["photo"]);
     this.model.save();
 

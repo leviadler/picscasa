@@ -1,0 +1,12 @@
+<h1>My Tags</h1>
+
+<ul id="tags-index">
+<% tags.forEach(function(tag) { %>
+  <li>
+    <a href="#/tags/<%= tag.get("name") %>">
+      <%= tag.get("name") %> <!-- (<%= tag.get("count") %>) -->
+    </a>
+    <button data-id="<%= tag.id %>" class="delete delete-tag">delete</button>
+  </li>
+<% }) %>
+</ul>

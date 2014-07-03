@@ -16,7 +16,9 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "albums/public": "publicAlbums",
     "albums/:id/auth_token/:auth_token": "unlistedAlbumShow",
     "albums/:id": "albumShow",
-    "users/:id": "userShow"
+    "users/:id": "userShow",
+    "tags": "tagsIndex",
+    "tags/:id": "tagShow"
   },
 
   index: function() {
@@ -26,7 +28,8 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   photosIndex: function() {
     Picscasa.helpers.requireSignedIn();
     var indexView = new Picscasa.Views.PhotosIndex({
-      collection: Picscasa.userPhotos
+      collection: Picscasa.userPhotos,
+      title: "My Photos"
     });
 
     // do we get rid of this when bootrapping?
@@ -191,6 +194,29 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
       that._swapView(userShowView);
     });
+  },
+  
+  tagsIndex: function() {
+    Picscasa.userTags.fetch();
+    
+    var tagIndexView = new Picscasa.Views.TagsIndex({
+      collection: Picscasa.userTags
+    });
+    
+    this._swapView(tagIndexView);
+  },
+  
+  tagShow: function(id) {
+    var that = this;
+    
+    Picscasa.userTags.getAndFetch(id, function(tag) {
+      var tagShowView = new Picscasa.Views.PhotosIndex({
+        collection: tag.photos(),
+        title: "Photos tagged as " + tag.escape("name")
+      });
+
+      that._swapView(tagShowView);
+    })
   },
 
   _swapView: function (view) {

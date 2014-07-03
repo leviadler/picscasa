@@ -28,11 +28,11 @@ class Photo < ActiveRecord::Base
   def tag_list
     self.tags.map do |tag|
       tag.name
-    end.join(", ")
+    end.join(" ")
   end
 
   def tag_list=(tags_string)
-    tag_names = tags_string.split(",").map {|t| t.strip.downcase}.uniq
+    tag_names = tags_string.split(" ").map {|t| t.strip.downcase}.uniq
     new_or_found_tags = tag_names.map {|name| Tag.find_or_create_by(name: name)}
     self.tags = new_or_found_tags
   end

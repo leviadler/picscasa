@@ -34,6 +34,8 @@ gem "paperclip"
 gem "aws-sdk"
 gem 'exifr'
 
+gem 'friendly_id'
+
 gem "omniauth-google-oauth2"
 
 gem "js-routes"

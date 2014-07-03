@@ -17,10 +17,13 @@ window.Picscasa = {
         parentCollection: Picscasa.allPhotos,
         parse: true
       })
+      
       Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
         parentCollection: Picscasa.allAlbums,
         parse: true
       })
+      
+      Picscasa.userTags = new Picscasa.Collections.Tags(bootstrappedData.userTags);
     }
 
     Picscasa.publicAlbums = new Picscasa.Subsets.PublicAlbums(bootstrappedData.publicAlbums, {

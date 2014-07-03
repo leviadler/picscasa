@@ -1,4 +1,4 @@
-Picscasa.Views.CaptionShow = Backbone.View.extend({
+ Picscasa.Views.CaptionShow = Backbone.View.extend({
   template: function () {
     return this.open ? JST["photos/edit_caption"] : JST["photos/show_caption"];
   },

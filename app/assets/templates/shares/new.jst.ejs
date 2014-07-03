@@ -1,13 +1,13 @@
 <h1>Share <%= album.escape("title") %></h1>
 
 <p>You share you album using this link:</p>
-<p><%= url %></p>
+<p><%= album.escape("share_url") %></p>
 <p>or by sending them an email using the form below:</p>
 <!-- add note for unlisted that will loose link if change settings -->
 
 <form class="forms email-form">
   
-  <input type="hidden" name="share[url]" value="<%= url %>">
+  <input type="hidden" name="share[url]" value="<%= album.get("share_url") %>">
   
   <div class="input">
   <label for="share_emails">Email Address(es):</label>

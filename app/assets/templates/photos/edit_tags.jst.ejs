@@ -1,6 +1,6 @@
 <form class="edit-tags-form">
   <div class="input">
-  <input type="text" name="photo[tag_list]" value="<%= photo.escape("tag_list") %>">
+  <input type="text" name="photo[tag_list]" value="<%= photo.get("tags").join(" ") %>">
   </div>
   <div class="submit">
   <input type="submit" value="Save">

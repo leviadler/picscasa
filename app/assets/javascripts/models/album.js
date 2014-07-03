@@ -12,6 +12,13 @@ Picscasa.Models.Album = Backbone.Model.extend({
       return "api/albums/" + this.id
     }
   },
+  
+  // namespace params and remove nested
+  toJSON: function() {
+    var attr = _.clone( this.attributes );
+    delete attr.photos;
+    return { album: attr }
+  },
 
 
 

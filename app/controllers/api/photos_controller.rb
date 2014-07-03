@@ -25,7 +25,8 @@ class Api::PhotosController < ApplicationController
     # getting @photo in before action
 
     if @photo.update(photo_params)
-      render json: @photo
+      @shallow = true
+      render "show"
     else
       render json: @photo.errors.full_messages, status: :unprocessable_entity
     end

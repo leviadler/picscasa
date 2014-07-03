@@ -12,8 +12,7 @@ class Album < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
   has_many :photos, dependent: :destroy
-
-
+  
   def ensure_token
     if self.unlisted_album?
       self.auth_token = SecureRandom.urlsafe_base64(32) if self.auth_token.nil?

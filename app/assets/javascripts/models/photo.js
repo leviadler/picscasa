@@ -23,5 +23,12 @@ Picscasa.Models.Photo = Backbone.Model.extend({
       });
     }
     return this.get('comments');
-  }
+  }, 
+  
+  // namespace params and remove nested
+  toJSON: function() {
+    var attr = _.clone( this.attributes );
+    delete attr.comments;
+    return { photo: attr }
+  },
 })
