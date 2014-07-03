@@ -8,7 +8,7 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
     // "dragenter #dropzone": "dragenter",
     // "dragover #dropzone": "dragover",
     // "drop #dropzone": "drop",
-    
+
     "submit form": "uploadImages"
   },
 
@@ -60,6 +60,11 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
     $("input[type=submit]").attr("disabled", "disabled").addClass("disabled");
 
 
+    // forward immediately and pics will appear as uploaded
+    // prob not very good for error checking
+    Backbone.history.navigate("#/albums/" + that.model.id, {trigger: true})
+    Picscasa.helpers.renderFlash("Photos Uploading...", "success");
+
     for(var i = 0; i < files.length; i++) {
       var file = files[i];
 
@@ -71,7 +76,7 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
           success: function(photo) {
             that.model.photos().add(photo);
             photo.set({photo: null}); // so that the whole image is not saved as an attribute with every model uploaded.
-            Backbone.history.navigate("#/albums/" + that.model.id, {trigger: true})
+            // Backbone.history.navigate("#/albums/" + that.model.id, {trigger: true})
           },
           error: function(photo, response) {
             Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");

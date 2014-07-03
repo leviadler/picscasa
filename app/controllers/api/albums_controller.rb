@@ -30,6 +30,7 @@ class Api::AlbumsController < ApplicationController
     # getting @album in before_action
 
     if @album.update(album_params)
+      @shallow = true
       render "show"
     else
       render json: @album.errors.full_messages, status: :unprocessable_entity

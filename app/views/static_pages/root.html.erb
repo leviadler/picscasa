@@ -7,6 +7,9 @@
     Picscasa.CURRENT_USER_NAME = "<%= current_user.name %>";
   <% end %>
   // should prob initialize backbone here
+  $(document).ready(function(){
+    Picscasa.initialize($('div#content'));
+  });
 </script>
 
 

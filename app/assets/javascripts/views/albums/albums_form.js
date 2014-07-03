@@ -17,7 +17,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
   submitAlbum: function(event) {
     event.preventDefault();
 
-    var formData = $(event.currentTarget).serializeJSON()["album"];
+    var formData = $(event.currentTarget).serializeJSON();
 
     var success = function(album) {
       Backbone.history.navigate("#/albums/" + album.id, { trigger: true });
@@ -37,6 +37,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
     }
 
     this.model.set(formData);
+    console.log(this.model);
 
     if (this.model.isNew()) {
       this.collection.create(this.model, {

@@ -277,6 +277,10 @@ nav .notif-dropdown > li:nth-child(even) {
   background: red;
 }
 
+.flash.flash-error {
+  background: green;
+}
+
 /* FORMS */
 
 /* general forms */

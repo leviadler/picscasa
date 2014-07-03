@@ -5,7 +5,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    //"": "index",
+    "": "index",
     "photos" : "photosIndex",
     "photos/:id": "photosShow",
     "albums": "albumsIndex",
@@ -19,9 +19,9 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "users/:id": "userShow"
   },
 
-  // index: function() {
-//     Backbone.history.navigate("#/photos", {trigger: true})
-//   },
+  index: function() {
+    Backbone.history.navigate("#/photos", {trigger: true})
+  },
 
   photosIndex: function() {
     Picscasa.helpers.requireSignedIn();
@@ -122,16 +122,16 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     });
 
   },
-  
+
   shareAlbum: function(id) {
     var that = this;
 
     Picscasa.allAlbums.getOrFetch(id, function(album) {
-      if (!Picscasa.helpers.requireOwner(album) || 
-          album.get("visibility") === "private_album") { 
-            return 
+      if (!Picscasa.helpers.requireOwner(album) ||
+          album.get("visibility") === "private_album") {
+            return
           };
-      
+
       var shareView = new Picscasa.Views.AlbumShare({
         model: album,
       });
@@ -178,7 +178,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     });
 
   },
-  
+
   userShow: function(id) {
     var that = this;
 
