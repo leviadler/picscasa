@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: "sessions#new"
+  #root to: "sessions#new"
+
+  #get "/api", to: "static_pages#root"
+
+  root to: "static_pages#root"
 
   #TODO limit to used actions
   resources :users
@@ -42,7 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/api", to: "static_pages#root"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

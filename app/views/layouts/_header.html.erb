@@ -2,7 +2,8 @@
   <nav>
 
     <div class="top-nav-container group">
-      <h1 class="logo"><a href="<%= root_url %>">PicsCasa</a></h1>
+      <!-- <h1 class="logo"><a href="<%= root_url %>">PicsCasa</a></h1> -->
+      <h1 class="logo"><a href="/#/">PicsCasa</a></h1>
 
       <ul class="top-right-nav group">
         <% if signed_in? %>
@@ -34,7 +35,8 @@
       </ul>
     </div>
 
-    <div class="bottom-nav-container group">
+    <!-- before backbone -->
+    <!-- <div class="bottom-nav-container group">
       <ul class="middle-nav group">
         <li><a href="<%= public_albums_url %>">Public Albums</a></li>
         <% if signed_in? %>
@@ -46,6 +48,22 @@
 
         <% if signed_in? %>
         <li><a href="<%= new_album_url %>">New Album</a></li>
+        <% end %>
+      </ul>
+    </div> -->
+
+    <div class="bottom-nav-container group">
+      <ul class="middle-nav group">
+        <li><a href="/#/albums/public">Public Albums</a></li>
+        <% if signed_in? %>
+        <li><a href="/#/albums">My Albums</a></li>
+        <li><a href="/#/photos">My Photos</a></li>
+        <li><a href="/#/tags">My Tags</a></li>
+        <% end %>
+
+
+        <% if signed_in? %>
+        <li><a href="/#/albums/new">New Album</a></li>
         <% end %>
       </ul>
     </div>

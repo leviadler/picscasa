@@ -3,7 +3,7 @@ Picscasa.Models.Photo = Backbone.Model.extend({
     this.comments();
   },
 
-  urlRoot: "photos",
+  urlRoot: "api/photos",
 
   parse: function (response) {
     if (response["comments"]) {

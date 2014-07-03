@@ -1,7 +1,7 @@
 Picscasa.Collections.Photos = Backbone.Collection.extend({
   model: Picscasa.Models.Photo,
 
-  url: 'photos',
+  url: 'api/photos',
 
   getOrFetch: function (id, callback) {
     var photos = this;

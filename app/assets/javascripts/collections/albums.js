@@ -1,5 +1,5 @@
 Picscasa.Collections.Albums = Backbone.Collection.extend({
-  url: "albums",
+  url: "api/albums",
 
   model: Picscasa.Models.Album,
 

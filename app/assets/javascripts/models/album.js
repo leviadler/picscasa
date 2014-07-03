@@ -5,11 +5,11 @@ Picscasa.Models.Album = Backbone.Model.extend({
 
   url: function() {
     if(this.auth_token) {
-      return "albums/" + this.id + "/?auth_token=" + this.auth_token;
+      return "api/albums/" + this.id + "/?auth_token=" + this.auth_token;
     } else if(this.isNew()) {
-      return "albums" 
+      return "api/albums"
     } else {
-      return "albums/" + this.id
+      return "api/albums/" + this.id
     }
   },
 

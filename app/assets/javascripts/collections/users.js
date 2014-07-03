@@ -1,8 +1,8 @@
 Picscasa.Collections.Users = Backbone.Collection.extend({
-  url: "users",
-  
+  url: "api/users",
+
   model: Picscasa.Models.User,
-  
+
   getOrFetch: function (id, callback) {
     var users = this;
     var user = this.get(id);
