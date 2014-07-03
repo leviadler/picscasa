@@ -11,10 +11,27 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     "click a.next-photo": "nextPhoto",
     "click a.prev-photo": "prevPhoto"
   },
+  
+  nextPhoto: function(event) {
+    event.preventDefault();
+    console.log(this.model.collection);
+    var nextPhoto = this.model.collection.next(this.model);
+    if (nextPhoto) {
+      Backbone.history.navigate("#/photos/" + nextPhoto.id, {trigger: true })
+    }
+  },
+  
+  prevPhoto: function(event) {
+    event.preventDefault();
+    console.log(this.model.collection);
+    var prevPhoto = this.model.collection.prev(this.model);
+    if (prevPhoto) {
+      Backbone.history.navigate("#/photos/" + prevPhoto.id, {trigger: true })
+    }
+  },
 
   render: function() {
     
-    console.log(this.model);
     // remove subviews
     _(this._subViews).each(function (subview) {
       subview.remove();

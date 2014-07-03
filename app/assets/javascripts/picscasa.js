@@ -13,13 +13,14 @@ window.Picscasa = {
     var bootstrappedData = JSON.parse($("#bootstrapped-data").html());
 
     if(Picscasa.CURRENT_USER_ID) {
-      Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( bootstrappedData.userPhotos, {
-        parentCollection: Picscasa.allPhotos,
+      Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
+        parentCollection: Picscasa.allAlbums,
         parse: true
       })
       
-      Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
-        parentCollection: Picscasa.allAlbums,
+      Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( bootstrappedData.userPhotos, {
+        // parentCollection: Picscasa.allPhotos,
+        parentCollection: Picscasa.allPhotos
         parse: true
       })
       

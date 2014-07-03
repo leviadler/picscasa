@@ -43,7 +43,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     Picscasa.allPhotos.getOrFetch(id, function(photo) {
       var showView = new Picscasa.Views.PhotoShow({
         model: photo,
-        collection: Picscasa.userPhotos
+        //collection: Picscasa.userPhotos
       });
 
       that._swapView(showView);
