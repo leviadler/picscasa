@@ -6,8 +6,15 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     this.listenTo( this.model, "sync", this.render);
     this.listenTo( this.model.comments(), "add remove", this.render );
   },
+  
+  events: {
+    "click a.next-photo": "nextPhoto",
+    "click a.prev-photo": "prevPhoto"
+  },
 
   render: function() {
+    
+    console.log(this.model);
     // remove subviews
     _(this._subViews).each(function (subview) {
       subview.remove();

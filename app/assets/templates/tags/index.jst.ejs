@@ -4,8 +4,9 @@
 <% tags.forEach(function(tag) { %>
   <li>
     <a href="#/tags/<%= tag.get("name") %>">
-      <%= tag.get("name") %> <!-- (<%= tag.get("count") %>) -->
+      <%= tag.get("name") %> 
     </a>
+    (<%= tag.get("photo_count") %>)
     <button data-id="<%= tag.id %>" class="delete delete-tag">delete</button>
   </li>
 <% }) %>

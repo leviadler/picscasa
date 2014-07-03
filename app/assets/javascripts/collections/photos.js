@@ -21,5 +21,7 @@ Picscasa.Collections.Photos = Backbone.Collection.extend({
     } else {
       callback(photo);
     }
-  }
+  },
+  
+  comparator: "image_file_size"
 })

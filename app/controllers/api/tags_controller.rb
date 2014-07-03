@@ -3,7 +3,9 @@ class Api::TagsController < ApplicationController
   before_action :require_signed_in
 
   def index
-    @tags = current_user.tags.includes(:photo_taggings)
+    @tags = Tag.with_user_photo_count(current_user)
+     #.includes(:photo_taggings)
+    # custom sql query to get count * of photos
   end
 
   def show

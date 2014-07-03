@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     if signed_in?
       @photos = current_user.photos.includes({comments: [:user]}, :likes, :tags, :owner)
       @albums = current_user.albums.includes(photos: [{comments: [:user]}, :likes, :tags, :owner])
-      @tags = current_user.tags
+      @tags = Tag.with_user_photo_count(current_user)
     
       @photos_json = render_to_string( template: 'api/photos/index.json.jbuilder')
       @albums_json = render_to_string( template: 'api/albums/index.json.jbuilder')
