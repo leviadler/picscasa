@@ -1,6 +1,6 @@
 <div class="breadcrubs">
   <a href="#/albums/<%= photo.get("album_id") %>"><< <%= photo.escape("album_title") %></a>
-  photo <%= photo.collection.indexOf(photo) + 1 %>  of <%= photo.collection.length %>
+  photo <%= photoIndex %>  of <%= albumLength %>
 </div>
 
 <div class="photo-container">
@@ -15,9 +15,14 @@
   </figcaption>
 </figure>
 
-<!-- add links to prev and next photos . prev() -->
+<!-- TODO maybe change this to disable (with classes) -->
+<% if(photoIndex !== 1 ) { %>
 <a href="#" class="prev-photo">Prev</a>
+<% } %>
+<% if(photoIndex !== albumLength ) { %>
 <a href="#" class="next-photo">Next</a>
+<% } %>
+
 
 
 <div class="photo-extras">

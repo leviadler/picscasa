@@ -83,7 +83,9 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
 
     //photo view
     var renderedContent = this.template({
-      photo: this.model
+      photo: this.model,
+      photoIndex: (this.model.collection.indexOf(this.model) + 1),
+      albumLength: this.model.collection.length
     });
 
     this.$el.html(renderedContent);
