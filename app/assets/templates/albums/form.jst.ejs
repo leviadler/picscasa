@@ -10,7 +10,7 @@
 
   <div class="input">
     <label for="album_date">Date</label>
-    <input type="date" id="album_date" name="album[date]" value="<%= album.escape("date") %>">
+    <input type="date" id="album_date" name="album[date]" value="<%= album.escape("date") ? album.escape("date") : new Date().toJSON().slice(0,10) %>">
   </div>
 
 

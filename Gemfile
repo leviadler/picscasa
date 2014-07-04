@@ -44,6 +44,8 @@ gem 'ejs'
 
 gem 'newrelic_rpm'
 
+gem 'zeroclipboard-rails'
+
 
 group :production do
   gem 'rails_12factor'

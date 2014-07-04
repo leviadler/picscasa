@@ -15,6 +15,7 @@
 //= require js-routes
 //= require jquery.serializejson
 //= require jquery.timeago
+//= require zeroclipboard
 //= require notify
 //= require underscore
 //= require backbone
