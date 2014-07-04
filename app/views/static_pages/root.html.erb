@@ -5,6 +5,7 @@
   <% if signed_in? %>
     Picscasa.CURRENT_USER_ID = <%= current_user.id  %> ;
     Picscasa.CURRENT_USER_NAME = "<%= current_user.name %>";
+    Picscasa.CURRENT_AVATAR_THUMB = "<%= current_user.avatar.url(:thumb) %>";
   <% end %>
   // should prob initialize backbone here
   $(document).ready(function(){

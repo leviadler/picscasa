@@ -2,7 +2,8 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
   template: JST["albums/form"],
 
   events: {
-    'submit form': "submitAlbum"
+    'submit form.album-form': "submitAlbum",
+    'click button.delete-album': "deleteAlbum"
   },
 
   render: function() {
@@ -13,9 +14,15 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
     this.$el.html(renderedContent);
     return this;
   },
+  
+  deleteAlbum: function(event) {
+    event.preventDefault();
+    this.model.destroy();
+    Backbone.history.navigate("#/albums", { trigger: true })
+    Picscasa.helpers.renderFlash(this.model.escape("title") + " deleted", "notice");
+  },
 
   submitAlbum: function(event) {
-    Picscasa.collection = this.collection;
     event.preventDefault();
 
     var formData = $(event.currentTarget).serializeJSON();

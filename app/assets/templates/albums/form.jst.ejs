@@ -41,8 +41,12 @@
 
 
   <div class="submit">
-    <input type="Submit" value="<%= album.isNew() ? "Create Album" : "Update Album"  %>">
+    <input type="submit" value="<%= album.isNew() ? "Create Album" : "Update Album"  %>">
   </div>
 
 </form>
+
+<% if(!album.isNew()) { %>
+  <button class="delete-album">Delete Album</button>
+<% } %>
 

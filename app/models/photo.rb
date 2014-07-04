@@ -42,7 +42,7 @@ class Photo < ActiveRecord::Base
     exif = EXIFR::JPEG.new(image.queued_for_write[:original].path)
     return if exif.nil? || !exif.exif?
     if exif.date_time_original
-      self.date_taken = exif.date_time_original #.to_time
+      self.date_taken = exif.date_time_original.to_time
     end
   end
 
