@@ -23,7 +23,7 @@
           <!-- visibility icon goes here -->
           <%= album.escape("date_string") %>
            -
-          Photos: <%= album.escape("photo_count") %>
+          Photos: <%= album.photos().length %>
         </div>
         <% if(title === "Public Albums") { %>
           By <a href="#/users/<%= album.get("owner_id") %>"><%= album.escape("owner_name") %></a>

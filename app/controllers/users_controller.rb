@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login!(@user)
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:error] = @user.errors.full_messages
       render :new
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       # flash[:notice] = "Profile updated!"
-      redirect_to user_url(@user) #TODO redirect back w/ request.referer
+      redirect_to root_url #TODO redirect back w/ request.referer
     else
 
       flash.now[:error] = @user.errors.full_messages

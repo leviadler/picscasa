@@ -1,7 +1,7 @@
 <h1><%= album.escape("title") %></h1>
 
 <div class="album-info">
-  <%= album.get("photo_count") %> photos
+  <span id="photo-count"><%= album.photos().length %> photos</span>
   Visibility: <%= album.get("visibility") %>
 </div>
 

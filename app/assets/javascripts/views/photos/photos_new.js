@@ -74,10 +74,10 @@ Picscasa.Views.NewPhoto = Backbone.View.extend({
         photo.set({image: this.result, album_id: that.model.id});
         photo.save({}, {
           success: function(photo) {
-            that.model.photos().add(photo);
             photo.set({image: null}); // so that the whole image is not saved as an attribute with every model uploaded.
+            photo.collection = that.model.photos();
+            that.model.photos().add(photo);
             // Backbone.history.navigate("#/albums/" + that.model.id, {trigger: true})
-            console.log(photo);
           },
           error: function(photo, response) {
             Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");

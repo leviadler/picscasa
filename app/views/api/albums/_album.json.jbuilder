@@ -13,7 +13,7 @@ unless @shallow
 
   photos =  album.photos.sort_by {|photo| photo.created_at}
   json.thumb_url (photos.first ? photos.first.image.url(:thumb) : image_url("default_album.png"))
-  json.photo_count album.photos.to_a.count
+  # json.photo_count album.photos.to_a.count - collection itself handles this now
   json.owner_name album.owner.name
   json.photos album.photos, partial: 'api/photos/photo', as: :photo
 end

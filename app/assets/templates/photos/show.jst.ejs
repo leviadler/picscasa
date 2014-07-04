@@ -1,5 +1,6 @@
 <div class="breadcrubs">
   <a href="#/albums/<%= photo.get("album_id") %>"><< <%= photo.escape("album_title") %></a>
+  photo <%= photo.collection.indexOf(photo) + 1 %>  of <%= photo.collection.length %>
 </div>
 
 <div class="photo-container">
