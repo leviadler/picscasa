@@ -1,4 +1,4 @@
-<h1><%= album.isNew() ? "New Album" : "Edit " + album.escape("title") %></h1>
+<h1><%= album.isNew() ? "New Album" : 'Edit "' + album.escape("title") + '"'%></h1>
 
 <form class="forms album-form">
 
@@ -43,10 +43,13 @@
   <div class="submit">
     <input type="submit" value="<%= album.isNew() ? "Create Album" : "Update Album"  %>">
   </div>
+  
+ <!-- TODO add alert confirmation -->
+  <% if(!album.isNew()) { %>
+    <a href="#" class="delete-album">Delete Album</a>
+  <% } %>
 
 </form>
 
-<% if(!album.isNew()) { %>
-  <button class="delete-album">Delete Album</button>
-<% } %>
+
 

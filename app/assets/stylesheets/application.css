@@ -41,12 +41,17 @@ a:visited {
   clear: both;
 }
 
+strong {
+  font-weight: bold;
+}
+
 
 /* using this for all headings - may be dangerous */
 h1 {
   font-size: 50px;
   text-align: center;
   padding: 15px;
+  color: #404040;
 }
 
 /* BUTTON RESET */
@@ -103,11 +108,30 @@ nav {
 .top-nav-container .logo {
   float: left;
   padding: 0 0 0 20px;
+  font-weight: 100;
 }
+
+
 
 .top-nav-container .logo a {
   text-decoration: none;
   color: rgb(200, 77, 53);
+}
+
+.top-nav-container .beta-tag {
+  position: relative;
+  color: rgb(200, 77, 53);
+  font-size: 10px;
+  left: -23px;
+  top: 5px;
+}
+
+.top-nav-container .moto {
+  position: relative;
+  color: rgb(200, 77, 53);
+  font-size: 12px;
+  left: -134px;
+  top: 50px;
 }
 
 
@@ -404,6 +428,38 @@ select {
 
 }
 
+a.delete-album {
+  text-align: center;
+  display: block;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  color: #C0392B;
+}
+
+
+/*button.delete-album {
+  position: relative;
+  display: block;
+  background: #E26A6A;
+  border: 1px solid #C0392B;
+  border-radius: 3px;
+  margin: auto;
+  color: white;
+  padding: 5px;
+  box-shadow: 0 2px 2px 0 #C0392B;
+}
+
+button.delete-album:hover {
+  background: #C0393B;
+}
+button.delete-album:active {
+  background: #C0393B;
+  top: 2px;
+  box-shadow: none;
+}*/
+
+
+
 /* photo caption tags form */
 .edit-photo-form {
 
@@ -424,6 +480,39 @@ select {
 
 
 
+/* share album form/view */
+
+.share-link-info {
+  width: 324px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+
+
+.share-link-info .album-link{
+  float: left;
+  
+}
+
+.my_clip_button {
+  float: right;
+  padding: 5px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: #fff;
+  border: 1px solid #D9D9D9;
+}
+
+.zeroclipboard-is-hover {
+  border: 1px solid #4d90fe;
+}
+
+.email-form textarea {
+  height: 200px;
+}
 
 
 /* ALBUMS INDEX VIEW */
@@ -431,6 +520,7 @@ select {
   width: 705px;
   margin: auto;
 }
+
 
 .album-tile {
   float: left;
@@ -467,11 +557,75 @@ select {
   font-weight: bold;
 }
 
-/* picture index view */
+/* album/picture index view */
+
+.album-header {
+  font-size: 50px;
+  text-align: center;
+  padding: 15px 15px 0 15px;
+}
 
 .pictures-index {
   width: 705px;
   margin: auto;
+}
+
+.album-info {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+  letter-spacing: 1px
+}
+
+.album-info a {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.album-info a:hover {
+  text-decoration: underline;
+  color: #aaa;
+}
+
+.album-settings-container {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.album-settings {
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.album-settings li {
+  float: left;
+  padding: 0 5px;
+} 
+
+.album-settings a {
+  display: block;
+  position: relative;
+  background: #fff;
+  color: #404040;
+  border: 1px solid rgba(0, 0, 0, 0.14902);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 7px 10px;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,.05);
+  border-radius: 2px;
+  
+}
+
+.album-settings a:hover {
+  border: 1px solid #b8b8b8
+}
+
+.album-settings a:active {
+  background: #e5e5e5
 }
 
 .photo-thumb {

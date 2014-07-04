@@ -1,34 +1,38 @@
-<h1><%= album.escape("title") %></h1>
+<h1 class="album-header"><%= album.escape("title") %></h1>
 
 <div class="album-info">
   <span id="photo-count"><%= album.photos().length %></span> photos 
   &bull;
-  <span id="share-info-link">
-  <% if (album.get("visibility") === "public_album") { %>
-    <a href="#/albums/<%= album.id %>/share">Shared publicly</a>
-  <% } else if(album.get("visibility") === "unlisted_album") { %>
-    <a href="#/albums/<%= album.id %>/share">Shared privately</a>
-  <% } else { %>
-    Not shared
+  
+  <% if (Picscasa.helpers.canEdit(album)) { %>
+    <span id="share-info-link">
+    <% if (album.get("visibility") === "public_album") { %>
+      <a href="#/albums/<%= album.id %>/share">Shared publicly</a>
+    <% } else if(album.get("visibility") === "unlisted_album") { %>
+      <a href="#/albums/<%= album.id %>/share">Shared privately</a>
+    <% } else { %>
+      Not shared
+    <% } %>
+    </span>
+    &bull;
   <% } %>
-  </span>
-  &bull;
+  
   <span id="date"><%= album.escape("date") %></span>
 </div>
 
-
-<% if (Picscasa.helpers.canEdit(album)) { %>
-<ul class="album-settings">
-  <% if(album.get("visibility") !== "private_album" ) { %>
-    <li><a href="#/albums/<%= album.id %>/share">Share</li>
-  <% } else { %>
-    <li><a href="#/albums/<%= album.id %>/edit">Share</li>
+<div class="album-settings-container">
+  <% if (Picscasa.helpers.canEdit(album)) { %>
+  <ul class="album-settings group">
+    <% if(album.get("visibility") !== "private_album" ) { %>
+      <li><a href="#/albums/<%= album.id %>/share">Share</a></li>
+    <% } else { %>
+      <li><a href="#/albums/<%= album.id %>/edit">Share</a></li>
+    <% } %>
+    <li><a href="#/albums/<%= album.id %>/upload">Add photos</a></li>
+    <li><a href=" <%= "#/albums/" + album.id + "/edit"%>">Settings</a></li>
+  </ul>
   <% } %>
-  <li><a href="#/albums/<%= album.id %>/upload">Add photos</a></li>
-  <li><a href=" <%= "#/albums/" + album.id + "/edit"%>">Album settings</a></li>
-</ul>
-<% } %>
-
+</div>
 
 
 <!-- this will be reused in album photo index

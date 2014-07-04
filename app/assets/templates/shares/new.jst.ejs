@@ -1,14 +1,23 @@
 <h1>Share "<%= album.escape("title") %>"</h1>
 
-<p>You share you album using this link:</p>
-<p><%= album.escape("share_url") %></p>
-<p>or by sending them an email using the form below:</p>
-<!-- add note for unlisted that will loose link if change settings -->
 
-
-<button class='my_clip_button' data-clipboard-text='<%= album.escape("share_url") %>' id='d_clip_button'>
-    <b>Copy To Clipboard...</b>
-  </button>
+<div class="share-link-info">
+  <p>Give your friends this link:</p>
+  <div class="link-wrapper group">
+  <div class="input album-link">
+  <input type="text" value="<%= album.escape("share_url") %>" readonly>
+  </div>
+  
+  <button class='my_clip_button' data-clipboard-text='<%= album.escape("share_url") %>' id='d_clip_button'>
+      Copy
+    </button>
+  </div>
+    
+    
+  <p>or send them an email!</p>
+  
+  <!-- add note for unlisted that will loose link if change settings -->
+</div>
 
 <form class="forms email-form">
   

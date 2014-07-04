@@ -3,7 +3,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
 
   events: {
     'submit form.album-form': "submitAlbum",
-    'click button.delete-album': "deleteAlbum"
+    'click a.delete-album': "deleteAlbum"
   },
 
   render: function() {
