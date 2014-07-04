@@ -17,9 +17,11 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
   
   deleteAlbum: function(event) {
     event.preventDefault();
-    this.model.destroy();
-    Backbone.history.navigate("#/albums", { trigger: true })
-    Picscasa.helpers.renderFlash(this.model.escape("title") + " deleted", "notice");
+    if (confirm('Are you sure you want to delete this album?')) {
+      this.model.destroy();
+      Backbone.history.navigate("#/albums", { trigger: true })
+      Picscasa.helpers.renderFlash(this.model.escape("title") + " deleted", "notice");
+    }
   },
 
   submitAlbum: function(event) {
