@@ -17,7 +17,7 @@
 <!-- add links to prev and next photos . prev() -->
 <a href="#" class="prev-photo">Prev</a>
 <a href="#" class="next-photo">Next</a>
-  
+
 
 <div class="photo-extras">
 
@@ -33,12 +33,12 @@
 </div>
 
 <div class="likes-and-views">
-  <div class="view-count">
+  <!-- <div class="view-count">
     Views: <%= photo.get("view_count") %>
-  </div>
+  </div> -->
 
   <div class="likes <%= (photo.get("already_liked")) ? "already-liked" : "" %>">
-    Likes: <%= photo.get("likes_count") %>
+    Likes: <span id="likes-count"><%= photo.get("likes_count") %></span>
 
     <% if (Picscasa.helpers.signedIn()) { %>
     <form class="like-form">

@@ -19,10 +19,12 @@ Picscasa.Collections.Photos = Backbone.Collection.extend({
         }
       });
     } else {
+      // fetch in background for comment and like changes
+      photo.fetch();
       callback(photo);
     }
   },
-  
+
   // next: function(model) {
 //       var i = this.at(this.indexOf(model));
 //       if (undefined === i || i < 0) return false;

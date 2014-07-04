@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
     resources :photos, only: [:show, :update, :destroy, :index, :create] do
       resources :comments, only: [:index]
-      resource :likes, only: [:index]
+      resource :likes, only: [:create, :destroy] # maybe add index of photos you like
     end
     resources :comments, only: [:destroy, :show, :create, :destroy] # maybe add edit with js
 
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         get 'public'
       end
     end
-    
+
     resources :tags, only: [:index, :show, :destroy]
   end
 

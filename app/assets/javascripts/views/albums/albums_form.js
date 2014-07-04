@@ -30,9 +30,9 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
       // and message sets the other defaults
       // notify js is not responding well to long messages
       // doesn't center them well
-      response.responseJSON.forEach(function(error) {
-        $.notify(error, { className: "error", globalPosition: "top center"});
-      })
+      // response.responseJSON.forEach(function(error) {
+//         $.notify(error, { className: "error", globalPosition: "top center"});
+//       })
 
       Picscasa.helpers.renderFlash(response.responseJSON.join(" - "), "error");
     }

@@ -274,11 +274,11 @@ nav .notif-dropdown > li:nth-child(even) {
 
 /* TODO give real colors */
 .flash.flash-error {
-  background: red;
+  background: #e74c3c;
 }
 
-.flash.flash-error {
-  background: green;
+.flash.flash-success {
+  background: #2ecc71;
 }
 
 /* FORMS */
@@ -500,6 +500,7 @@ select {
 .large-photo {
   display: block;
   margin: 15px auto;
+/*  height: 600px;*/
 }
 
 .large-photo img {

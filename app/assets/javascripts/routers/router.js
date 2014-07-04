@@ -195,20 +195,20 @@ Picscasa.Routers.Router = Backbone.Router.extend({
       that._swapView(userShowView);
     });
   },
-  
+
   tagsIndex: function() {
     Picscasa.userTags.fetch();
-    
+
     var tagIndexView = new Picscasa.Views.TagsIndex({
       collection: Picscasa.userTags
     });
-    
+
     this._swapView(tagIndexView);
   },
-  
+
   tagShow: function(id) {
     var that = this;
-    
+
     Picscasa.userTags.getAndFetch(id, function(tag) {
       var tagShowView = new Picscasa.Views.PhotosIndex({
         collection: tag.photos(),

@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def login!(user)
     new_session = user.sessions.create!
     @current_user = user
-    flash[:notice] = "Welcome #{user.name}!"
+    # flash[:notice] = "Welcome #{user.name}!"
     session[:session_token] = new_session.session_token
   end
 

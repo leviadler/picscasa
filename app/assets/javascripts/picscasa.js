@@ -13,17 +13,23 @@ window.Picscasa = {
     var bootstrappedData = JSON.parse($("#bootstrapped-data").html());
 
     if(Picscasa.CURRENT_USER_ID) {
+      //Picscasa.userPhotos = new Picscasa.Models.Album(bootstrappedData.userPhotos, {parse: true});
+
       Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
         parentCollection: Picscasa.allAlbums,
         parse: true
       })
-      
+
+      // Picscasa.userPhotos.collection = new Picscasa.Subsets.UserPhotos([], {
+//         parentCollection: Picscasa.allAlbums
+//       })
+
       Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( bootstrappedData.userPhotos, {
-        // parentCollection: Picscasa.allPhotos,
-        parentCollection: Picscasa.allPhotos
+        parentCollection: Picscasa.allPhotos,
+        //parentCollection: Picscasa.allAlbums,
         parse: true
       })
-      
+
       Picscasa.userTags = new Picscasa.Collections.Tags(bootstrappedData.userTags);
     }
 
