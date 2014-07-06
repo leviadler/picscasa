@@ -30,6 +30,14 @@
         <% } %>
 
 
+        <% if(album.get("visibility") === "public_album") { %>
+          <i class="fa fa-globe"></i>
+        <% } else if(album.get("visibility") === "unlisted_album") { %>
+          <i class="fa fa-users"></i>
+        <% } else { %>
+          <i class="fa fa-lock"></i>
+        <% } %>
+
       </figcaption>
 
     </figure>
