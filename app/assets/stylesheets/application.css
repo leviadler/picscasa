@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 /* RESETS */
@@ -108,6 +109,7 @@ nav {
 .top-nav-container .logo {
   float: left;
   padding: 0 0 0 20px;
+  font-size: 45px;
   font-weight: 100;
 }
 
@@ -123,15 +125,15 @@ nav {
   color: rgb(200, 77, 53);
   font-size: 10px;
   left: -23px;
-  top: 5px;
+  top: 3px;
 }
 
 .top-nav-container .moto {
   position: relative;
   color: rgb(200, 77, 53);
-  font-size: 12px;
-  left: -134px;
-  top: 50px;
+  font-size: 11px;
+  left: -127px;
+  top: 42px;
 }
 
 
@@ -186,8 +188,8 @@ nav .notif-dropdown > li:nth-child(even) {
 /* Avatar and dropdown */
 
 .nav-avatar {
-  width: 50px;
-  padding: 10px;
+  width: 32px;
+  padding: 14px;
   cursor: pointer;
 }
 
@@ -226,7 +228,7 @@ nav .notif-dropdown > li:nth-child(even) {
   display: block;
   text-decoration: none;
   color: #262626;
-  padding: 20px;
+  padding: 19.5px;
 }
 
 .user-dropdown:hover .user-dropdown-items {
@@ -391,6 +393,10 @@ select {
   width: 264px;
 }
 
+.demo-user {
+  margin: 0 0 20px 0;
+}
+
 
 /* will replace with real one */
 .google-login a {
@@ -482,23 +488,31 @@ button.delete-album:active {
 
 /* share album form/view */
 
+
 .share-link-info {
-  width: 324px;
+  width: 264px;
   margin: auto;
   text-align: center;
   margin-bottom: 20px;
 }
 
-
-
+.link-wrapper {
+  position: relative;
+}
 
 .share-link-info .album-link{
   float: left;
-  
+}
+
+.share-link-info .album-link input{
+  width: 225px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .my_clip_button {
-  float: right;
+  position: absolute;
+  right: 0;
   padding: 5px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -510,7 +524,16 @@ button.delete-album:active {
   border: 1px solid #4d90fe;
 }
 
+.email-form {
+  width: 374px;
+}
+
+.email-form > .input input {
+  width: 364px;
+}
+
 .email-form textarea {
+  width: 374px;
   height: 200px;
 }
 
@@ -603,7 +626,7 @@ button.delete-album:active {
 .album-settings li {
   float: left;
   padding: 0 5px;
-} 
+}
 
 .album-settings a {
   display: block;
@@ -617,7 +640,7 @@ button.delete-album:active {
   text-decoration: none;
   box-shadow: 0 1px 0 rgba(0,0,0,.05);
   border-radius: 2px;
-  
+
 }
 
 .album-settings a:hover {

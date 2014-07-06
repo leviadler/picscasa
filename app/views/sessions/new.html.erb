@@ -1,25 +1,45 @@
 <h1>Sign In</h1>
 
+  <div class="submit demo-user">
+    <input type="submit" value="Demo User (Employers Click Here)">
+  </div>
+
 <form class="forms sign-in-form" action="<%= session_url %>" method="POST">
   <%= auth_token_input %>
-  
+
   <div class="input">
     <label for="user_email">Email:</label>
     <input type="email" name="user[email]" id="user_email">
   </div>
 
-  
+
   <div class="input">
     <label for="user_password">Password:</label>
     <input type="password" name="user[password]" id="user_password">
   </div>
-  
+
   <div class="submit">
     <input type="submit" value="Sign In">
-  </div>  
-  
+  </div>
+
   <div class="google-login">
     <a href="/auth/google_oauth2">LOGIN WITH GOOGLE!</a>
   </div>
 
+
+
 </form>
+
+
+<script>
+$(document).ready(function() {
+
+  $(".demo-user").on("click", function(event) {
+    event.preventDefault();
+    $("input[type='email']").attr("value", "demo@picscasa.com");
+    $("input[type='password']").attr("value", "foobar");
+  })
+
+})
+
+</script>

@@ -1,48 +1,51 @@
 <h1>Share "<%= album.escape("title") %>"</h1>
 
 
-<div class="share-link-info">
-  <p>Give your friends this link:</p>
-  <div class="link-wrapper group">
-  <div class="input album-link">
-  <input type="text" value="<%= album.escape("share_url") %>" readonly>
-  </div>
-  
-  <button class='my_clip_button' data-clipboard-text='<%= album.escape("share_url") %>' id='d_clip_button'>
-      Copy
-    </button>
-  </div>
-    
-    
-  <p>or send them an email!</p>
-  
-  <!-- add note for unlisted that will loose link if change settings -->
-</div>
+
 
 <form class="forms email-form">
-  
+
+
+  <div class="share-link-info">
+    <p>Give your friends this link:</p>
+    <div class="link-wrapper group">
+    <div class="input album-link">
+    <input type="text" value="<%= album.escape("share_url") %>" readonly>
+    </div>
+
+    <div class='my_clip_button' data-clipboard-text='<%= album.escape("share_url") %>' id='d_clip_button'>
+        <i class="fa fa-clipboard"></i>
+    </div>
+    </div>
+
+
+    <p>or send them an email!</p>
+
+    <!-- add note for unlisted that will loose link if change settings -->
+  </div>
+
   <input type="hidden" name="share[url]" value="<%= album.get("share_url") %>">
-  
+
   <div class="input">
   <label for="share_emails">Email Address(es):</label>
   <input type="text" name="share[emails]" placeholder="Ex. user@picscasa.com, friend@example.com">
   </div>
-  
+
   <div class="input">
   <label for="share_message">Message:</label>
   <textarea name="share[message]"></textarea>
   </div>
-  
+
   <div class="submit">
   <input type="submit" value="Share Album!">
   </div>
-  
+
 </form>
 
 <script>
   $(document).ready(function() {
     var clip = new ZeroClipboard($("#d_clip_button"));
-    
+
     clip.on( "aftercopy", function( event ) {
       Picscasa.helpers.renderFlash("Link copied!", "notice");
     });

@@ -45,6 +45,7 @@ gem 'ejs'
 gem 'newrelic_rpm'
 
 gem 'zeroclipboard-rails'
+gem 'font-awesome-sass'
 
 
 group :production do
