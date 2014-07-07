@@ -7,6 +7,7 @@ class Tag < ActiveRecord::Base
         .select("tags.*, COUNT(photos.id) AS photo_count")
         .where("albums.owner_id = ?", user.id)
         .group("tags.id")
+        .order(:name)
   end
   
   

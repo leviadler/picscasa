@@ -1187,3 +1187,17 @@ button.delete-album:active {
   text-align: center;
   font-size: 30px;
 }
+
+
+/* TAGS INDEX PAGE*/
+
+.tags-index {
+  width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.tags-index li {
+  display: inline-block;
+  margin: 3px;
+}
