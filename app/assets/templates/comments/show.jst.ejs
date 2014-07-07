@@ -1,27 +1,33 @@
 <!-- took out div and have view build that up -->
 
 
-  <div class="commenter">
-  <img class="avatar avatar-thumb" src="<%= comment.get("avatar_url") %>">
-  <p>
-    <a href="<%= "#/users/" + comment.get("user_id") %>">
-    <%= comment.escape("user_name") %>
-    </a>
-  </p>
-  <p>
-    <time class="timeago" datetime="<%= comment.get("created_at") %>"></time>
-  </p>
+  <div class="commenter group">
+    <img class="avatar avatar-thumb" src="<%= comment.get("avatar_url") %>">
+  
+    <div class="comment-info">
+      <p>
+        <a href="<%= "#/users/" + comment.get("user_id") %>">
+        <strong><%= comment.escape("user_name") %></strong>
+        </a>
+      </p>
+      <p>
+        <time class="timeago" datetime="<%= comment.get("created_at") %>"></time>
+      </p>
+    </div>
+    
+    <% if(Picscasa.helpers.canEdit(comment)) { %>
+    <form class="delete-comment">
+
+      <button><i class="fa fa-trash-o"></i></button>
+
+    </form>
+    <% } %>
   </div>
+  
+  
+  <div class="comment-body"><%= comment.escape("body") %></div>
 
-  <p><%= comment.escape("body") %></p>
-
-  <% if(Picscasa.helpers.canEdit(comment)) { %>
-  <form class="delete-comment">
-
-    <input type="submit" value="Delete Comment">
-
-  </form>
-  <% } %>
+ 
 
   <script>
     jQuery(document).ready(function() {

@@ -1,23 +1,21 @@
 <!-- will only render this view if signed in -->
 
 
-<div class="commenter">
-<!-- don't have a user model so this wont work yet -->
-<img class="avatar avatar-thumb" src="<%= Picscasa.CURRENT_AVATAR_THUMB %>">
-<p><%= Picscasa.CURRENT_USER_NAME %></p>
-</div>
+<!-- <div class="commenter"> -->
+<!-- <img class="avatar avatar-thumb" src="<%= Picscasa.CURRENT_AVATAR_THUMB %>"> -->
+<!-- <p><%= Picscasa.CURRENT_USER_NAME %></p> -->
+<!-- </div> -->
 
-<form class="form new-comment-form">
+<form class="new-comment-form">
 
   <input type="hidden" name="comment[photo_id]" value=<%= photo.id %>>
 
   <div class="input">
-  <textarea placeholder="Add a comment" name="comment[body]"></textarea>
+  <textarea placeholder="Add a comment..." name="comment[body]"></textarea>
   </div>
 
-  <div class="submit">
-  <input type="submit" value="Add Comment">
-  </div>
+  <button>Add Comment</button>
+
 
 </form>
 

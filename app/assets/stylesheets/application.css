@@ -917,9 +917,11 @@ button.delete-album:active {
   bottom: 0;
   width: 320px;
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 /*  background: #fff;*/
   background: #F5F5F5;
+  font-size: 14px;
 }
 
 .photo-info-container {
@@ -1010,18 +1012,91 @@ button.delete-album:active {
   display: block;
 }
 
+.new-comment-form {
+  display: block;
+  width: 320px;
+  margin: auto;
+}
+
+.new-comment-form textarea {
+  width: 300px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+}
+
+.new-comment-form button {
+  background: #53A93F;
+  position: relative;
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  margin: 10px auto;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px;
+  box-shadow: 0 2px 2px 0 #34701b;
+}
+
+.new-comment-form button:hover {
+  background: #34701b;
+}
+
+.new-comment-form button:active {
+  top: 2px;
+  box-shadow: none;
+}
+
+
 .comments {
   background: #F5F5F5;
-  font-size: 14px;
+}
+
+.comments h3 {
+  padding: 0 20px;
+}
+
+.comment {
+  width: 280px;
+  padding: 10px 20px;
 }
 
 
 .commenter .avatar {
-  width: 50px;
-/*  margin: auto;*/
+  width: 28px;
   display: block;
+  float: left;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
+.commenter .comment-info {
+  float: left;
+}
+
+.commenter .comment-info a {
+  text-decoration: none;
+}
+
+.commenter .comment-info a:hover {
+  text-decoration: underline;
+}
+
+.commenter .timeago {
+  color: #999;
+  font-weight: 100;
+}
+
+.commenter .delete-comment {
+  float: right;
+}
+
+.comment-body {
+  display: block;
+  width: 226px;
+  margin-left: 40px;
+}
 
 
 /* USER SHOW PAGE */

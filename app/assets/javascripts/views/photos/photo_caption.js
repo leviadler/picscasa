@@ -26,8 +26,10 @@
 
   openForm: function(event) {
     event.preventDefault();
-    this.open = true;
-    this.render();
+    if(Picscasa.helpers.canEdit(this.model)) {
+      this.open = true;
+      this.render();
+    }
   },
 
   // submitCaption: function(event) {
