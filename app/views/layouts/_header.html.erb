@@ -8,15 +8,15 @@
       <span class="moto">a home for your pics</span>
 
       <ul class="top-right-nav group">
-        <!-- <% if signed_in? %>
-        <li>
+        <% if signed_in? %>
+        <!-- <li>
           <a href="<%= notifications_url %>">Notifications <span class="badge"><%= current_user.notifications.unread.count %></span></a>
           <ul class="notif-dropdown">
             <% if current_user.notifications.unread.count == 0 %>
               <li>No new notifications</li>
             <%else%>
               <%= render partial: "notifications/notification", collection: current_user.notifications.unread %>
-            
+
             <% end %>
           </ul>
         </li> -->
