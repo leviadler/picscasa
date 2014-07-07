@@ -1,13 +1,13 @@
-<i class="fa fa-tags"></i>
+
 
 <% if (Picscasa.helpers.canEdit(photo)) { %>
   <% photo.get("tags").forEach(function(tag) { %>
-  <a href="#/tags/<%= tag %>"><%= tag %></a>
+  <span class="tag"><a href="#/tags/<%= tag %>"><i class="fa fa-tags"></i> <%= tag %></a></span>
   <% }); %>
-  <a id="edit-tags" href="#">Edit Tags</a>
+  <span class="tag edit-tag"><a id="edit-tags" href="#">+ <i class="fa fa-tags"></i></a></span>
 
 <% } else {%>
   <% photo.get("tags").forEach(function(tag) { %>
-    <%= tag.name %>
+    <span class="tag"><i class="fa fa-tags"></i> <%= tag %></span>
   <% }); %>
 <% }; %>

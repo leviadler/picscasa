@@ -8,7 +8,7 @@
       <span class="moto">a home for your pics</span>
 
       <ul class="top-right-nav group">
-        <% if signed_in? %>
+        <!-- <% if signed_in? %>
         <li>
           <a href="<%= notifications_url %>">Notifications <span class="badge"><%= current_user.notifications.unread.count %></span></a>
           <ul class="notif-dropdown">
@@ -16,10 +16,11 @@
               <li>No new notifications</li>
             <%else%>
               <%= render partial: "notifications/notification", collection: current_user.notifications.unread %>
-            <!-- .limit(5) would probably be a good idea -->
+            
             <% end %>
           </ul>
-        </li>
+        </li> -->
+          <!-- .limit(5) on notifications would probably be a good idea -->
         <li class="user-dropdown">
           <img class="avatar nav-avatar" src="<%= current_user.avatar.url(:thumb) %>">
           <ul class="user-dropdown-items">

@@ -98,7 +98,7 @@
     </form>
     <form class="unlike-form" >
 
-      <input type="submit" value="-1">
+      <input type="submit" value="+1">
 
     </form>
     <% } %>
@@ -109,7 +109,9 @@
 </div>
 
 <section class="comments">
-  <h3><%= photo.comments().length %> Comments</h3>
+  <% if(photo.comments().length > 0 ) { %>
+    <h3><%= photo.comments().length %> Comments</h3>
+  <% } %>
 
 </section>
 

@@ -2,7 +2,8 @@
   <div class="input">
   <input type="text" name="photo[tag_list]" value="<%= photo.get("tags").join(" ") %>">
   </div>
-  <div class="submit">
-  <input type="submit" value="Save">
-  </div>
+  <span class="tag-instructions">You can enter a space separated list of tags.</span>
+  
+  <button class="tag">Save</button>
+
 </form>
