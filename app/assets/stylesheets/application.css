@@ -864,7 +864,7 @@ button.delete-album:active {
 
 }
 
-.close-x a{
+.close-x a {
   text-decoration: none;
   display: block;
   position: absolute;
@@ -874,6 +874,10 @@ button.delete-album:active {
   font-weight: bold;
   cursor: pointer;
   z-index: 1000;
+}
+
+.close-x a:hover {
+  color: #fff;
 }
 
 
