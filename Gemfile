@@ -33,6 +33,7 @@ gem "figaro"
 gem "paperclip"
 gem "aws-sdk"
 gem 'exifr'
+gem 'flickr.rb'
 
 gem 'friendly_id'
 

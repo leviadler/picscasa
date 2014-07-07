@@ -1,11 +1,31 @@
-User.create!([
-  {email: "demo@picscasa.com", fname: "Levi", lname: "Adler", password_digest: "$2a$10$3EWx3flxb7tV9xr.vWmjA.SAYdvVhKVX9ymFMiiM7n0IJYHQEaYV6", avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, is_activated: nil, activation_token: nil, activation_email_sent_at: nil, provider: nil, uid: nil}
+users = User.create!([
+  {email: "demo@picscasa.com", fname: "Levi", lname: "Adler", password: "foobar"},
+  {email: "john@example.com", fname: "John", lname: "Doe", password: "password1"},
+  {email: "jim@example.com", fname: "Jim", lname: "Guraury", password: "password1"},
+  {email: "fred@example.com", fname: "Fred", lname: "Freedman", password: "password1"},
+  {email: "dan@example.com", fname: "Dan", lname: "Theman", password: "password1"}
 ])
 
 Album.create!([
   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 1, visibility: 2, auth_token: nil},
-  {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Kentucky", owner_id: 1, visibility: 1, auth_token: nil},
-  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Kentucky", owner_id: 1, visibility: 0, auth_token: nil}
+  {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 1, visibility: 1, auth_token: nil},
+  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 1, visibility: 0, auth_token: nil}
+  
+  {title: "Good Times", description: "Some lovely pictures of nature", date: "2014-03-01", location: "Georgia", owner_id: 2, visibility: 2, auth_token: nil},
+  {title: "Best Party Ever!", description: "Vacation Pictures", date: "2014-02-05", location: "Texas", owner_id: 2, visibility: 1, auth_token: nil},
+  {title: "Graduation Party", description: "Just having some fun", date: "2014-01-03", location: "Florida", owner_id: 2, visibility: 0, auth_token: nil}
+  
+  # {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 3, visibility: 2, auth_token: nil},
+#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 3, visibility: 1, auth_token: nil},
+#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 3, visibility: 0, auth_token: nil}
+#
+#   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 4, visibility: 2, auth_token: nil},
+#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 4, visibility: 1, auth_token: nil},
+#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 4, visibility: 0, auth_token: nil}
+#
+#   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 5, visibility: 2, auth_token: nil},
+#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 5, visibility: 1, auth_token: nil},
+#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 5, visibility: 0, auth_token: nil}
 ])
 
 Photo.create!([
@@ -32,4 +52,11 @@ Photo.create!([
   {album_id: 1, caption: "San Pietro", image: "https://farm3.staticflickr.com/2926/14099696077_1e8a146b17_b.jpg"},
   {album_id: 3, caption: "Wahclella Falls", image: "https://farm6.staticflickr.com/5113/14113080137_d6cec1dbca_b.jpg"}
 ])
+
+# require 'flickr'
+# flickr = Flickr.new(
+#   ENV['FLICKR_KEY']
+# )
+# recentphotos = flickr.photos
+# useful is .source == the url - .description == my captions
 

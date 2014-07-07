@@ -54,6 +54,13 @@ class PhotosController < ApplicationController
   end
 
   def show
+    # require 'flickr'
+#     flickr = Flickr.new(
+#       ENV['FLICKR_KEY']
+#     )
+#     recentphotos = flickr.photos
+#     photo = recentphotos.first
+#     fail
     @photo = Photo.find(params[:id])
     require_permission_for(@photo.album)
     # this is very inacurate b/c we refresh with every like and comment
