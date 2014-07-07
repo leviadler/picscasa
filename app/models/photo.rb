@@ -1,6 +1,7 @@
 class Photo < ActiveRecord::Base
   has_attached_file :image, :styles => {
-    :big => "600x600>",
+    :large => "1024x1024>",
+    :medium => "600x600>",
     :thumb => "205x205#"
   }
 

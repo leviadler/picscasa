@@ -8,7 +8,7 @@ class Api::PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.includes({comments: [:user]}, :likes, :tags, :owner).find(params[:id])
+    @photo = Photo.includes({comments: [:user]}, :likes, :tags, :owner, :album).find(params[:id])
     if permission_to_view?(@photo.album)
       # this is very inacurate b/c we refresh with every like and comment
       # - even now this may not work - will prob need to do something on the
@@ -43,7 +43,8 @@ class Api::PhotosController < ApplicationController
   def create
 
     # check that uploading to an album that belongs to me
-    if Album.find(image_params[:album_id]).owner != current_user
+    @album = Album.find(image_params[:album_id])
+    if @album.owner != current_user
       render json: ["Error: Not your album"], status: :unprocessable_entity
     end
 
@@ -51,6 +52,10 @@ class Api::PhotosController < ApplicationController
 
 
     if @photo.save
+      # Not working!!!!!
+      # if @album.photos.count <= 1
+#         @album.cover_photo_id = @photo.id
+#       end
       render "show"
     else
       render json: @photo.errors.full_messages, status: :unprocessable_entity

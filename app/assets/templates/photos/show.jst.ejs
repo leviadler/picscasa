@@ -1,31 +1,75 @@
-<div class="breadcrubs">
-  <strong><a href="#/albums/<%= photo.get("album_id") %>"><%= photo.escape("album_title") %></a></strong> >
-  Photo <%= photoIndex %>  of <%= albumLength %>
-</div>
+
 
 <div class="photo-container">
-<figure class="large-photo">
-  <img src="<%= photo.get("image_url") %>">
 
-  <figcaption>
-  <!-- <b><%= photo.escape("caption") %></b>
-  <% if (Picscasa.helpers.canEdit(photo)) { %>
-    <a id="edit-caption" href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
-  <% }; %> -->
-  </figcaption>
-</figure>
+  <div class="close-x">
+     <a href="#/albums/<%= photo.get("album_id") %>">&times;</a>
+   </div>
 
-<!-- TODO maybe change this to disable (with classes) -->
-<% if(photoIndex !== 1 ) { %>
-<a href="#" class="prev-photo">Prev</a>
-<% } %>
-<% if(photoIndex !== albumLength ) { %>
-<a href="#" class="next-photo">Next</a>
-<% } %>
+  <!-- <div class="photo-place"> -->
+    <!-- <span class="album-link">
+      <a href="#/albums/<%= photo.get("album_id") %>"><%= photo.escape("album_title") %></a>
+    </span>
+    &bull; -->
+    <!-- <span class=""> -->
+      <!-- <%= photoIndex %>  of <%= albumLength %> -->
+    <!-- </span> -->
+
+  <!-- </div> -->
+
+
+
+
+  <div class="large-photo">
+
+    <img src="<%= photo.get("image_url") %>">
+
+    <!-- <figcaption> -->
+    <!-- <b><%= photo.escape("caption") %></b>
+    <% if (Picscasa.helpers.canEdit(photo)) { %>
+      <a id="edit-caption" href="#"><%= photo.escape("caption") ? "Edit Caption" : "Add a Caption" %></a>
+    <% }; %> -->
+    <!-- </figcaption> -->
+  </div>
+
+
+  <div class="navigation">
+
+    <div class="arrows">
+    <a href="#" class="prev-photo"><i class="fa fa-arrow-left"></i></a>
+
+    <a href="#" class="next-photo"><i class="fa fa-arrow-right"></i></a>
+    </div>
+
+
+
+
+  </div>
+
+</div>
 
 
 
 <div class="photo-extras">
+
+
+  <div class="photo-info-container group">
+    <a href="#/albums/<%= photo.get("album_id") %>"><img src="<%= photo.get("album_thumb_url") %>"></a>
+
+    <div class="photo-info">
+
+      <p class="ellipsis"><strong><a href="#/albums/<%= photo.get("album_id") %>"><%= photo.escape("album_title") %></a></strong></p>
+      <p>Photo <%= photoIndex %>  of <%= albumLength %></p>
+      <p>By <a href="<%= "#/user/" + photo.get("owner_id") %>"><%= photo.escape("owner_name") %></a></p>
+    </div>
+
+
+
+  </div>
+
+<div class="caption">
+
+</div>
 
 <div class="tags">
   <!-- Tags:
@@ -44,7 +88,7 @@
   </div> -->
 
   <div class="likes <%= (photo.get("already_liked")) ? "already-liked" : "" %>">
-    Likes: <span id="likes-count"><%= photo.get("likes_count") %></span>
+
 
     <% if (Picscasa.helpers.signedIn()) { %>
     <form class="like-form">
@@ -58,6 +102,8 @@
 
     </form>
     <% } %>
+
+    Likes: <span id="likes-count"><%= photo.get("likes_count") %></span>
   </div>
 
 </div>
@@ -66,3 +112,5 @@
   <h3>Comments</h3>
 
 </section>
+
+</div>

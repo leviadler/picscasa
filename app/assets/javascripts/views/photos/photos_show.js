@@ -5,11 +5,16 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     this._subViews = [];
     this.listenTo( this.model, "sync", this.render);
     this.listenTo( this.model.comments(), "add remove", this.render );
+    _.bindAll(this, 'keyPress');
+    $(document).on('keydown', this.keyPress);
   },
+
+  className: "photo-page group",
 
   events: {
     "click a.next-photo": "nextPhoto",
     "click a.prev-photo": "prevPhoto",
+    // "keydown .photo-container": "keyPress",
     "submit form.like-form": "likePhoto",
     "submit form.unlike-form": "unlikePhoto"
   },
@@ -20,6 +25,8 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     var nextPhoto = this.model.collection.next(this.model);
     if (nextPhoto) {
       Backbone.history.navigate("#/photos/" + nextPhoto.id, {trigger: true })
+    } else {
+      Backbone.history.navigate("#/photos/" + this.model.collection.first().id, {trigger: true })
     }
   },
 
@@ -29,6 +36,18 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     var prevPhoto = this.model.collection.prev(this.model);
     if (prevPhoto) {
       Backbone.history.navigate("#/photos/" + prevPhoto.id, {trigger: true })
+    } else {
+      Backbone.history.navigate("#/photos/" + this.model.collection.last().id, {trigger: true })
+    }
+  },
+
+  keyPress: function(event) {
+    if(event.keyCode == 37) {
+      this.prevPhoto(event);
+      return;
+    } else if(event.keyCode == 39) {
+      this.nextPhoto(event);
+      return;
     }
   },
 
@@ -94,7 +113,7 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     var captionView = new Picscasa.Views.CaptionShow({
       model: this.model
     })
-    this._addSubview("figcaption", captionView);
+    this._addSubview(".caption", captionView);
 
     // tags
     var tagsView = new Picscasa.Views.TagsShow({
@@ -163,6 +182,8 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     _(this._subViews).each(function (subview) {
       subview.remove();
     });
+
+    $(document).off('keydown', this.keyPress);
 
     Backbone.View.prototype.remove.call(this);
   }

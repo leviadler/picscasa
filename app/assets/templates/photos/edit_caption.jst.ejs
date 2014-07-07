@@ -1,10 +1,23 @@
 <form class="edit-caption-form">
 
   <div class="input">
-  <textarea name="photo[caption]"><%= photo.escape("caption") %></textarea>
+  <textarea id="caption-input" name="photo[caption]"><%= photo.escape("caption") %></textarea>
   </div>
 
-  <div class="submit">
+  <!-- <div class="submit">
   <input type="submit" value="Save">
-  </div>
+  </div> -->
 </form>
+
+<script>
+$(document).ready(function() {
+  $(".caption").addClass("caption-open");
+
+  $("#caption-input").focus();
+
+  $('#caption-input').bind('keydown', function(e) {
+      e.stopPropagation();
+  });
+})
+
+</script>

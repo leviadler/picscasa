@@ -9,8 +9,10 @@
    },
 
    events: {
-     "click #edit-caption": "openForm",
-     "submit form": "submitCaption"
+     // "click #edit-caption": "openForm",
+     "click #displayed-caption": "openForm",
+     "submit form": "submitCaption",
+     "blur #caption-input": "submitCaption"
    },
 
   render: function() {
@@ -28,12 +30,23 @@
     this.render();
   },
 
+  // submitCaption: function(event) {
+//     event.preventDefault();
+//
+//     this.open = false;
+//
+//     var params = $(event.currentTarget).serializeJSON();
+//     this.model.set(params["photo"]);
+//     this.model.save();
+//
+//     this.render();
+//   }
   submitCaption: function(event) {
     event.preventDefault();
     this.open = false;
 
-    var params = $(event.currentTarget).serializeJSON();
-    this.model.set(params["photo"]);
+    var caption = $(event.currentTarget).val();
+    this.model.set({caption: caption});
     this.model.save();
 
     this.render();
