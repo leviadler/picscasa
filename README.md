@@ -25,7 +25,7 @@ Various technologies were utilized to make PicsCasa work in the amazing way that
   * Builds custom JSON using Jbuilder
   * Bootstaps initial data to minimize lag and Ajax requests
   * Prevents duplicate data using Subsets (a extension of Backbone Collection)
-<!-- * Polymorphic Notification model that creates notifications for new albums, comments on your photos and comments on your comments. -->
+<p><!-- * Polymorphic Notification model that creates notifications for new albums, comments on your photos and comments on your comments. --></p>
 
 
 ## Still To Do
