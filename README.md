@@ -1,13 +1,12 @@
 # PicsCasa
-##### a home for your pics
 
-[PicsCasa](http://www.picscasa.com) is an [Picasa](http://www.picasaweb.google.com) clone. It was built by [Levi Adler](http://www.leviadler.com) using Ruby on Rails along with Backbone.js and other jQuery and Javascript features. All pages were hand-styled. 
+[PicsCasa](http://www.picscasa.com) is an [Picasa](http://www.picasaweb.google.com) clone. It was built by [Levi Adler](http://www.leviadler.com) using Ruby on Rails along with Backbone.js and other jQuery and Javascript features.
 
 You can visit the live version at [PicsCasa.com](http://www.picscasa.com) - click on the "Demo user" button if you just want to check it out!
 
 ## Features
 
-PicsCasa features the core functionality of picasa. Users can:
+PicsCasa features the core functionality of Picasa with a much needed facelift. Users can:
 
 * Create Albums
 * Upload pictures
@@ -26,8 +25,9 @@ Various technologies were utilized to make PicsCasa work in the amazing way that
   * Mailer to email shared albums to friends
 * **Front-End:** PicsCasa has a Backbone.js front-end to provide a smoother user experience and minimize requests to the server.
   * Overwrites parse method in Backbone photo and album models
+  * Overwrites toJSON method in all models to properly namespace params before sending up to Rails (and not rely on the Rails ParamsWrapper)
   * Builds custom JSON using Jbuilder
-  * Bootstaps initial data to minimize lag and Ajax requests
+  * Bootstraps initial data to minimize lag and Ajax requests
   * Prevents duplicate data using Subsets (a extension of Backbone Collection)
 * **Styling:** PicsCasa was styled with custom CSS without the use of any third-party themes or tools.
 
