@@ -24,7 +24,7 @@ Various technologies were utilized to make PicsCasa work in the amazing way that
   * Uploading of pictures using Paperclip and ImageMagick
   * Mailer to email shared albums to friends
 * **Front-End:** PicsCasa has a Backbone.js front-end to provide a smoother user experience and minimize requests to the server.
-  * Overwrites parse method in Backbone photo and album models
+  * Overwrites parse method in Backbone photo and album models to recreate rails like associations for albums to photos and photos to comments
   * Overwrites toJSON method in all models to properly namespace params before sending up to Rails (and not rely on the Rails ParamsWrapper)
   * Builds custom JSON using Jbuilder
   * Bootstraps initial data to minimize lag and Ajax requests

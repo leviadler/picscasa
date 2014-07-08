@@ -207,14 +207,14 @@ nav .notif-dropdown > li:nth-child(even) {
   display: none;
   position: absolute;
   right: 5px;
-  border: 1px solid black;
+  border: 1px solid #ccc;
   border-radius: 2px;
 }
 
 .user-dropdown-items > li {
   padding: 5px;
   text-align: right;
-  background: white;
+  background: #fff;
 }
 
 .user-dropdown-items > li a {
@@ -310,7 +310,6 @@ nav .notif-dropdown > li:nth-child(even) {
   text-align: center;
 }
 
-/* TODO give real colors */
 .flash.flash-error {
   background: #e74c3c;
 }
@@ -451,29 +450,6 @@ a.delete-album {
   font-size: 14px;
   color: #C0392B;
 }
-
-
-/*button.delete-album {
-  position: relative;
-  display: block;
-  background: #E26A6A;
-  border: 1px solid #C0392B;
-  border-radius: 3px;
-  margin: auto;
-  color: white;
-  padding: 5px;
-  box-shadow: 0 2px 2px 0 #C0392B;
-}
-
-button.delete-album:hover {
-  background: #C0393B;
-}
-button.delete-album:active {
-  background: #C0393B;
-  top: 2px;
-  box-shadow: none;
-}*/
-
 
 
 /* photo caption tags form */
