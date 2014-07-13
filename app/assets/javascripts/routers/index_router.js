@@ -1,7 +1,8 @@
 Picscasa.Routers.IndexRouter = Backbone.Router.extend({
 
   routes: {
-    "": "index"
+    "": "index",
+    '*notFound': "index"
   },
 
   index: function() {
