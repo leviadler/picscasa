@@ -19,7 +19,6 @@ Picscasa.Views.PhotosIndex = Backbone.View.extend({
 
     var that = this;
     this.collection.forEach(function(photo){
-      console.log(photo);
       that.addPhoto(photo);
     });
 

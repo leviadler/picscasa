@@ -13,20 +13,14 @@ window.Picscasa = {
     var bootstrappedData = JSON.parse($("#bootstrapped-data").html());
 
     if(Picscasa.CURRENT_USER_ID) {
-      //Picscasa.userPhotos = new Picscasa.Models.Album(bootstrappedData.userPhotos, {parse: true});
 
       Picscasa.userAlbums = new Picscasa.Subsets.UserAlbums(bootstrappedData.userAlbums, {
         parentCollection: Picscasa.allAlbums,
         parse: true
       })
 
-      // Picscasa.userPhotos.collection = new Picscasa.Subsets.UserPhotos([], {
-//         parentCollection: Picscasa.allAlbums
-//       })
-
       Picscasa.userPhotos = new Picscasa.Subsets.UserPhotos( bootstrappedData.userPhotos, {
         parentCollection: Picscasa.allPhotos,
-        //parentCollection: Picscasa.allAlbums,
         parse: true
       })
 
@@ -40,9 +34,12 @@ window.Picscasa = {
 
     Picscasa.users = new Picscasa.Collections.Users({});
 
-    new Picscasa.Routers.Router({
-      $rootEl: rootEl,
-    });
+    // initialize routers
+    new Picscasa.Routers.IndexRouter();
+    new Picscasa.Routers.AlbumsRouter({ $rootEl: rootEl });
+    new Picscasa.Routers.PhotosRouter({ $rootEl: rootEl });
+    new Picscasa.Routers.TagsRouter({ $rootEl: rootEl });
+    new Picscasa.Routers.UsersRouter({ $rootEl: rootEl });
 
 
     Backbone.history.start();

@@ -14,14 +14,13 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
   events: {
     "click a.next-photo": "nextPhoto",
     "click a.prev-photo": "prevPhoto",
-    // "keydown .photo-container": "keyPress",
     "submit form.like-form": "likePhoto",
     "submit form.unlike-form": "unlikePhoto"
   },
 
   nextPhoto: function(event) {
     event.preventDefault();
-    console.log(this.model.collection);
+    // console.log(this.model.collection);
     var nextPhoto = this.model.collection.next(this.model);
     if (nextPhoto) {
       Backbone.history.navigate("#/photos/" + nextPhoto.id, {trigger: true })
@@ -32,7 +31,7 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
 
   prevPhoto: function(event) {
     event.preventDefault();
-    console.log(this.model.collection);
+    // console.log(this.model.collection);
     var prevPhoto = this.model.collection.prev(this.model);
     if (prevPhoto) {
       Backbone.history.navigate("#/photos/" + prevPhoto.id, {trigger: true })
@@ -121,16 +120,16 @@ Picscasa.Views.PhotoShow = Backbone.View.extend({
     })
     this._addSubview(".tags", tagsView);
 
-    
-    
+
+
 
     // comments
     var that = this;
     this.model.comments().forEach( function(comment) {
       that.addComment(comment)
     });
-    
-    
+
+
     // new comment form
     if(Picscasa.helpers.signedIn()) {
       var commentNewView = new Picscasa.Views.CommentsNew({

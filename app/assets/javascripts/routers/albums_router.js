@@ -1,13 +1,10 @@
-Picscasa.Routers.Router = Backbone.Router.extend({
+Picscasa.Routers.AlbumsRouter = Backbone.Router.extend({
 
   initialize: function(options) {
-    this.$rootEl = options.$rootEl;
+    this.$rootEl = options.$rootEl
   },
 
   routes: {
-    "": "index",
-    "photos" : "photosIndex",
-    "photos/:id": "photosShow",
     "albums": "albumsIndex",
     "albums/new": "newAlbum",
     "albums/:id/edit": "editAlbum",
@@ -15,41 +12,7 @@ Picscasa.Routers.Router = Backbone.Router.extend({
     "albums/:id/share": "shareAlbum",
     "albums/public": "publicAlbums",
     "albums/:id/auth_token/:auth_token": "unlistedAlbumShow",
-    "albums/:id": "albumShow",
-    "users/:id": "userShow",
-    "tags": "tagsIndex",
-    "tags/:id": "tagShow"
-  },
-
-  index: function() {
-    Backbone.history.navigate("#/photos", {trigger: true})
-  },
-
-  photosIndex: function() {
-    Picscasa.helpers.requireSignedIn();
-    var indexView = new Picscasa.Views.PhotosIndex({
-      collection: Picscasa.userPhotos,
-      title: "My Photos"
-    });
-
-    // do we get rid of this when bootrapping?
-    //Picscasa.userPhotos.fetch()
-    this._swapView(indexView);
-  },
-
-  photosShow: function(id) {
-    var that = this;
-
-    Picscasa.allPhotos.getOrFetch(id, function(photo) {
-      var showView = new Picscasa.Views.PhotoShow({
-        model: photo,
-        //collection: Picscasa.userPhotos
-      });
-
-      that._swapView(showView);
-    });
-
-
+    "albums/:id": "albumShow"
   },
 
   albumsIndex: function() {
@@ -182,46 +145,10 @@ Picscasa.Routers.Router = Backbone.Router.extend({
 
   },
 
-  userShow: function(id) {
-    var that = this;
-
-    Picscasa.users.getOrFetch(id, function(user) {
-      var userShowView = new Picscasa.Views.AlbumsIndex({
-        collection: user.albums(),
-        title: ((user.id === Picscasa.CURRENT_USER_ID) ? "My" : user.escape("name")) + " Public Albums",
-        user: user,
-      });
-
-      that._swapView(userShowView);
-    });
-  },
-
-  tagsIndex: function() {
-    Picscasa.userTags.fetch();
-
-    var tagIndexView = new Picscasa.Views.TagsIndex({
-      collection: Picscasa.userTags
-    });
-
-    this._swapView(tagIndexView);
-  },
-
-  tagShow: function(id) {
-    var that = this;
-
-    Picscasa.userTags.getAndFetch(id, function(tag) {
-      var tagShowView = new Picscasa.Views.PhotosIndex({
-        collection: tag.photos(),
-        title: "Photos tagged as " + tag.escape("name")
-      });
-
-      that._swapView(tagShowView);
-    })
-  },
-
   _swapView: function (view) {
      this._currentView && this._currentView.remove();
      this._currentView = view;
      this.$rootEl.html(view.render().$el);
    }
+
 })
