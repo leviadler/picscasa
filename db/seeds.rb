@@ -6,26 +6,26 @@ users = User.create!([
   {email: "dan@example.com", fname: "Dan", lname: "Theman", password: "password1"}
 ])
 
-Album.create!([
+albums = Album.create!([
   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 1, visibility: 2, auth_token: nil},
   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 1, visibility: 1, auth_token: nil},
-  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 1, visibility: 0, auth_token: nil}
-  
+  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 1, visibility: 0, auth_token: nil},
+
   {title: "Good Times", description: "Some lovely pictures of nature", date: "2014-03-01", location: "Georgia", owner_id: 2, visibility: 2, auth_token: nil},
   {title: "Best Party Ever!", description: "Vacation Pictures", date: "2014-02-05", location: "Texas", owner_id: 2, visibility: 1, auth_token: nil},
-  {title: "Graduation Party", description: "Just having some fun", date: "2014-01-03", location: "Florida", owner_id: 2, visibility: 0, auth_token: nil}
-  
-  # {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 3, visibility: 2, auth_token: nil},
-#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 3, visibility: 1, auth_token: nil},
-#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 3, visibility: 0, auth_token: nil}
-#
-#   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 4, visibility: 2, auth_token: nil},
-#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 4, visibility: 1, auth_token: nil},
-#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 4, visibility: 0, auth_token: nil}
-#
-#   {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 5, visibility: 2, auth_token: nil},
-#   {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 5, visibility: 1, auth_token: nil},
-#   {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 5, visibility: 0, auth_token: nil}
+  {title: "Graduation Party", description: "Just having some fun", date: "2014-01-03", location: "Florida", owner_id: 2, visibility: 0, auth_token: nil},
+
+  {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 3, visibility: 2, auth_token: nil},
+  {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 3, visibility: 1, auth_token: nil},
+  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 3, visibility: 0, auth_token: nil},
+
+  {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 4, visibility: 2, auth_token: nil},
+  {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 4, visibility: 1, auth_token: nil},
+  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 4, visibility: 0, auth_token: nil},
+
+  {title: "Nature", description: "Some lovely pictures of nature", date: "2014-04-01", location: "Kentucky", owner_id: 5, visibility: 2, auth_token: nil},
+  {title: "Vacation", description: "Vacation Pictures", date: "2014-04-01", location: "Texas", owner_id: 5, visibility: 1, auth_token: nil},
+  {title: "Having Fun", description: "Just having some fun", date: "2014-04-01", location: "Florida", owner_id: 5, visibility: 0, auth_token: nil}
 ])
 
 Photo.create!([
@@ -55,8 +55,18 @@ Photo.create!([
 
 # require 'flickr'
 # flickr = Flickr.new(
-#   ENV['FLICKR_KEY']
+#   ENV['FLICKR_KEY'],
+#   tags: 'nature'
 # )
 # recentphotos = flickr.photos
+#
+# albums.each do |album|
+#   5.times do |i|
+#     photo = recentphotos.pop
+#     p photo
+#     Photo.create!(album_id: album.id, caption: photo.description.to_s, image: photo.source)
+#   end
+#
+# end
 # useful is .source == the url - .description == my captions
 

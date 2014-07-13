@@ -15,8 +15,6 @@ class Album < ActiveRecord::Base
 
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  # has_one :cover_photo, class_name: "Photo", primary_key: :cover_photo_id, foreign_key: :id
-
   def cover_photo
     self.photos.first
   end
