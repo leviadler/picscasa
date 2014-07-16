@@ -4,7 +4,7 @@ class Api::PhotosController < ApplicationController
   before_action :require_photo_owner, only: [:update, :destroy]
 
   def index
-    @photos = current_user.photos.includes({comments: [:user]}, :likes, :tags, :owner)
+    @photos = current_user.photos.includes({comments: [:user]}, :likes, :tags, :owner, :album)
   end
 
   def show
