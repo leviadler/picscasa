@@ -14,7 +14,7 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
     this.$el.html(renderedContent);
     return this;
   },
-  
+
   deleteAlbum: function(event) {
     event.preventDefault();
     if (confirm('Are you sure you want to delete this album?')) {
@@ -34,9 +34,6 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
     };
 
     var error = function(album, response) {
-      // not sure which to use
-      // should also prob make this a helper that just takes the class name
-      // and message sets the other defaults
       // notify js is not responding well to long messages
       // doesn't center them well
       // response.responseJSON.forEach(function(error) {
@@ -47,7 +44,6 @@ Picscasa.Views.AlbumsForm = Backbone.View.extend({
     }
 
     this.model.set(formData["album"]);
-    console.log(this.model);
 
     if (this.model.isNew()) {
       this.collection.create(this.model, {

@@ -17,7 +17,6 @@ Picscasa.Collections.Tags = Backbone.Collection.extend({
       success: function () {
         tags.add(tag);
         callback(tag);
-        console.log(tags);
       }
     });
   }

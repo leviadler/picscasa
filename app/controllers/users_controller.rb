@@ -28,10 +28,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      # flash[:notice] = "Profile updated!"
-      redirect_to root_url #TODO redirect back w/ request.referer
+      redirect_to root_url
     else
-
       flash.now[:error] = @user.errors.full_messages
       render :edit
     end
@@ -54,7 +52,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user != current_user
-      flash[:error] = "You do not have access to that page"
+      #flash[:error] = "You do not have access to that page" #removed b/c will persist
       redirect_to root_url
     end
   end
