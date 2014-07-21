@@ -24,7 +24,8 @@ Picscasa.Routers.AlbumsRouter = Backbone.Router.extend({
     });
 
     // do we get rid of this when bootrapping?
-    //Picscasa.userAlbums.fetch()
+    // remove if paginating?
+    // Picscasa.userAlbums.fetch()
 
     this._swapView(albumIndexView);
   },
