@@ -15,18 +15,23 @@ class Notification < ActiveRecord::Base
     case self.event_type
     when 'comment_on_photo'
       comment = self.notifiable
-      photo_url(comment.photo, anchor: "comment-#{comment.id}" )
+      # photo_url(comment.photo, anchor: "comment-#{comment.id}" )
+      "/#/photo/#{comment.photo.id}"
     when 'like_on_photo'
       like = self.notifiable
-      photo_url(like.photo)
+      # photo_url(like.photo)
+      "/#/photo/#{like.photo.id}"
     when 'comment_where_commented'
       comment = self.notifiable
-      photo_url(comment.photo, anchor: "comment-#{comment.id}" )
+      # photo_url(comment.photo, anchor: "comment-#{comment.id}" )
+      "/#/photo/#{comment.photo.id}"
     when 'new_account'
-      new_album_url
+      # new_album_url
+      "/#/albums/new"
     when 'new_album'
       album = self.notifiable
-      new_album_photo_url(album)
+      # new_album_photo_url(album)
+      "/#/albums/#{self.notifiable_id}"
     end
   end
 

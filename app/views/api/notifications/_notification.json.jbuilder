@@ -1,0 +1,1 @@
+json.(notification, :id, :is_unread, :url, :text, :created_at)

@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     end
 
     resources :tags, only: [:index, :show, :destroy]
+
+    resources :notifications, only: [:index, :show, :update]
   end
 
 
