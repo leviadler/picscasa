@@ -3,7 +3,17 @@
   <input id="tags-input" type="text" name="photo[tag_list]" value="<%= photo.get("tags").join(" ") %>">
   </div>
   <span class="tag-instructions">You can enter a space separated list of tags.</span>
-  
+
   <button class="tag">Save</button>
 
 </form>
+
+<script>
+$(document).ready(function() {
+
+  $('#tags-input').bind('keydown', function(e) {
+      e.stopPropagation();
+  });
+})
+
+</script>

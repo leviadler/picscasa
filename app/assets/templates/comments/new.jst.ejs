@@ -11,7 +11,7 @@
   <input type="hidden" name="comment[photo_id]" value=<%= photo.id %>>
 
   <div class="input">
-  <textarea placeholder="Add a comment..." name="comment[body]"></textarea>
+    <textarea placeholder="Add a comment..." name="comment[body]" id="comment-input"></textarea>
   </div>
 
   <!-- TODO only show on focus and add cancel button - like google+ -->
@@ -19,6 +19,17 @@
 
 
 </form>
+
+
+<script>
+$(document).ready(function() {
+
+  $('#comment-input').bind('keydown', function(e) {
+      e.stopPropagation();
+  });
+})
+
+</script>
 
 
 
